@@ -156,9 +156,9 @@ public class ProfilesSettings extends SettingsPreferenceFragment {
         getActivity().registerReceiver(mReceiver, mFilter);
 
         // If running on a phone, remove padding around tabs
-        /*if (!Utils.isScreenLarge()) {
+        if (!Utils.isTablet(getActivity())) {
             mContainer.setPadding(0, 0, 0, 0);
-        }*/
+        }
     }
 
     @Override
