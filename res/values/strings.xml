@@ -4790,6 +4790,8 @@
     <string name="icon_picker_pack_title">Icon Pack</string>
 
     <!-- Interface Settings -->
+    <string name="alt_resolver">Default App Grid</string>
+    <string name="alt_resolver_summary">Use alternate default app picker</string>
     <string name="chronus_title">Clock Widget</string>
     <string name="chronus_summary">View or change the clock widget appearance</string>
     <string name="force_dual_pane_title">Force Dual Panel</string>

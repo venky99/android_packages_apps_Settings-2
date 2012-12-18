@@ -61,12 +61,14 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
     private static final String KEY_NOTIF_STYLE = "notification_style";
+    private static final String KEY_USE_ALT_RESOLVER = "use_alt_resolver";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
     private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
 
     private Preference mLcdDensity;
+    private CheckBoxPreference mUseAltResolver;
     private PreferenceCategory mAdvanced;
     private Preference mCustomLabel;
     private Preference mNotifStyle;
@@ -97,6 +99,13 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
+
+        mUseAltResolver = (CheckBoxPreference) findPreference(KEY_USE_ALT_RESOLVER);
+        mUseAltResolver.setOnPreferenceChangeListener(this);
+        mUseAltResolver.setChecked(Settings.System.getInt(
+                getActivity().getContentResolver(),
+                Settings.System.ACTIVITY_RESOLVER_USE_ALT, 0) == 1);
+
         mCustomLabel = findPreference(KEY_CARRIER_LABEL);
         mCustomLabel.setOnPreferenceClickListener(mCustomLabelClicked);
 
@@ -192,6 +201,11 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
+            return true;
+        } else if (preference == mUseAltResolver) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+                    (Boolean) newValue ? 1 : 0);
             return true;
         } else if (preference == mDualPane) {
             Settings.System.putInt(getActivity().getContentResolver(),
