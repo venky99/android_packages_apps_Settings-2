@@ -5709,5 +5709,9 @@
     <!-- TRDS Settings -->
     <string name="trds_settings_title">Dark Liquid</string>
 
+    <!-- Wireless display -->
+    <string name="pref_wifi_disable_hdcp_title">Skip HDCP negotiation</string>
+    <string name="pref_wifi_disable_hdcp_summary">Try this option if you can connect but don\'t get any output</string>
+
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>
