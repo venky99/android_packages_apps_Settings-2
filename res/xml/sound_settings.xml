@@ -163,6 +163,12 @@
             android:title="@string/headset_category_title"/>
 
     <CheckBoxPreference
+        android:key="headset_connect_player"
+        android:title="@string/headset_connect_player_title"
+        android:summary="@string/headset_connect_player_summary"
+        android:persistent="false" />
+
+    <CheckBoxPreference
         android:key="safe_headset_volume"
         android:title="@string/safe_headset_volume_title"
         android:summary="@string/safe_headset_volume_summary"

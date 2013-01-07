@@ -84,6 +84,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOCK_AUDIO_MEDIA_ENABLED = "dock_audio_media_enabled";
     private static final String KEY_QUIET_HOURS = "quiet_hours";
     private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
+    private static final String KEY_HEADSET_CONNECT_PLAYER = "headset_connect_player";
     private static final String KEY_CONVERT_SOUND_TO_VIBRATE = "notification_convert_sound_to_vibration";
     private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
@@ -112,6 +113,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private Preference mMusicFx;
     private CheckBoxPreference mLockSounds;
     private CheckBoxPreference mVolBtnMusicCtrl;
+    private CheckBoxPreference mHeadsetConnectPlayer;
     private CheckBoxPreference mConvertSoundToVibration;
     private Preference mRingtonePreference;
     private Preference mNotificationPreference;
@@ -221,6 +223,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
         mVolBtnMusicCtrl.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
+
+
+        mHeadsetConnectPlayer = (CheckBoxPreference) findPreference(KEY_HEADSET_CONNECT_PLAYER);
+        mHeadsetConnectPlayer.setChecked(Settings.System.getInt(resolver,
+                Settings.System.HEADSET_CONNECT_PLAYER, 0) != 0);
 
         mConvertSoundToVibration = (CheckBoxPreference) findPreference(KEY_CONVERT_SOUND_TO_VIBRATE);
 
@@ -443,13 +450,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                     mVolBtnMusicCtrl.isChecked() ? 1 : 0);
 
-        } else if (preference == mSafeHeadsetVolume) {
-            Settings.System.putInt(getContentResolver(), Settings.System.SAFE_HEADSET_VOLUME,
-                    mSafeHeadsetVolume.isChecked() ? 1 : 0);
-
         } else if (preference == mHeadsetConnectPlayer) {
             Settings.System.putInt(getContentResolver(), Settings.System.HEADSET_CONNECT_PLAYER,
                     mHeadsetConnectPlayer.isChecked() ? 1 : 0);
+
+        } else if (preference == mSafeHeadsetVolume) {
+            Settings.System.putInt(getContentResolver(), Settings.System.SAFE_HEADSET_VOLUME,
+                    mSafeHeadsetVolume.isChecked() ? 1 : 0);
 
         } else {
             // If we didn't handle it, let preferences handle it.
