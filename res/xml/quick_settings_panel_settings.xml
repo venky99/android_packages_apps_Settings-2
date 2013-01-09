@@ -121,7 +121,6 @@
 
         <CheckBoxPreference
             android:key="dynamic_usbtether"
-            android:dependency="disable_quick_settings"
             android:title="@string/title_dynamic_usbtether" />
 
         <CheckBoxPreference
