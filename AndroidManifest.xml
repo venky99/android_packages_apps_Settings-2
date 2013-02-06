@@ -1461,6 +1461,7 @@
         <activity android:name=".liquid.LockscreenInterface" />
         <activity android:name=".liquid.LockscreenWidgets" />
         <activity android:name=".liquid.LockscreenButtons" />
+        <activity android:name=".liquid.LockscreenShortcuts" />
         <activity android:name=".liquid.HardwareKeys" />
         <activity android:name=".liquid.NavbarSettings" />
         <activity android:name=".liquid.NavRingTargets" />
