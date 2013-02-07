@@ -5537,8 +5537,8 @@
     <string name="volbtn_music_controls_title">Volume rocker music controls</string>
     <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rockers seeks tracks</string>
     <string name="headset_connect_player_title">Launch music app on connect</string>
-    <string name="safe_headset_restore_title">Safe headset volume</string>
-    <string name="safe_headset_restore_summary">Prevent loud volume levels when headset is first plugged in</string>
+    <string name="safe_headset_volume_title">Safe headset volume</string>
+    <string name="safe_headset_volume_summary">Prevent loud volume levels when headset is first plugged in</string>
     <string name="volume_ring_only_description">Ringtone</string>
     <string name="notification_convert_sound_to_vibration_title">Notification conversion</string>
     <string name="notification_convert_sound_to_vibration_summary">Convert sounds to vibrations when using vibrate mode</string>
