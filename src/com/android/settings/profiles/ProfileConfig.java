@@ -275,7 +275,7 @@ public class ProfileConfig extends SettingsPreferenceFragment
                 ProfileConnectionPreference pref = new ProfileConnectionPreference(getActivity());
                 pref.setKey("connection_" + connection.mConnectionId);
                 pref.setTitle(connection.mLabel);
-                pref.setSummary(settings.getValue() == 1 ? getString(R.string.connection_state_enabled) 
+                pref.setSummary(settings.getValue() == 1 ? getString(R.string.connection_state_enabled)
                         : getString(R.string.connection_state_disabled));
                 pref.setPersistent(false);
                 pref.setConnectionItem(connection);
@@ -358,7 +358,6 @@ public class ProfileConfig extends SettingsPreferenceFragment
                 0, header, this, PROFILE_GROUP_DETAILS);
     }
 
-    
     private void deleteProfile() {
         if (mProfile.getUuid().equals(mProfileManager.getActiveProfile().getUuid())) {
             Toast toast = Toast.makeText(getActivity(), getString(R.string.profile_cannot_delete),

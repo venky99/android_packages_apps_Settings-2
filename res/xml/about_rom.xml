@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:liquid="http://schemas.android.com/apk/res/com.android.settings">
+
+    <PreferenceCategory android:key="devs"
+        android:title="@string/devs">
+
+        <com.android.settings.widget.DeveloperPreference
+           android:title="LiquidSmooth"
+           liquid:nameDev="liquidsmooth"
+           liquid:twitterHandle="liquid0624"
+           liquid:donateLink="@string/donate_liquid" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="links"
+        android:title="@string/links">
+
+       <Preference
+            android:key="liquid_facebook"
+            android:title="@string/liquid_facebook_title"
+            android:summary="@string/liquid_facebook_summary" />
+
+        <Preference
+            android:key="liquid_source"
+            android:title="@string/liquid_source_title"
+            android:summary="@string/liquid_source_summary" />
+
+       <Preference
+            android:key="liquid_website"
+            android:title="@string/liquid_website_title"
+            android:summary="@string/liquid_website_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="contributors"
+        android:title="@string/contributors">
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="CyanogenMod"
+            liquid:nameDev="cyanogenmod"
+            liquid:twitterHandle="cyanogenmod"
+            liquid:donateLink="@string/donate_cyanogen" />
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="Slimroms"
+            liquid:nameDev="slimroms"
+            liquid:twitterHandle="slimroms"
+            liquid:donateLink="@string/donate_slim" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

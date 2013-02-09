@@ -19,7 +19,6 @@ package com.android.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -35,6 +34,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,6 +72,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_DEVICE_MEMORY = "device_memory";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
+
     long[] mHits = new long[3];
     int mDevHitCountdown;
     Toast mDevHitToast;
@@ -205,6 +206,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                         getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
                                 Context.MODE_PRIVATE).edit().putBoolean(
                                         DevelopmentSettings.PREF_SHOW, true).apply();
+
                         if (mDevHitToast != null) {
                             mDevHitToast.cancel();
                         }
@@ -380,8 +382,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         try {
             /* The expected /proc/cpuinfo output is as follows:
-             * Processor	: ARMv7 Processor rev 2 (v7l)
-             * BogoMIPS	: 272.62
+             * Processor    : ARMv7 Processor rev 2 (v7l)
+             * BogoMIPS    : 272.62
              */
             String firstLine = readLine(FILENAME_PROC_CPUINFO);
             if (firstLine != null) {
@@ -390,23 +392,5 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         } catch (IOException e) {}
 
         return result;
-    }
-
-    private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
-        String intentUri=((PreferenceScreen) preference).getIntent().toUri(1);
-        Pattern pattern = Pattern.compile("component=([^/]+)/");
-        Matcher matcher = pattern.matcher(intentUri);
-
-        String packageName=matcher.find()?matcher.group(1):null;
-        if(packageName != null) {
-            try {
-                getPackageManager().getPackageInfo(packageName, 0);
-            } catch (NameNotFoundException e) {
-                Log.e(LOG_TAG,"package "+packageName+" not installed, hiding preference.");
-                getPreferenceScreen().removePreference(preference);
-                return true;
-            }
-        }
-        return false;
     }
 }

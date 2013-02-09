@@ -40,6 +40,7 @@ public class PowerWidgetUtil {
     public static final String BUTTON_BLUETOOTH = "toggleBluetooth";
     public static final String BUTTON_BRIGHTNESS = "toggleBrightness";
     public static final String BUTTON_SOUND = "toggleSound";
+    public static final String BUTTON_NOTIFICATION_SOUND = "toggleNotificationSound";
     public static final String BUTTON_SYNC = "toggleSync";
     public static final String BUTTON_WIFIAP = "toggleWifiAp";
     public static final String BUTTON_SCREENTIMEOUT = "toggleScreenTimeout";
@@ -55,6 +56,8 @@ public class PowerWidgetUtil {
     public static final String BUTTON_MEDIA_NEXT = "toggleMediaNext";
     public static final String BUTTON_LTE = "toggleLte";
     public static final String BUTTON_WIMAX = "toggleWimax";
+    public static final String BUTTON_REBOOT = "toggleReboot";
+    public static final String BUTTON_FCHARGE = "toggleFCharge";
 
     public static final HashMap<String, ButtonInfo> BUTTONS = new HashMap<String, ButtonInfo>();
     static {
@@ -93,6 +96,9 @@ public class PowerWidgetUtil {
         BUTTONS.put(BUTTON_SOUND, new PowerWidgetUtil.ButtonInfo(
                 BUTTON_SOUND, R.string.title_toggle_sound,
                 "com.android.systemui:drawable/stat_ring_on"));
+        BUTTONS.put(BUTTON_NOTIFICATION_SOUND, new PowerWidgetUtil.ButtonInfo(
+                BUTTON_NOTIFICATION_SOUND, R.string.title_toggle_notification_sound,
+                "com.android.systemui:drawable/stat_notify_sound_on"));
         BUTTONS.put(BUTTON_SYNC, new PowerWidgetUtil.ButtonInfo(
                 BUTTON_SYNC, R.string.title_toggle_sync,
                 "com.android.systemui:drawable/stat_sync_on"));
@@ -111,6 +117,12 @@ public class PowerWidgetUtil {
         BUTTONS.put(BUTTON_MEDIA_NEXT, new PowerWidgetUtil.ButtonInfo(
                 BUTTON_MEDIA_NEXT, R.string.title_toggle_media_next,
                 "com.android.systemui:drawable/stat_media_next"));
+        BUTTONS.put(BUTTON_REBOOT, new PowerWidgetUtil.ButtonInfo(
+                BUTTON_REBOOT, R.string.title_toggle_reboot,
+                "com.android.systemui:drawable/stat_reboot"));
+        BUTTONS.put(BUTTON_FCHARGE, new PowerWidgetUtil.ButtonInfo(
+                BUTTON_FCHARGE, R.string.title_toggle_fcharge,
+                "com.android.systemui:drawable/toggle_fcharge"));
         if(PhoneConstants.LTE_ON_CDMA_TRUE == TelephonyManager.getDefault().getLteOnCdmaMode() ||
            TelephonyManager.getDefault().getLteOnGsmMode() != 0) {
             BUTTONS.put(BUTTON_LTE, new PowerWidgetUtil.ButtonInfo(

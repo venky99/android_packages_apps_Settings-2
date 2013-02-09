@@ -1441,85 +1441,85 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
-        <!-- LiquidSmooth Activities Start -->
+        <!-- LiquidSmooth Activities -->
+        <activity android:name=".liquid.InterfaceSettings" />
         <activity android:name=".liquid.PowerWidget" />
-
+        <activity android:name=".liquid.QuietHours" />
+        <activity android:name=".liquid.PowerMenu" />
+        <activity android:name=".liquid.About" />
+        <activity android:name=".notificationlight.NotificationLightSettings" />
+        <activity android:name=".notificationlight.BatteryLightSettings" />
+        <activity android:name=".liquid.QuickSettings" />
+        <activity android:name=".liquid.NotificationDrawer" />
         <activity android:name=".liquid.StatusBar" />
+        <activity android:name=".liquid.StatusBarStyle" />
+        <activity android:name=".liquid.StatusBarClockStyle" />
+        <activity android:name=".liquid.StatusBarBatteryStyle" />
+        <activity android:name=".liquid.LockscreenTargets" />
+        <activity android:name=".liquid.LockscreenInterface" />
+        <activity android:name=".liquid.LockscreenWidgets" />
+        <activity android:name=".liquid.LockscreenButtons" />
+        <activity android:name=".liquid.HardwareKeys" />
+        <activity android:name=".liquid.NavbarSettings" />
+        <activity android:name=".liquid.NavRingTargets" />
+        <activity android:name=".liquid.NavbarButtonSettings" />
+        <activity android:name=".liquid.NavbarStyleDimenSettings" />
+        <activity android:name=".liquid.NavBarStyle" />
+        <activity android:name=".liquid.NavBarButtonStyle" />
+        <activity android:name=".liquid.RamBar" />
+        <activity android:name=".ApnEditor" />
 
-        <activity android:name=".liquid.PerformanceSettings" />
-
-        <activity android:name=".profiles.ProfilesSettings" />
-        <activity android:name="Settings$ProfilesSettingsActivity"
-                android:label="@string/profile_settings"
-                android:taskAffinity=""
-                android:excludeFromRecents="true">
+        <activity
+            android:name=".liquid.DensityChanger"
+            android:label="@string/lcd_density_wizard" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.settings.PROFILES_SETTINGS" />
-                <action android:name="com.android.settings.PROFILES_SETTINGS" />
-                <category android:name="android.intent.category.VOICE_LAUNCH" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.SHORTCUT" />
-                </intent-filter>
-            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.profiles.ProfilesSettings" />
-            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@id/profiles_settings" />
-            </activity>
-
-        <!-- Keep compatibility with old shortcuts. -->
-        <activity-alias android:name="ProfileSettings"
-                android:label="@string/profile_settings"
-                android:exported="true"
-                android:targetActivity="Settings$ProfilesSettingsActivity">
-            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.profiles.ProfilesSettings" />
-            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@id/profiles_settings" />
-        </activity-alias>
-
-        <activity android:name=".profiles.ProfileConfig" />
-
-        <activity android:name=".profiles.AppGroupList" />
-
-        <activity android:name=".profiles.AppGroupConfig" />
-
-        <activity android:name=".profiles.ProfileGroupConfig" />
-
-        <activity android:name=".profiles.NFCProfileWriter" />
-
-        <activity android:name=".profiles.NFCProfileSelect" />
-
-        <activity android:name=".liquid.LockscreenTargets" />
-
-        <activity android:name=".liquid.LockscreenInterface" />
-
-        <activity android:name=".liquid.LockscreenButtons" />
-
-        <activity android:name=".liquid.Navbar" />
-
-        <activity android:name=".liquid.NavRingTargets" />
-
-        <activity android:name=".liquid.PowerMenu" />
-
-        <activity android:name=".liquid.QuickSettings" />
-
-        <activity android:name=".profiles.NFCProfile"
-                android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="liquid/profile" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".notificationlight.NotificationLightSettings" />
+        <!-- Pseudo-activity used to provide an intent-filter entry point to display rotation config -->
+        <activity android:name="Settings$RamBarActivity"
+                android:label="@string/ram_bar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.liquid.RamBar" />
+        </activity>
 
-        <activity android:name=".notificationlight.BatteryLightSettings" />
+        <!-- Pseudo-activity used to provide an intent-filter entry point to display rotation config -->
+        <activity android:name="Settings$DisplayRotationActivity"
+                android:label="@string/display_rotation_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.liquid.DisplayRotation" />
+        </activity>
 
-        <activity android:name=".ApnEditor" />
+        <!-- Pseudo-activity used to provide an intent-filter entry point to lockscreen config -->
+        <activity android:name="Settings$LockscreenActivity"
+                android:label="@string/lock_screen_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.liquid.LockscreenInterface" />
+        </activity>
 
-        <!-- LiquidSmooth Activities End -->
+        <!-- Pseudo-activity used to provide an intent-filter entry point to quick settings tiles config -->
+        <activity android:name="Settings$QuickSettingsTilesActivity"
+                android:label="@string/tile_picker_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.liquid.QuickSettingsTiles" />
+        </activity>
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"
@@ -1527,7 +1527,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.app.action.START_ENCRYPTION" />
-                <category android:name="android.intent.category.DEFAULT" /> />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.CryptKeeperSettings" />
@@ -1551,6 +1551,48 @@
                 android:resource="@id/wireless_settings" />
         </activity>
 
+        <!-- CyanogenMod activities Start -->
+        <activity android:name=".profiles.ProfilesSettings" />
+
+        <activity android:name="Settings$ProfilesSettingsActivity"
+                android:label="@string/profile_settings"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.PROFILES_SETTINGS" />
+                <action android:name="com.android.settings.PROFILES_SETTINGS" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.SHORTCUT" />
+                </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.profiles.ProfilesSettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/profiles_settings" />
+        </activity>
+
+        <activity android:name=".profiles.ProfileConfig" />
+
+        <activity android:name=".profiles.AppGroupList" />
+
+        <activity android:name=".profiles.AppGroupConfig" />
+
+        <activity android:name=".profiles.ProfileGroupConfig" />
+
+        <activity android:name=".profiles.NFCProfileWriter" />
+
+        <activity android:name=".profiles.NFCProfileSelect" />
+
+        <activity android:name=".profiles.NFCProfile"
+                android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="liquid/profile" />
+            </intent-filter>
+        </activity>
+
         <receiver android:name=".widget.SettingsAppWidgetProvider"
                 android:label="@string/gadget_title"
                 android:exported="true"
@@ -1571,12 +1613,6 @@
         <receiver android:name=".bluetooth.BluetoothDiscoverableTimeoutReceiver">
             <intent-filter>
                 <action android:name="android.bluetooth.intent.DISCOVERABLE_TIMEOUT" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".liquid.BootReceiver" android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 

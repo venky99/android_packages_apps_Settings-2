@@ -80,7 +80,7 @@ public class QuietHours extends SettingsPreferenceFragment implements
             mQuietHoursStill.setChecked(Settings.System.getInt(resolver, Settings.System.QUIET_HOURS_STILL, 0) == 1);
             mQuietHoursHaptic.setChecked(Settings.System.getInt(resolver, Settings.System.QUIET_HOURS_HAPTIC, 0) == 1);
 
-            // Remove the notification light setting if the device does not support it 
+            // Remove the notification light setting if the device does not support it
             if (mQuietHoursDim != null && getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed) == false) {
                 getPreferenceScreen().removePreference(mQuietHoursDim);
             } else {

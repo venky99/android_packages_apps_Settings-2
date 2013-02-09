@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Modifications Copyright (C) 2012 CyanogenMod
+ * Modifications Copyright (C) 2012 CyanogenMod and Slimroms
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
     private static final String KEY_CREDENTIALS_MANAGER = "credentials_management";
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
 
-    // Additions
+    // LiquidSmooth Additions
     private static final String SLIDE_LOCK_DELAY_TOGGLE = "slide_lock_delay_toggle";
     private static final String SLIDE_LOCK_TIMEOUT_DELAY = "slide_lock_timeout_delay";
     private static final String SLIDE_LOCK_SCREENOFF_DELAY = "slide_lock_screenoff_delay";
@@ -112,7 +112,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
 
     private boolean mIsPrimary;
 
-    // Additions
+    // LiquidSmooth Additions
     private CheckBoxPreference mSlideLockDelayToggle;
     private ListPreference mSlideLockTimeoutDelay;
     private ListPreference mSlideLockScreenOffDelay;
@@ -141,7 +141,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.security_settings);
         root = getPreferenceScreen();
 
-        // allows for calling the settings screen with stock or liquid view
+        // allows for calling the settings screen with stock or LiquidSmooth view
         boolean isLsSecurity = false;
         Bundle args = getArguments();
         if (args != null) {
@@ -393,7 +393,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
             }
          }
 
-         return root;
+        return root;
     }
 
     private boolean isNonMarketAppsAllowed() {

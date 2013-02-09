@@ -587,7 +587,6 @@ public class Settings extends PreferenceActivity
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
         private final ProfileEnabler mProfileEnabler;
-
         private AuthenticatorHelper mAuthHelper;
 
         private static class HeaderViewHolder {
@@ -850,4 +849,8 @@ public class Settings extends PreferenceActivity
     public static class ApnSettingsActivity extends Settings { /* empty */ }
     public static class ApnEditorActivity extends Settings { /* empty */ }
     public static class ProfilesSettingsActivity extends Settings { /* empty */ }
+    public static class QuickSettingsTilesActivity extends Settings { /* empty */ }
+    public static class DisplayRotationActivity extends Settings { /* empty */ }
+    public static class LockscreenActivity extends Settings { /* empty */ }
+    public static class RamBarActivity extends Settings { /* empty */ }
 }

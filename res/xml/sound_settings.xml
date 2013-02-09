@@ -45,7 +45,7 @@
                 android:targetClass="com.android.musicfx.ControlPanelPicker" />
     </Preference>
 
-    <!-- Quiet hours -->
+    <!-- Quiet Hours -->
     <PreferenceScreen
             android:key="quiet_hours"
             android:fragment="com.android.settings.liquid.QuietHours"
@@ -68,12 +68,24 @@
          android:title="@string/vibrate_when_ringing_title"
          android:persistent="false" />
 
+    <ListPreference
+            android:key="volume_overlay"
+            android:title="@string/volume_overlay_title"
+            android:entries="@array/volume_overlay_entries"
+            android:entryValues="@array/volume_overlay_values" />
+
     <com.android.settings.IncreasingRingPreference
             android:key="increasing_ring"
             android:title="@string/increasing_ring_title"
             android:dialogTitle="@string/increasing_ring_title"
             android:persistent="false"
             android:streamType="ring" />
+
+    <CheckBoxPreference
+            android:key="notification_convert_sound_to_vibration"
+            android:title="@string/notification_convert_sound_to_vibration_title"
+            android:summary="@string/notification_convert_sound_to_vibration_summary"
+            android:defaultValue="true" />
 
     <PreferenceCategory
             android:title="@string/sound_category_system_title"/>
@@ -147,4 +159,11 @@
             android:key="headset_connect_player"
             android:title="@string/headset_connect_player_title"
             android:persistent="false" />
+
+    <CheckBoxPreference
+            android:key="safe_headset_restore"
+            android:title="@string/safe_headset_restore_title"
+            android:summary="@string/safe_headset_restore_summary"
+            android:defaultValue="true" />
+
 </PreferenceScreen>

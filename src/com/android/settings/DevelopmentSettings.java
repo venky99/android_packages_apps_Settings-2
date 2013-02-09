@@ -209,6 +209,7 @@ public class DevelopmentSettings extends PreferenceFragment
     private boolean mDialogClicked;
     private Dialog mEnableDialog;
     private Dialog mAdbDialog;
+
     private Dialog mAdbTcpDialog;
     private Dialog mRootDialog;
 
@@ -584,7 +585,7 @@ public class DevelopmentSettings extends PreferenceFragment
         mKillAppLongpressBack.setChecked(Settings.Secure.getInt(
             getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
-        
+
     private void updatePasswordSummary() {
         try {
             if (mBackupManager.hasBackupPassword()) {

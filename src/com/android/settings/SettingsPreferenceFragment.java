@@ -42,7 +42,6 @@ import android.widget.Button;
 public class SettingsPreferenceFragment extends PreferenceFragment implements DialogCreatable {
 
     private static final String TAG = "SettingsPreferenceFragment";
-    protected Context mContext;
 
     private static final int MENU_HELP = Menu.FIRST + 100;
 
@@ -50,10 +49,14 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
 
     private String mHelpUrl;
 
+    protected Context mContext;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        mContext = getActivity();
+
+        mContext = getActivity().getApplicationContext();
+
         // Prepare help url and enable menu if necessary
         int helpResource = getHelpResource();
         if (helpResource != 0) {

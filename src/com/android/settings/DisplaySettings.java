@@ -62,8 +62,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
+    private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
+    private static final String KEY_TOUCHKEY_LIGHT = "touchkey_light_timeout";
 
     // Strings used for building the summary
     private static final String ROTATION_ANGLE_0 = "0";
@@ -76,10 +78,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private DisplayManager mDisplayManager;
 
     private CheckBoxPreference mVolumeWake;
+    private CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
+    private PreferenceCategory mWakeUpOptions;
     private PreferenceScreen mDisplayRotationPreference;
     private WarnedListPreference mFontSizePref;
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
+    private ListPreference mTouchKeyLights;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -133,6 +138,36 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mFontSizePref = (WarnedListPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
+
+        mWakeUpOptions = (PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY);
+        mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
+        if (mVolumeWake != null) {
+            if (!getResources().getBoolean(R.bool.config_show_volumeRockerWake)) {
+                getPreferenceScreen().removePreference(mVolumeWake);
+                getPreferenceScreen().removePreference((PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY));
+            } else {
+                mVolumeWake.setChecked(Settings.System.getInt(resolver,
+                        Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
+            }
+        }
+
+        mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
+        // hide option if device is already set to never wake up
+        if(!getResources().getBoolean(
+                com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
+            if(mWakeUpWhenPluggedOrUnplugged != null)
+                mWakeUpOptions.removePreference(mWakeUpWhenPluggedOrUnplugged);
+        } else {
+            mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, 1) == 1);
+        }
+
+        if (!getResources().getBoolean(R.bool.config_show_volumeRockerWake) &&
+            !getResources().getBoolean(com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
+                if (mWakeUpOptions != null)
+                    getPreferenceScreen().removePreference(mWakeUpOptions);
+        }
+
         mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null) {
             if (!getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed)) {
@@ -152,6 +187,19 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
 
+        mTouchKeyLights = (ListPreference) findPreference(KEY_TOUCHKEY_LIGHT);
+        if (getResources().getBoolean(R.bool.config_show_touchKeyDur) == false) {
+            if (mTouchKeyLights != null) {
+                getPreferenceScreen().removePreference(mTouchKeyLights);
+            }
+        } else {
+            int touchKeyLights = Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.TOUCHKEY_LIGHT_DUR, 5000);
+            mTouchKeyLights.setValue(String.valueOf(touchKeyLights));
+            mTouchKeyLights.setSummary(mTouchKeyLights.getEntry());
+            mTouchKeyLights.setOnPreferenceChangeListener(this);
+        }
+
         mDisplayManager = (DisplayManager)getActivity().getSystemService(
                 Context.DISPLAY_SERVICE);
         mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
@@ -161,18 +209,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(mWifiDisplayPreference);
             mWifiDisplayPreference = null;
         }
-
-        mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
-        if (mVolumeWake != null) {
-            if (!getResources().getBoolean(R.bool.config_show_volumeRockerWake)) {
-                getPreferenceScreen().removePreference(mVolumeWake);
-                getPreferenceScreen().removePreference((PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY));
-            } else {
-                mVolumeWake.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
-            }
-        }
-
     }
 
     private void updateDisplayRotationPreferenceDescription() {
@@ -428,8 +464,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
                     mVolumeWake.isChecked() ? 1 : 0);
             return true;
+        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
+                    mWakeUpWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
+            return true;
         }
-
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -443,6 +483,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        } else if (preference == mTouchKeyLights) {
+            int touchKeyLights = Integer.valueOf((String) objValue);
+            int index = mTouchKeyLights.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.TOUCHKEY_LIGHT_DUR, touchKeyLights);
+            mTouchKeyLights.setSummary(mTouchKeyLights.getEntries()[index]);
         }
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);

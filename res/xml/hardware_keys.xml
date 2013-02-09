@@ -90,11 +90,11 @@
             android:entryValues="@array/hardware_keys_action_values"
             android:persistent="false"
             android:dependency="hardware_keys_enable_custom" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/additional_options_title">
+        android:key="additional_options"
+        android:title="@string/additional_settings_title">
 
        <CheckBoxPreference
             android:key="hardware_keys_show_overflow"
@@ -102,7 +102,6 @@
             android:summary="@string/hardware_keys_show_overflow_summary"
             android:persistent="false"
             android:defaultValue="false" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

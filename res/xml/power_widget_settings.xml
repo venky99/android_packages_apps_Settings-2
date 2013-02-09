@@ -17,14 +17,15 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Notification drawer Power Widget -->
+    <!-- Powerwidget -->
     <PreferenceCategory
-       android:title="@string/power_widget_buttons">
+       android:title="@string/general_settings_title">
 
         <CheckBoxPreference
             android:key="expanded_widget"
             android:title="@string/title_expanded_widget"
-            android:defaultValue="false" />
+            android:summary="@string/title_expanded_widget_summary"
+            android:defaultValue="true" />
 
         <PreferenceScreen
             android:key="widget_picker"
@@ -45,7 +46,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-       android:title="@string/power_widget_behavior">
+       android:title="@string/advanced_settings_title">
+
+        <ListPreference
+            android:key="brightness_location"
+            android:entries="@array/brightness_location_entries"
+            android:entryValues="@array/brightness_location_values"
+            android:title="@string/brightness_location_title"
+            android:dependency="expanded_widget" />
 
         <CheckBoxPreference
             android:key="expanded_hide_onchange"
@@ -66,7 +74,6 @@
             android:entries="@array/haptic_feedback_entries"
             android:entryValues="@array/haptic_feedback_values"
             android:dependency="expanded_widget" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

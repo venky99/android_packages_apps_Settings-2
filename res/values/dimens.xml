@@ -54,6 +54,11 @@
 
     <dimen name="pager_tabs_padding">0dp</dimen>
 
+    <!-- height of a normal list item in edit playlist mode -->
+    <dimen name="normal_height">64dip</dimen>
+    <!-- height of an expanded list item in edit playlist mode -->
+    <dimen name="expanded_height">128dip</dimen>
+
     <!-- Size of AppWidget previews in KeyguardAppWidgetPickActivity -->
     <dimen name="appwidget_preview_width">140dip</dimen>
     <dimen name="appwidget_preview_height">80dip</dimen>
@@ -62,16 +67,10 @@
     <dimen name="keyguard_appwidget_picker_margin_right">6dip</dimen>
     <integer name="keyguard_appwidget_picker_cols">1</integer>
 
-    <!-- **** LIQUIDSMOOTH ADDITIONS START **** -->
-
     <!-- Light settings dialog -->
     <dimen name="dialog_light_settings_width">400dip</dimen>
 
-    <!-- height of a normal list item in edit playlist mode -->
-    <dimen name="normal_height">64dip</dimen>
-    <!-- height of an expanded list item in edit playlist mode -->
-    <dimen name="expanded_height">128dip</dimen>
-
+    <!-- Navbar -->
     <dimen name="navigation_bar_48">48.0dip</dimen>
     <dimen name="navigation_bar_44">44.0dip</dimen>
     <dimen name="navigation_bar_42">42.0dip</dimen>
@@ -80,6 +79,4 @@
     <dimen name="navigation_bar_30">30.0dip</dimen>
     <dimen name="navigation_bar_24">24.0dip</dimen>
     <dimen name="navigation_bar_0">0.0dip</dimen>
-
-    <!-- **** LIQUIDSMOOTH ADDITIONS END **** -->
 </resources>

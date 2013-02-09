@@ -140,7 +140,7 @@ public class ProfileConnectionPreference extends Preference implements
                 if (currentChoice != defaultChoice) {
                     int value = Integer.parseInt(ConnectionValues[currentChoice]);
                     mConnectionItem.mSettings.setValue(value);
-                    setSummary(value == 1 ? getContext().getString(R.string.connection_state_enabled) 
+                    setSummary(value == 1 ? getContext().getString(R.string.connection_state_enabled)
                             : getContext().getString(R.string.connection_state_disabled));
                 }
             }
