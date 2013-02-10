@@ -68,12 +68,6 @@
          android:title="@string/vibrate_when_ringing_title"
          android:persistent="false" />
 
-    <ListPreference
-            android:key="volume_overlay"
-            android:title="@string/volume_overlay_title"
-            android:entries="@array/volume_overlay_entries"
-            android:entryValues="@array/volume_overlay_values" />
-
     <com.android.settings.IncreasingRingPreference
             android:key="increasing_ring"
             android:title="@string/increasing_ring_title"

@@ -4454,6 +4454,9 @@
     <!-- Hostname setting -->
     <string name="device_hostname">Device hostname</string>
 
+    <!-- About phone screen,  GooManager shortcut-->
+    <string name="update_center">Update center</string>
+    <string name="update_center_summary">Download the latest update OTA</string>
     <!-- About phone screen,  setting option name-->
     <string name="mod_version">LiquidSmooth version</string>
     <string name="mod_version_default">Unknown</string>
@@ -4682,9 +4685,11 @@
 
     <!-- About LiquidSmooth -->
     <string name="links">Links</string>
-    <string name="devs">Developer</string>
+    <string name="devs">Lead Developer</string>
+    <string name="devs_co">Developer</string>
     <string name="contributors">Contributors</string>
-    <string name="about_liquid_title">About liquid</string>
+    <string name="about_liquid_title">About Team Liquid</string>
+    <string name="about_liquid_summary">Get to know the team</string>
     <string name="donate_liquid">http://bit.ly/Ruy2HF</string>
     <string name="liquid_source_title">LiquidSmooth Github</string>
     <string name="liquid_website_title">LiquidSmooth Goo.im</string>

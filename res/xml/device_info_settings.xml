@@ -17,6 +17,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
+     <!-- About LiquidSmooth -->
+     <PreferenceScreen
+        android:key="about_rom"
+        android:fragment="com.android.settings.liquid.About"
+        android:title="@string/about_liquid_title"
+        android:summary="@string/about_liquid_summary" />
+
+    <!-- Update Center - GooManager shortcut -->
+	<PreferenceScreen
+	    android:key="update_info"
+            android:title="@string/update_center"
+	    android:summary="@string/update_center_summary" >
+	    <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.s0up.goomanager"
+		android:targetClass="com.s0up.goomanager.GooManagerActivity" />
+	</PreferenceScreen>
+
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
                 android:title="@string/device_status" 

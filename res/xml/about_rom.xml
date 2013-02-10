@@ -13,6 +13,15 @@
            liquid:donateLink="@string/donate_liquid" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:key="devs_co"
+        android:title="@string/devs_co">
+
+        <com.android.settings.widget.DeveloperPreference
+           android:title="ItsMikeRamsay"
+           liquid:nameDev="itsmikeramsay"
+           liquid:twitterHandle="itsmikeramsay" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:key="links"
         android:title="@string/links">
 

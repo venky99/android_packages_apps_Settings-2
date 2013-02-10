@@ -274,13 +274,6 @@
         android:icon="@drawable/ic_settings_development"
         android:title="@string/development_settings_title" />
 
-    <!-- About liquid -->
-    <header
-        android:id="@+id/about_rom"
-        android:fragment="com.android.settings.liquid.About"
-        android:icon="@drawable/ic_liquid_about"
-        android:title="@string/about_liquid_title" />
-
     <!-- About phone -->
     <header
         android:id="@+id/about_settings"
