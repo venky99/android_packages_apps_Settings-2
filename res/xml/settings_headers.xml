@@ -122,6 +122,15 @@
         android:fragment="com.android.settings.liquid.StatusBar"
         android:icon="@drawable/ic_liquid_statusbar" />
 
+    <!-- GooManager Updater -->
+    <header 
+            android:icon="@drawable/ic_settings_update"
+            android:title="@string/update_center">
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.s0up.goomanager"
+                android:targetClass="com.s0up.goomanager.GooManagerActivity" />
+
     <!-- DEVICE -->
     <header android:id="@+id/device_section"
         android:title="@string/header_category_device" />

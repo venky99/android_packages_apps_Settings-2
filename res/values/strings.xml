@@ -4455,8 +4455,7 @@
     <string name="device_hostname">Device hostname</string>
 
     <!-- About phone screen,  GooManager shortcut-->
-    <string name="update_center">Update center</string>
-    <string name="update_center_summary">Download the latest update OTA</string>
+    <string name="update_center">Updater</string>
     <!-- About phone screen,  setting option name-->
     <string name="mod_version">LiquidSmooth version</string>
     <string name="mod_version_default">Unknown</string>
