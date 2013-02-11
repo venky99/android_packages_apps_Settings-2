@@ -124,6 +124,7 @@ public class Settings extends PreferenceActivity
             R.id.about_settings,
             R.id.accessibility_settings,
             R.id.interface_section
+            R.id.goo_manager
     };
 
     private SharedPreferences mDevelopmentPreferences;

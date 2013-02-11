@@ -123,7 +123,8 @@
         android:icon="@drawable/ic_liquid_statusbar" />
 
     <!-- GooManager Updater -->
-    <header 
+    <header
+        	android:id="@+id/goo_manager"
             android:icon="@drawable/ic_settings_update"
             android:title="@string/update_center">
         <intent
