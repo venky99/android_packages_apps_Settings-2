@@ -123,8 +123,7 @@ public class Settings extends PreferenceActivity
             R.id.date_time_settings,
             R.id.about_settings,
             R.id.accessibility_settings,
-            R.id.interface_section,
-            R.id.goo_manager
+            R.id.interface_section
     };
 
     private SharedPreferences mDevelopmentPreferences;

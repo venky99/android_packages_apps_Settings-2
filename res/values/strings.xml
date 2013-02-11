@@ -4919,8 +4919,8 @@
     <string name="lockscreen_widgets_all_summary">Ability to add widgets on lockscreen</string>
     <string name="lockscreen_camera_widget_title">Camera Widget</string>
     <string name="lockscreen_camera_widget_summary">Shows the camera widget on lockscreen</string>
-    <string name="lockscreen_hide_initial_page_hints_title">Hide Page Hints</string>
-    <string name="lockscreen_hide_initial_page_hints_summary">Disables initial page hints for the widgets</string>
+    <string name="lockscreen_hide_initial_page_hints_title">Show Page Hints</string>
+    <string name="lockscreen_hide_initial_page_hints_summary">Enables initial page hints for the widgets</string>
     <string name="lockscreen_longpress_challenge_title">Longpress Challenge</string>
     <string name="lockscreen_longpress_challenge_summary">Unlock the device by long pressing the handle</string>
     <string name="lockscreen_maximize_widgets_title">Maximize Widgets</string>
