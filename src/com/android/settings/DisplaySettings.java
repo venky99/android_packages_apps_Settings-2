@@ -63,6 +63,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
     private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+    private static final String KEY_LIGHT_OPTIONS = "category_light_options";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_TOUCHKEY_LIGHT = "touchkey_light_timeout";
@@ -80,6 +81,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     private PreferenceCategory mWakeUpOptions;
+    private PreferenceCategory mLightOptions;
     private PreferenceScreen mDisplayRotationPreference;
     private WarnedListPreference mFontSizePref;
     private PreferenceScreen mNotificationPulse;
@@ -117,6 +119,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.display_settings);
 
+        PreferenceScreen prefSet = getPreferenceScreen();
+
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
@@ -139,12 +143,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
-        mWakeUpOptions = (PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY);
+        mWakeUpOptions = (PreferenceCategory) prefSet.findPreference(KEY_WAKEUP_CATEGORY);
         mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
         if (mVolumeWake != null) {
             if (!getResources().getBoolean(R.bool.config_show_volumeRockerWake)) {
-                getPreferenceScreen().removePreference(mVolumeWake);
-                getPreferenceScreen().removePreference((PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY));
+                mWakeUpOptions.removePreference(mVolumeWake);
             } else {
                 mVolumeWake.setChecked(Settings.System.getInt(resolver,
                         Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
@@ -168,10 +171,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     getPreferenceScreen().removePreference(mWakeUpOptions);
         }
 
+        mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
         mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null) {
             if (!getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed)) {
-                getPreferenceScreen().removePreference(mNotificationPulse);
+                mLightOptions.removePreference(mNotificationPulse);
             } else {
                 updateLightPulseDescription();
             }
@@ -181,16 +185,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (mBatteryPulse != null) {
             if (getResources().getBoolean(
                     com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
-                getPreferenceScreen().removePreference(mBatteryPulse);
+                mLightOptions.removePreference(mBatteryPulse);
             } else {
                 updateBatteryPulseDescription();
             }
         }
 
-        mTouchKeyLights = (ListPreference) findPreference(KEY_TOUCHKEY_LIGHT);
+        mTouchKeyLights = (ListPreference) prefSet.findPreference(KEY_TOUCHKEY_LIGHT);
         if (getResources().getBoolean(R.bool.config_show_touchKeyDur) == false) {
             if (mTouchKeyLights != null) {
-                getPreferenceScreen().removePreference(mTouchKeyLights);
+                mLightOptions.removePreference(mTouchKeyLights);
             }
         } else {
             int touchKeyLights = Settings.System.getInt(getActivity().getContentResolver(),

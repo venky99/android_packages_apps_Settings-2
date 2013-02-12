@@ -4687,6 +4687,28 @@
     <string name="update_center">Update center</string>
     <string name="update_center_summary">Get the latest LiquidSmooth update</string>
 
+    <!-- Brightness Customization -->
+    <string name="custom_brightness_summary">View or change your custom brightness settings</string>
+    <string name="light_sensor_current_value">Current light sensor value: <xliff:g id="light_level">%d</xliff:g> lux</string>
+    <string name="auto_brightness_dialog_title">Automatic brightness levels</string>
+    <string name="auto_brightness_level_format"><xliff:g id="start_level">%1$s</xliff:g> -\n<xliff:g id="end_level">%2$s</xliff:g> lux</string>
+    <string name="auto_brightness_brightness_format"><xliff:g id="percent">%s</xliff:g>%%</string>
+    <string name="auto_brightness_adjust_button">Adjust</string>
+    <string name="auto_brightness_reset_button">Reset</string>
+    <string name="auto_brightness_remove_button">Remove</string>
+    <string name="auto_brightness_add_line">Add line</string>
+    <string name="auto_brightness_lux_dialog_title">Ambient brightness range</string>
+    <string name="auto_brightness_split_dialog_title">Split brightness level</string>
+    <string name="auto_brightness_start_lux">Range start (lux)</string>
+    <string name="auto_brightness_end_lux">Range end (lux)</string>
+    <string name="auto_brightness_reset_dialog_title">Reset levels?</string>
+    <string name="auto_brightness_reset_confirmation">All brightness levels will be reset to their default settings.</string>
+    <string name="auto_brightness_split_lux_format">Split position (between <xliff:g id="min">%1$d</xliff:g> and <xliff:g id="max">%2$d</xliff:g> lux)</string>
+    <string name="auto_brightness_level_options">Light level options</string>
+    <string name="auto_brightness_menu_edit_lux">Ambient brightness range</string>
+    <string name="auto_brightness_menu_split">Split</string>
+    <string name="auto_brightness_menu_remove">Remove</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color to apply</string>
@@ -4697,6 +4719,14 @@
     <string name="set">Set</string>
     <string name="ics_color">Holo</string>
     <string name="ok">OK</string>
+
+    <!-- Display Categories -->
+    <string name="display_category_brightness_options_title">Brightness</string>
+    <string name="display_category_general_options_title">General</string>
+    <string name="display_category_light_options_title">Lights</string>
+    <string name="display_category_rotation_options_title">Rotation</string>
+    <string name="display_category_wakeup_options_title">Wakeup</string>
+    <string name="display_category_wireless_options_title">Wireless</string>
 
     <!-- Display Settings -->
     <string name="display_rotation_title">Rotation</string>
@@ -5414,7 +5444,6 @@
     <string name="volume_key_cursor_control_on_reverse">Volume up/down moves cursor right/left</string>
 
     <!-- Wakeup Options -->
-    <string name="display_category_wakeup_options_title">Wakeup options</string>
     <string name="pref_volume_wake_title">Volume rocker wake</string>
     <string name="pref_volume_wake_summary">Pressing the volume rocker up/down will wake the device</string>
     <string name="wakeup_when_plugged_unplugged_title">Wake up on charge</string>
