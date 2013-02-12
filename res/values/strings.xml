@@ -4454,8 +4454,6 @@
     <!-- Hostname setting -->
     <string name="device_hostname">Device hostname</string>
 
-    <!-- About phone screen,  GooManager shortcut-->
-    <string name="update_center">Updater</string>
     <!-- About phone screen,  setting option name-->
     <string name="mod_version">LiquidSmooth version</string>
     <string name="mod_version_default">Unknown</string>
@@ -4699,6 +4697,10 @@
     <string name="liquid_source_summary">Source at http://github.com/LiquidSmooth\nLiquidSmooth is fully open source code</string>
     <string name="liquid_website_summary">http://goo.im/devs/liquidsmooth\nFind all the latest builds and news here</string>
 
+    <!-- GooManager - UpdateCenter -->
+    <string name="update_center">Update center</string>
+    <string name="update_center_summary">Get the latest LiquidSmooth update</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color to apply</string>
@@ -4809,6 +4811,12 @@
     <string name="custom_density_dialog_summary">"Changing your LCD density can cause unexpected app behavior. If you encounter market app incompatibility please return here and restart the process from step 1."</string>
     <string name="custom_density_dialog_button_got">Got It!</string>
     <string name="custom_density_dialog_button_reboot">Reboot Now</string>
+
+    <!-- Xposed Density -->
+    <string name="xposed_dpi_title">Per-App DPI Settings</string>
+    <string name="xposed_dpi_summary">Customize the DPI values of specific applications</string>
+    <string name="xposed_install_title">DPI Installer</string>
+    <string name="xposed_install_summary">*You must install this before using Per-App DPI Settings. Enable the settings in modules*</string>
 
     <!-- Lockscreen Activities -->
     <string name="picker_activities">Activities</string>
