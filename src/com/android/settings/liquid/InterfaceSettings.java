@@ -16,23 +16,36 @@
 
 package com.android.settings.liquid;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.Spannable;
+import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.IWindowManager;
+import android.view.Window;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
 
 import com.android.settings.R;
@@ -49,6 +62,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private static final String KEY_NOTIF_STYLE = "notification_style";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
+    private static final String VIBRATION_MULTIPLIER = "vibrator_multiplier";
 
     private Preference mLcdDensity;
     private PreferenceCategory mAdvanced;
@@ -56,6 +70,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private Preference mNotifStyle;
     private Preference mRamBar;
     private CheckBoxPreference mDualPane;
+    private ListPreference mVibrationMultiplier;
 
     int newDensityValue;
     DensityChanger densityFragment;
@@ -122,6 +137,16 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         } else {
             mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
         }
+
+        /* Globally Change the Vibration Multiplier */
+        mVibrationMultiplier = (ListPreference) findPreference(VIBRATION_MULTIPLIER);
+        if(mVibrationMultiplier != null) {
+            mVibrationMultiplier.setOnPreferenceChangeListener(this);
+            String currentValue = Float.toString(Settings.Secure.getFloat(getActivity()
+                    .getContentResolver(), Settings.Secure.VIBRATION_MULTIPLIER, 1));
+            mVibrationMultiplier.setValue(currentValue);
+            mVibrationMultiplier.setSummary(currentValue);
+        }
     }
 
     @Override
@@ -136,7 +161,16 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         updateRamBar();
     }
 
+    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mVibrationMultiplier) {
+            String currentValue = (String) newValue;
+            float val = Float.parseFloat(currentValue);
+            Settings.Secure.putFloat(getActivity().getContentResolver(),
+                    Settings.Secure.VIBRATION_MULTIPLIER, val);
+            mVibrationMultiplier.setSummary(currentValue);
+            return true;
+        }
         return false;
     }
 
