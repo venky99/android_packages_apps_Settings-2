@@ -4933,7 +4933,7 @@
     <string name="lockscreen_shortcuts_icon_picker_music">Music</string>
     <string name="lockscreen_shortcuts_icon_picker_nav">Navigation</string>
     <string name="lockscreen_shortcuts_icon_picker_phone">Phone</string>
-    <string name="lockscreen_shortcuts_icon_picker_pintrest">Pintrest</string>
+    <string name="lockscreen_shortcuts_icon_picker_pinterest">Pinterest</string>
     <string name="lockscreen_shortcuts_icon_picker_play">Play</string>
     <string name="lockscreen_shortcuts_icon_picker_podcast">Podcast</string>
     <string name="lockscreen_shortcuts_icon_picker_quicksettings">Quick Settings</string>
@@ -5217,7 +5217,7 @@
     <string name="notification_shortcuts_icon_picker_music">Music</string>
     <string name="notification_shortcuts_icon_picker_nav">Navigation</string>
     <string name="notification_shortcuts_icon_picker_phone">Phone</string>
-    <string name="notification_shortcuts_icon_picker_pintrest">Pintrest</string>
+    <string name="notification_shortcuts_icon_picker_pinterest">Pinterest</string>
     <string name="notification_shortcuts_icon_picker_play">Play</string>
     <string name="notification_shortcuts_icon_picker_podcast">Podcast</string>
     <string name="notification_shortcuts_icon_picker_quicksettings">Quick Settings</string>
