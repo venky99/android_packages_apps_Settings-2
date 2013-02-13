@@ -67,6 +67,14 @@
             android:key="recents_ram_bar"
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
+
+        <ListPreference
+            android:key="vibrator_multiplier"
+            android:persistent="false"
+            android:dialogTitle="@string/vibrator_multiplier_title"
+            android:title="@string/vibrator_multiplier_title"
+            android:entries="@array/vibration_multiplier_values"
+            android:entryValues="@array/vibration_multiplier_values" />
     </PreferenceCategory>
 
 </PreferenceScreen>

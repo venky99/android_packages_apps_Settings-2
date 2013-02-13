@@ -4741,6 +4741,9 @@
     <string name="hardware_keys_action_power">Power Button</string>
     <string name="hardware_keys_action_custom_app">Custom App</string>
 
+    <!-- Vibration Multiplier -->
+    <string name="vibrator_multiplier_title">Vibration multiplier</string>
+
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
     <string name="icon_picker_system_icons_title">System Icons</string>
