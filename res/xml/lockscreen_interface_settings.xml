@@ -42,6 +42,12 @@
             android:fragment="com.android.settings.liquid.LockscreenButtons"
             android:summary="@string/lockscreen_buttons_summary"
             android:title="@string/lockscreen_buttons_title" />
+
+        <PreferenceScreen
+            android:key="lock_screen_widgets"
+            android:fragment="com.android.settings.liquid.LockscreenWidgets"
+            android:title="@string/lockscreen_widgets_title"
+            android:summary="@string/lockscreen_widgets_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -99,22 +105,6 @@
             android:key="lockscreen_shortcuts_longpress"
             android:title="@string/lockscreen_shorcuts_longpress_title"
             android:summary="@string/lockscreen_shorcuts_longpress_summary" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-       android:key="options_group"
-       android:title="@string/additional_settings_title">
-
-        <CheckBoxPreference
-            android:key="lockscreen_auto_rotate"
-            android:title="@string/lockscreen_auto_rotate_title"
-            android:summary="@string/lockscreen_auto_rotate_summary" />
-
-        <PreferenceScreen
-            android:key="lock_screen_widgets"
-            android:fragment="com.android.settings.liquid.LockscreenWidgets"
-            android:title="@string/lockscreen_widgets_title"
-            android:summary="@string/lockscreen_widgets_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>
