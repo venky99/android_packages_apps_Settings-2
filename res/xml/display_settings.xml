@@ -109,7 +109,7 @@
 
     <PreferenceCategory
         android:key="category_wakeup_options"
-        android:title="@string/display_category_wakeup_options_title"/>
+        android:title="@string/display_category_wakeup_options_title" >
 
         <CheckBoxPreference
             android:key="pref_volume_wake"

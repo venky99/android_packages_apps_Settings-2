@@ -103,7 +103,7 @@
 
     <PreferenceCategory
        android:key="options_group"
-       android:title="@string/lockscreen_additional_options_grouptitle">
+       android:title="@string/additional_settings_title">
 
         <CheckBoxPreference
             android:key="lockscreen_auto_rotate"
