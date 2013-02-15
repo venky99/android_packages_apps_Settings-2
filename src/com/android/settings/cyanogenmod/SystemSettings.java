@@ -24,6 +24,7 @@ import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.preference.CheckBoxPreference;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
@@ -50,6 +51,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
+    private CheckBoxPreference mShowNavbar;
     private boolean mIsPrimary;
 
     @Override
@@ -73,6 +75,11 @@ public class SystemSettings extends SettingsPreferenceFragment {
                     updateBatteryPulseDescription();
                 }
             }
+            
+            // Show navbar
+            mShowNavbar = (CheckBoxPreference) findPreference(KEY_SHOW_NAVBAR);
+	    mShowNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    SystemSettings.KEY_SHOW_NAVBAR, 0) == 1);
 
             // Only show the hardware keys config on a device that does not have a navbar
             // and the navigation bar config on phones that has a navigation bar
