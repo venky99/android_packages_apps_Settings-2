@@ -75,22 +75,18 @@ public class SystemSettings extends SettingsPreferenceFragment {
                     updateBatteryPulseDescription();
                 }
             }
-            
+
             // Show navbar
             mShowNavbar = (CheckBoxPreference) findPreference(KEY_SHOW_NAVBAR);
-	    mShowNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+            mShowNavbar.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                     SystemSettings.KEY_SHOW_NAVBAR, 0) == 1);
 
-            // Only show the hardware keys config on a device that does not have a navbar
-            // and the navigation bar config on phones that has a navigation bar
-            boolean removeKeys = false;
+            // Only show the navigation bar config on phones that has a navigation bar
             boolean removeNavbar = false;
             IWindowManager windowManager = IWindowManager.Stub.asInterface(
                     ServiceManager.getService(Context.WINDOW_SERVICE));
             try {
-                if (windowManager.hasNavigationBar()) {
-                    removeKeys = true;
-                } else {
+                if (!windowManager.hasNavigationBar()) {
                     removeNavbar = true;
                 }
             } catch (RemoteException e) {
@@ -98,9 +94,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
             }
 
             // Act on the above
-            if (removeKeys) {
-                prefScreen.removePreference(findPreference(KEY_HARDWARE_KEYS));
-            }
             if (removeNavbar) {
                 prefScreen.removePreference(findPreference(KEY_NAVIGATION_BAR));
             }
