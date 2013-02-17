@@ -254,6 +254,7 @@
         </activity-alias>
 
         <activity android:name="Settings$ApnSettingsActivity" android:label="@string/apn_settings"
+                  android:uiOptions="none"
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:launchMode="singleTask" android:clearTaskOnLaunch="true">
             <intent-filter>
