@@ -201,5 +201,4 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     public void onResume() {
         super.onResume();
     }
-
 }

@@ -4990,6 +4990,7 @@
     <string name="lockscreen_shortcuts_icon_picker_unlock">Unlock</string>
 
     <!-- Lockscreen Targets -->
+    <string name="lockscreen_slider_title">Sliders</string>
     <string name="lockscreen_target_info">Drag the slider to targets to assign</string>
     <string name="lockscreen_target_title">Targets</string>
     <string name="lockscreen_target_summary">Custom lockscreen targets and appearance</string>
