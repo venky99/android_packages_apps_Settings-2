@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.new Intent(getActivity(), ChooseLockPatternSize.class);
+ * limitations under the License.
  */
 
 package com.android.settings;
@@ -62,8 +62,12 @@ public class ChooseLockPatternSize extends PreferenceActivity {
 
             final boolean isFallback = getActivity().getIntent()
                 .getBooleanExtra(LockPatternUtils.LOCKSCREEN_BIOMETRIC_WEAK_FALLBACK, false);
+            boolean showTutorial = !mChooseLockSettingsHelper.utils().isPatternEverChosen();
 
             Intent intent = new Intent();
+            intent.setClass(getActivity(), showTutorial
+                    ? ChooseLockPatternTutorial.class
+                    : ChooseLockPattern.class);
             intent.putExtra("pattern_size", patternSize);
             intent.putExtra("key_lock_method", "pattern");
             intent.putExtra("confirm_credentials", false);
