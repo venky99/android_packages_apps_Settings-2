@@ -1075,7 +1075,6 @@
     </string-array>
 
     <string-array name="lockscreen_shortcut_icon_picker_icons" translatable="false">
-        <item>@*android:drawable/ic_shortcut_alarm</item>
         <item>@*android:drawable/ic_shortcut_andy</item>
         <item>@*android:drawable/ic_shortcut_battery</item>
         <item>@*android:drawable/ic_shortcut_browser</item>
