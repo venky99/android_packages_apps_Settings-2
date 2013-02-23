@@ -327,13 +327,6 @@ public class DevelopmentSettings extends PreferenceFragment
         }
     }
 
-    private void disableForUser(Preference pref) {
-        if (pref != null) {
-            pref.setEnabled(false);
-            mDisabledPrefs.add(pref);
-        }
-    }
-
     private CheckBoxPreference findAndInitCheckboxPref(String key) {
         CheckBoxPreference pref = (CheckBoxPreference) findPreference(key);
         if (pref == null) {
