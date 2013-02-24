@@ -163,13 +163,15 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mDynamicUsbTether = (CheckBoxPreference) prefSet.findPreference(DYNAMIC_USBTETHER);
         mDynamicUsbTether.setChecked(Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_USBTETHER, 1) == 1);
         mDynamicWifi = (CheckBoxPreference) prefSet.findPreference(DYNAMIC_WIFI);
-        mDynamicWifi.setChecked(Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_WIFI, 1) == 1);
-
+        if (mDynamicWifi != null) {
+            if (deviceSupportsWifiDisplay()) {
+                mDynamicWifi.setChecked(Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_WIFI, 1) == 1);
+            } else {
+                mDynamicTiles.removePreference(mDynamicWifi);
+            }
+        }
         if (!deviceSupportsUsbTether()) {
             mDynamicTiles.removePreference(mDynamicUsbTether);
-        }
-        if (!deviceSupportsWifiDisplay()) {
-            mDynamicTiles.removePreference(mDynamicWifi);
         }
 
         // Don't show mobile data options if not supported

@@ -18,8 +18,6 @@ package com.android.settings.liquid;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.UserHandle;
-import android.os.UserManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -39,7 +37,6 @@ public class PowerMenu extends SettingsPreferenceFragment implements
     private static final String KEY_EXPANDED_DESKTOP = "power_menu_expanded_desktop";
     private static final String KEY_PROFILES = "power_menu_profiles";
     private static final String KEY_AIRPLANE = "power_menu_airplane";
-    private static final String KEY_USER = "power_menu_user";
     private static final String KEY_SOUND = "power_menu_sound";
 
     private CheckBoxPreference mRebootPref;
@@ -47,7 +44,6 @@ public class PowerMenu extends SettingsPreferenceFragment implements
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mProfilesPref;
     private CheckBoxPreference mAirplanePref;
-    private CheckBoxPreference mUserPref;
     private CheckBoxPreference mSoundPref;
 
     @Override
@@ -85,15 +81,6 @@ public class PowerMenu extends SettingsPreferenceFragment implements
         mAirplanePref = (CheckBoxPreference) findPreference(KEY_AIRPLANE);
         mAirplanePref.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.POWER_MENU_AIRPLANE_ENABLED, 1) == 1));
-
-        mUserPref = (CheckBoxPreference) findPreference(KEY_USER);
-        if (!UserHandle.MU_ENABLED
-            || !UserManager.supportsMultipleUsers()) {
-            getPreferenceScreen().removePreference(mUserPref);
-        } else {
-            mUserPref.setChecked((Settings.System.getInt(getContentResolver(),
-                    Settings.System.POWER_MENU_USER_ENABLED, 0) == 1));
-        }
 
         mSoundPref = (CheckBoxPreference) findPreference(KEY_SOUND);
         mSoundPref.setChecked((Settings.System.getInt(getContentResolver(),
@@ -143,11 +130,6 @@ public class PowerMenu extends SettingsPreferenceFragment implements
             value = mAirplanePref.isChecked();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.POWER_MENU_AIRPLANE_ENABLED,
-                    value ? 1 : 0);
-       } else if (preference == mUserPref) {
-            value = mUserPref.isChecked();
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.POWER_MENU_USER_ENABLED,
                     value ? 1 : 0);
        } else if (preference == mSoundPref) {
             value = mSoundPref.isChecked();

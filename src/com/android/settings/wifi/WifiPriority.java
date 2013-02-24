@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (C) 2013 Slimroms
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,10 @@ public class WifiPriority extends ListFragment {
             }
 
             // Now, save all the Wi-Fi configuration with its new priorities
-            mWifiManager.saveConfiguration();
+            if (mWifiManager.saveConfiguration()) {
+                // The network priorities have changed
+                mChanged = true;
+            }
 
             // Reload the networks
             mAdapter.reloadNetworks();
@@ -67,32 +70,37 @@ public class WifiPriority extends ListFragment {
         }
     };
 
+    private Context mContext;
     private WifiManager mWifiManager;
-    private TouchInterceptor mNetworksListView;
+    private View mContentView;
+    private ListView mNetworksListView;
     private WifiPriorityAdapter mAdapter;
+    /*package*/ boolean mChanged;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.wifi_network_priority, null);
+        mContentView = inflater.inflate(R.layout.wifi_network_priority, null);
+        return mContentView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Context ctx = getActivity().getApplicationContext();
-        mWifiManager = (WifiManager)ctx.getSystemService(Context.WIFI_SERVICE);
+        mContext = getActivity().getApplicationContext();
+        mWifiManager = (WifiManager)mContext.getSystemService(Context.WIFI_SERVICE);
+        mChanged = false;
 
         // Set the touchable listview
-        mNetworksListView = (TouchInterceptor)getListView();
-        mNetworksListView.setDropListener(mDropListener);
-        mAdapter = new WifiPriorityAdapter(ctx, mWifiManager);
+        mNetworksListView = getListView();
+        ((TouchInterceptor)mNetworksListView).setDropListener(mDropListener);
+        mAdapter = new WifiPriorityAdapter(mContext, mWifiManager);
         setListAdapter(mAdapter);
     }
 
     @Override
     public void onDestroy() {
-        mNetworksListView.setDropListener(null);
+        ((TouchInterceptor)mNetworksListView).setDropListener(null);
         setListAdapter(null);
         super.onDestroy();
     }
@@ -108,13 +116,15 @@ public class WifiPriority extends ListFragment {
 
     private class WifiPriorityAdapter extends BaseAdapter {
 
+        private final Context mContext;
         private final WifiManager mWifiManager;
         private final LayoutInflater mInflater;
         private List<WifiConfiguration> mNetworks;
 
         public WifiPriorityAdapter(Context ctx, WifiManager wifiManager) {
+            mContext = ctx;
             mWifiManager = wifiManager;
-            mInflater = LayoutInflater.from(ctx);
+            mInflater = LayoutInflater.from(mContext);
             reloadNetworks();
         }
 
@@ -170,18 +180,9 @@ public class WifiPriority extends ListFragment {
             WifiConfiguration network = (WifiConfiguration)getItem(position);
 
             final TextView name = (TextView) v.findViewById(R.id.name);
-            // wpa_suplicant returns the SSID between double quotes. Remove them if are present.
-            name.setText(filterSSID(network.SSID));
+            name.setText(network.SSID);
 
             return v;
-        }
-
-        private String filterSSID(String ssid) {
-            // Filter only if has start and end double quotes
-            if (ssid == null || !ssid.startsWith("\"") || !ssid.endsWith("\"")) {
-                return ssid;
-            }
-            return ssid.substring(1, ssid.length()-1);
         }
     }
 }

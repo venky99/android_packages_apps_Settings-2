@@ -31,8 +31,6 @@ import android.hardware.display.WifiDisplayStatus;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemProperties;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -75,9 +73,6 @@ public final class WifiDisplaySettings extends SettingsPreferenceFragment {
     private TextView mEmptyView;
 
     private Switch mActionBarSwitch;
-
-    private CheckBoxPreference mDisableHDCP;
-    private static final String DISABLE_HDCP_PREF = "persist.sys.wfd.nohdcp";
 
     public WifiDisplaySettings() {
     }
@@ -190,10 +185,6 @@ public final class WifiDisplaySettings extends SettingsPreferenceFragment {
                 mDisplayManager.connectWifiDisplay(display.getDeviceAddress());
             }
         }
-        else if (preference == mDisableHDCP) {
-            SystemProperties.set(DISABLE_HDCP_PREF, mDisableHDCP.isChecked() ? "1" : "0");
-            return true;
-        }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -218,20 +209,12 @@ public final class WifiDisplaySettings extends SettingsPreferenceFragment {
             final WifiDisplay[] pairedDisplays = mWifiDisplayStatus.getRememberedDisplays();
             final WifiDisplay[] availableDisplays = mWifiDisplayStatus.getAvailableDisplays();
 
-            mDisableHDCP = new CheckBoxPreference(getActivity().getApplicationContext());
-            mDisableHDCP.setTitle(R.string.pref_wifi_disable_hdcp_title);
-            mDisableHDCP.setSummary(R.string.pref_wifi_disable_hdcp_summary);
-            mDisableHDCP.setChecked(Integer.parseInt(SystemProperties.get(DISABLE_HDCP_PREF, "0")) != 0);
-            mDisableHDCP.setOrder(0);
-            preferenceScreen.addPreference(mDisableHDCP);
-
             if (mPairedDevicesCategory == null) {
                 mPairedDevicesCategory = new PreferenceCategory(getActivity());
                 mPairedDevicesCategory.setTitle(R.string.wifi_display_paired_devices);
             } else {
                 mPairedDevicesCategory.removeAll();
             }
-            mPairedDevicesCategory.setOrder(1);
             preferenceScreen.addPreference(mPairedDevicesCategory);
 
             for (WifiDisplay d : pairedDisplays) {
@@ -248,7 +231,6 @@ public final class WifiDisplaySettings extends SettingsPreferenceFragment {
             } else {
                 mAvailableDevicesCategory.removeAll();
             }
-            mAvailableDevicesCategory.setOrder(2);
             preferenceScreen.addPreference(mAvailableDevicesCategory);
 
             for (WifiDisplay d : availableDisplays) {

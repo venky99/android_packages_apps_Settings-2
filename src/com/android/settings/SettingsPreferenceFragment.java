@@ -87,10 +87,6 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
         return 0;
     }
 
-    public void setTitle(int resId) {
-        getActivity().setTitle(resId);
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         if (mHelpUrl != null && getActivity() != null) {

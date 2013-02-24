@@ -838,13 +838,18 @@
     <!-- Hardware Keys -->
     <string-array name="hardware_keys_action_entries">
         <item>@string/hardware_keys_action_nothing</item>
+        <item>@string/hardware_keys_action_home</item>
+        <item>@string/hardware_keys_action_back</item>
         <item>@string/hardware_keys_action_menu</item>
         <item>@string/hardware_keys_action_app_switch</item>
         <item>@string/hardware_keys_action_search</item>
         <item>@string/hardware_keys_action_voice_search</item>
         <item>@string/hardware_keys_action_in_app_search</item>
-        <item>@string/hardware_keys_action_last_app</item>
         <item>@string/hardware_keys_action_power</item>
+        <item>@string/hardware_keys_action_notifications</item>
+        <item>@string/hardware_keys_action_expanded</item>
+        <item>@string/hardware_keys_action_kill_app</item>
+        <item>@string/hardware_keys_action_last_app</item>
         <item>@string/hardware_keys_action_custom_app</item>
     </string-array>
 
@@ -858,6 +863,11 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
     </string-array>
 
     <!-- Vibration Multiplier -->
@@ -1075,6 +1085,7 @@
     </string-array>
 
     <string-array name="lockscreen_shortcut_icon_picker_icons" translatable="false">
+        <item>@*android:drawable/ic_shortcut_alarm</item>
         <item>@*android:drawable/ic_shortcut_andy</item>
         <item>@*android:drawable/ic_shortcut_battery</item>
         <item>@*android:drawable/ic_shortcut_browser</item>
@@ -1408,9 +1419,9 @@
         <item>@string/notification_shortcuts_icon_picker_joystick</item>
         <item>@string/notification_shortcuts_icon_picker_key</item>
         <item>@string/notification_shortcuts_icon_picker_laptop</item>
-        <item>@string/notification_shortcuts_icon_picker_luggage</item>
         <item>@string/notification_shortcuts_icon_picker_maps</item>
         <item>@string/notification_shortcuts_icon_picker_market</item>
+        <item>@string/notification_shortcuts_icon_picker_sms</item>
         <item>@string/notification_shortcuts_icon_picker_movie</item>
         <item>@string/notification_shortcuts_icon_picker_music</item>
         <item>@string/notification_shortcuts_icon_picker_nav</item>
@@ -1424,6 +1435,7 @@
         <item>@string/notification_shortcuts_icon_picker_search</item>
         <item>@string/notification_shortcuts_icon_picker_sms</item>
         <item>@string/notification_shortcuts_icon_picker_terminal</item>
+        <item>@string/notification_shortcuts_icon_picker_luggage</item>
         <item>@string/notification_shortcuts_icon_picker_twitter</item>
         <item>@string/notification_shortcuts_icon_picker_unlock</item>
     </string-array>
@@ -1453,9 +1465,9 @@
         <item>@*android:drawable/ic_shortcut_joystick</item>
         <item>@*android:drawable/ic_shortcut_key</item>
         <item>@*android:drawable/ic_shortcut_laptop</item>
-        <item>@*android:drawable/ic_shortcut_luggage</item>
         <item>@*android:drawable/ic_shortcut_maps</item>
         <item>@*android:drawable/ic_shortcut_market</item>
+        <item>@*android:drawable/ic_shortcut_sms</item>
         <item>@*android:drawable/ic_shortcut_movie</item>
         <item>@*android:drawable/ic_shortcut_music</item>
         <item>@*android:drawable/ic_shortcut_nav</item>
@@ -1467,8 +1479,8 @@
         <item>@*android:drawable/ic_shortcut_rss</item>
         <item>@*android:drawable/ic_shortcut_sdcard</item>
         <item>@*android:drawable/ic_shortcut_search</item>
-        <item>@*android:drawable/ic_shortcut_sms</item>
         <item>@*android:drawable/ic_shortcut_terminal</item>
+        <item>@*android:drawable/ic_shortcut_luggage</item>
         <item>@*android:drawable/ic_shortcut_twitter</item>
         <item>@*android:drawable/ic_shortcut_unlock</item>
     </string-array>
@@ -1980,6 +1992,32 @@
         <item>TR</item>
         <item>SG</item>
         <item>BR</item>
+    </string-array>
+
+    <string-array name="less_notification_sounds_entries">
+        <item>Default</item>
+        <item>3s</item>
+        <item>5s</item>
+        <item>10s</item>
+        <item>15s</item>
+        <item>30s</item>
+        <item>45s</item>
+        <item>1m</item>
+        <item>2m</item>
+        <item>5m</item>
+    </string-array>
+
+    <string-array name="less_notification_sounds_values" translatable="false">
+        <item>0</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>30000</item>
+        <item>45000</item>
+        <item>60000</item>
+        <item>120000</item>
+        <item>300000</item>
     </string-array>
 
     <!-- **** LIQUIDSMOOTH EDITS FINISH **** -->

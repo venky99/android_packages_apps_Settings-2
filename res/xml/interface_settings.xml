@@ -20,25 +20,19 @@
             android:fragment="com.android.settings.liquid.DensityChanger"
             android:title="@string/lcd_density_title"
             android:summary="@string/lcd_density_summary" />
+
+        <CheckBoxPreference
+            android:key="notification_show_wifi_ssid"
+            android:title="@string/notification_show_wifi_ssid_title"
+            android:summary="@string/notification_show_wifi_ssid_summary" />
+
+        <ListPreference
+            android:key="vibrator_multiplier"
+            android:dialogTitle="@string/vibrator_multiplier_title"
+            android:title="@string/vibrator_multiplier_title"
+            android:entries="@array/vibration_multiplier_values"
+            android:entryValues="@array/vibration_multiplier_values" />
     </PreferenceCategory>
-
-	<PreferenceScreen
-	    android:key="xposed_dpi"
-            android:title="@string/xposed_dpi_title"
-	    android:summary="@string/xposed_dpi_summary" >
-	    <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="de.robv.android.xposed.mods.appsettings"
-		android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
-	</PreferenceScreen>
-
-	<PreferenceScreen
-	    android:key="xposed_installer"
-            android:title="@string/xposed_install_title"
-	    android:summary="@string/xposed_install_summary" >
-	    <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="de.robv.android.xposed.installer"
-		android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
-	</PreferenceScreen>
 
     <PreferenceCategory
         android:key="interface_advanced"
@@ -68,13 +62,23 @@
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
 
-        <ListPreference
-            android:key="vibrator_multiplier"
-            android:persistent="false"
-            android:dialogTitle="@string/vibrator_multiplier_title"
-            android:title="@string/vibrator_multiplier_title"
-            android:entries="@array/vibration_multiplier_values"
-            android:entryValues="@array/vibration_multiplier_values" />
+        <PreferenceScreen
+            android:key="xposed_dpi"
+            android:title="@string/xposed_dpi_title"
+	    android:summary="@string/xposed_dpi_summary" >
+	    <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="de.robv.android.xposed.mods.appsettings"
+                android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+	    android:key="xposed_installer"
+            android:title="@string/xposed_install_title"
+	    android:summary="@string/xposed_install_summary" >
+	    <intent android:action="android.intent.action.MAIN"
+                 android:targetPackage="de.robv.android.xposed.installer"
+                 android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

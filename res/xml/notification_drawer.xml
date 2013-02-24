@@ -20,6 +20,17 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
+        android:title="@string/notification_shortcuts_grouptitle">
+
+        <PreferenceScreen
+            android:id="@+id/liquid_notification_shortcuts"
+            android:fragment="com.android.settings.notificationshortcut.NotificationShortcuts"
+            android:key="liquid_shortcuts_settings"
+            android:title="@string/notification_shortcuts_settings_title"
+            android:summary="@string/notification_shortcuts_settings_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="notif_drawer_cat"
         android:title="@string/general_settings_title">
 
@@ -46,17 +57,6 @@
         <com.android.settings.widget.SeekBarPreference
              android:key="notification_alpha"
              android:title="@string/notification_alpha_title" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/notification_shortcuts_grouptitle">
-
-        <PreferenceScreen
-            android:id="@+id/liquid_notification_shortcuts"
-            android:fragment="com.android.settings.notificationshortcut.NotificationShortcuts"
-            android:key="liquid_shortcuts_settings"
-            android:title="@string/notification_shortcuts_settings_title"
-            android:summary="@string/notification_shortcuts_settings_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

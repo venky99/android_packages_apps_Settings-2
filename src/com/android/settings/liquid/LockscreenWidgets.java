@@ -69,7 +69,6 @@ public class LockscreenWidgets extends SettingsPreferenceFragment {
 
         mLongpressChallenge = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_LONGPRESS_CHALLENGE);
         mMaximizeWidgets = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_MAXIMIZE_WIDGETS);
-
         if (!Utils.isPhone(getActivity())) {
             PreferenceCategory widgetCategory = (PreferenceCategory) findPreference(KEY_WIDGET_OPTIONS);
             if (mLongpressChallenge != null)

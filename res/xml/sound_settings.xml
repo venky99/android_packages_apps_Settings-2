@@ -27,12 +27,6 @@
             android:streamType="ring" />
 
     <ListPreference
-            android:key="ring_mode"
-            android:title="@string/ring_mode_title"
-            android:entries="@array/ring_mode_entries"
-            android:entryValues="@array/ring_mode_values" />
-
-    <ListPreference
             android:key="volume_overlay"
             android:title="@string/volume_overlay_title"
             android:entries="@array/volume_overlay_entries"
@@ -80,6 +74,13 @@
             android:title="@string/notification_convert_sound_to_vibration_title"
             android:summary="@string/notification_convert_sound_to_vibration_summary"
             android:defaultValue="true" />
+
+    <ListPreference
+            android:key="less_notification_sounds"
+            android:title="@string/less_notification_sounds_title"
+            android:summary="@string/less_notification_sounds_summary"
+            android:entries="@array/less_notification_sounds_entries"
+            android:entryValues="@array/less_notification_sounds_values" />
 
     <PreferenceCategory
             android:title="@string/sound_category_system_title"/>
@@ -152,18 +153,10 @@
         android:title="@string/dock_sounds_enable_title"
         android:defaultValue="false" />
 
-    <PreferenceCategory
-            android:title="@string/headset_category_title"/>
-
     <CheckBoxPreference
-            android:key="headset_connect_player"
-            android:title="@string/headset_connect_player_title"
-            android:persistent="false" />
-
-    <CheckBoxPreference
-            android:key="safe_headset_restore"
-            android:title="@string/safe_headset_restore_title"
-            android:summary="@string/safe_headset_restore_summary"
-            android:defaultValue="true" />
+        android:key="safe_headset_restore"
+        android:title="@string/safe_headset_restore_title"
+        android:summary="@string/safe_headset_restore_summary"
+        android:defaultValue="true" />
 
 </PreferenceScreen>

@@ -52,17 +52,17 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-public class InterfaceSettings extends SettingsPreferenceFragment
-	implements OnPreferenceChangeListener {
+public class InterfaceSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
     private static final String ADVANCED_SETTINGS = "interface_advanced";
     private static final String KEY_CARRIER_LABEL = "custom_carrier_label";
+    private static final String KEY_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
     private static final String KEY_NOTIF_STYLE = "notification_style";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
-    private static final String VIBRATION_MULTIPLIER = "vibrator_multiplier";
+    private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
 
     private Preference mLcdDensity;
     private PreferenceCategory mAdvanced;
@@ -70,11 +70,12 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private Preference mNotifStyle;
     private Preference mRamBar;
     private CheckBoxPreference mDualPane;
+    private CheckBoxPreference mShowWifiName;
     private ListPreference mVibrationMultiplier;
 
-    int newDensityValue;
+    private int newDensityValue;
     DensityChanger densityFragment;
-    String mCustomLabelText = null;
+    private String mCustomLabelText = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,20 +92,25 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             getPreferenceScreen().removePreference(mLcdDensity);
         }
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
-        mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
 
+        mShowWifiName = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_SHOW_WIFI_SSID);
+        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+
+        mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
         mCustomLabel = findPreference(KEY_CARRIER_LABEL);
         updateCustomLabelTextSummary();
 
         // Only show the hardware keys config on a device that does not have a navbar
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
                 ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            if (windowManager.hasNavigationBar()) {
-                mAdvanced.removePreference(findPreference(KEY_HARDWARE_KEYS));
-            }
-        } catch (RemoteException e) {
-            // Do nothing
+
+        final boolean hasNavBarByDefault = getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+
+        if (hasNavBarByDefault) {
+            // Let's assume they don't have hardware keys
+            mAdvanced.removePreference(findPreference(KEY_HARDWARE_KEYS));
         }
 
         mNotifStyle = findPreference(KEY_NOTIF_STYLE);
@@ -115,7 +121,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         boolean preferDualPane = getResources().getBoolean(
                 com.android.internal.R.bool.preferences_prefer_dual_pane);
         boolean dualPaneMode = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.FORCE_DUAL_PANE, (preferDualPane ? 1 : 0)) == 1;
+                Settings.System.DUAL_PANE_PREFS, (preferDualPane ? 1 : 0)) == 1;
         mDualPane.setChecked(dualPaneMode);
     }
 
@@ -138,12 +144,11 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
         }
 
-        /* Globally Change the Vibration Multiplier */
-        mVibrationMultiplier = (ListPreference) findPreference(VIBRATION_MULTIPLIER);
+        mVibrationMultiplier = (ListPreference) findPreference(KEY_VIBRATION_MULTIPLIER);
         if(mVibrationMultiplier != null) {
             mVibrationMultiplier.setOnPreferenceChangeListener(this);
             String currentValue = Float.toString(Settings.Secure.getFloat(getActivity()
-                    .getContentResolver(), Settings.Secure.VIBRATION_MULTIPLIER, 1));
+                    .getContentResolver(), Settings.System.VIBRATION_MULTIPLIER, 1));
             mVibrationMultiplier.setValue(currentValue);
             mVibrationMultiplier.setSummary(currentValue);
         }
@@ -167,7 +172,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             String currentValue = (String) newValue;
             float val = Float.parseFloat(currentValue);
             Settings.Secure.putFloat(getActivity().getContentResolver(),
-                    Settings.Secure.VIBRATION_MULTIPLIER, val);
+                    Settings.System.VIBRATION_MULTIPLIER, val);
             mVibrationMultiplier.setSummary(currentValue);
             return true;
         }
@@ -177,12 +182,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mDualPane) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.FORCE_DUAL_PANE,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mCustomLabel) {
+        if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
             alert.setTitle(R.string.custom_carrier_label_title);
             alert.setMessage(R.string.custom_carrier_label_explain);
@@ -191,8 +191,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             final EditText input = new EditText(getActivity());
             input.setText(mCustomLabelText != null ? mCustomLabelText : "");
             alert.setView(input);
-
-            alert.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+            alert.setPositiveButton(getResources().getString(R.string.ok),
+                    new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     String value = ((Spannable) input.getText()).toString();
                     Settings.System.putString(getActivity().getContentResolver(),
@@ -203,13 +203,24 @@ public class InterfaceSettings extends SettingsPreferenceFragment
                     mContext.sendBroadcast(i);
                 }
             });
-            alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            alert.setNegativeButton(getResources().getString(R.string.cancel),
+                    new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     // Canceled.
                 }
             });
 
             alert.show();
+        } else if (preference == mDualPane) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.DUAL_PANE_PREFS,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    mShowWifiName.isChecked() ? 1 : 0);
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
