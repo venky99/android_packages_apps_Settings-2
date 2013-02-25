@@ -5316,9 +5316,9 @@
     <string name="pie_gap_title">Pie Gap</string>
     <string name="pie_gap_summary">Adjust gap that separates elements</string>
     <string name="pie_gap_none">None</string>
-    <string name="pie_gap_small">Small (Default)</string>
+    <string name="pie_gap_small">Small</string>
     <string name="pie_gap_big">Big</string>
-    <string name="pie_gap_huge">Huge</string>
+    <string name="pie_gap_huge">Huge (Default)</string>
     <string name="pie_center_title">Center Pie</string>
     <string name="pie_center_summary">Control appears where you trigger</string>
     <string name="pie_trigger_title">Trigger Size</string>
@@ -5471,17 +5471,17 @@
     <string name="tiles_reset_title">Reset</string>
     <string name="tiles_reset_message">Restore the default displayed tiles and layout?</string>
 
-    <!-- QuickSettings style options -->
-    <string name="quicksettings_tiles_style">Quick Settings style</string>
-    <string name="summary_quicksettings_tiles_style">Show or change Quick Settings style options</string>
-    <string name="quicksettings_tiles_style_additional_options">Additional options</string>
-    <string name="tiles_per_row_title">Tiles per row</string>
-    <string name="tiles_per_row_duplicate_landscape_title">Scale landscape quantity</string>
-    <string name="tiles_per_row_duplicate_landscape_summary">Landscape view doubles tiles per row quantity</string>
-    <string name="quick_tiles_bg_color_title">Tiles background color</string>
+    <!-- Quicksettings Style -->
+    <string name="quicksettings_tiles_style">Quicksettings Style</string>
+    <string name="summary_quicksettings_tiles_style">Show or change quicksettings style options</string>
+    <string name="quicksettings_tiles_style_additional_options">Additional</string>
+    <string name="tiles_per_row_title">Tiles Per Row</string>
+    <string name="tiles_per_row_duplicate_landscape_title">Landscape Quantity</string>
+    <string name="tiles_per_row_duplicate_landscape_summary">Landscape view doubles tiles per row</string>
+    <string name="quick_tiles_bg_color_title">Background Color</string>
     <string name="quick_tiles_bg_pressed_color_title">Tiles pressed background color</string>
-    <string name="quick_tiles_text_color_title">Tiles text color</string>
-    <string name="quick_settings_style_reset">Reset colors</string>
+    <string name="quick_tiles_text_color_title">Text Color</string>
+    <string name="quick_settings_style_reset">Reset Colors</string>
 
     <!-- Recents Rambar -->
     <string name="ram_bar">Recents Rambar</string>
