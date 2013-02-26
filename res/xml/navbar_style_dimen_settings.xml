@@ -57,9 +57,9 @@
             android:title="@string/nav_bar_button_style" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="nav_button_glow_color"
-            android:title="@string/navigation_bar_glow_tint_title"
-            android:defaultValue="#ffffff" />
+                    android:key="nav_button_glow_color"
+                    android:title="@string/navigation_bar_glow_tint_title"
+                    android:defaultValue="0xffffffff" />
     </PreferenceCategory>
 
 </PreferenceScreen>
