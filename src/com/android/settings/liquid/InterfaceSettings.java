@@ -64,6 +64,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
     private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
+    private static final String KEY_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
 
     private Preference mLcdDensity;
     private PreferenceCategory mAdvanced;
@@ -74,6 +75,9 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private CheckBoxPreference mShowWifiName;
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
+    private ListPreference mNotificationsBeh;
+    private ContentResolver mCr;
+    private PreferenceScreen mPrefSet;
 
     private int newDensityValue;
     DensityChanger densityFragment;
@@ -82,6 +86,9 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPrefSet = getPreferenceScreen();
+        mCr = getContentResolver();
+
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.interface_settings);
 
@@ -102,6 +109,12 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
         mCustomLabel = findPreference(KEY_CARRIER_LABEL);
         updateCustomLabelTextSummary();
+
+        int CurrentBeh = Settings.System.getInt(mCr, Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        mNotificationsBeh = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
+        mNotificationsBeh.setValue(String.valueOf(CurrentBeh));
+                mNotificationsBeh.setSummary(mNotificationsBeh.getEntry());
+        mNotificationsBeh.setOnPreferenceChangeListener(this);
 
         // Only show the hardware keys config on a device that does not have a navbar
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
@@ -191,6 +204,13 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
+            return true;
+        } else if (preference == mNotificationsBeh) {
+            String val = (String) newValue;
+                     Settings.System.putInt(mCr, Settings.System.NOTIFICATIONS_BEHAVIOUR,
+            Integer.valueOf(val));
+            int index = mNotificationsBeh.findIndexOfValue(val);
+            mNotificationsBeh.setSummary(mNotificationsBeh.getEntries()[index]);
             return true;
         }
         return false;
