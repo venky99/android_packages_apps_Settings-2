@@ -18,18 +18,18 @@
         android:title="@string/pie_controls_title">
 
     <PreferenceScreen
-            android:key="pie_color"
-            android:title="@string/pie_color_title"
-            android:fragment="com.android.settings.liquid.PieColor" />
+        android:key="pie_color"
+        android:title="@string/pie_color_title"
+        android:fragment="com.android.settings.liquid.PieColor" />
 
     <PreferenceCategory
         android:key="pie_control"
-        android:title="@string/pie_controls_title" >
+        android:title="@string/general_settings_title" >
 
         <CheckBoxPreference
             android:key="pie_controls"
-            android:title="@string/pie_controls_title"
-            android:summary="@string/pie_controls_summary"
+            android:title="@string/pie_control_title"
+            android:summary="@string/pie_control_summary"
             android:defaultValue="false" />
 
         <ListPreference

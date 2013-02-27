@@ -88,6 +88,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_CONVERT_SOUND_TO_VIBRATE = "notification_convert_sound_to_vibration";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
     private static final String KEY_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
+    private static final String KEY_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
 
     private static final String SILENT_MODE_OFF = "off";
     private static final String SILENT_MODE_VIBRATE = "vibrate";
@@ -116,6 +117,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private Preference mRingtonePreference;
     private Preference mNotificationPreference;
     private PreferenceScreen mQuietHours;
+    private ListPreference mNotificationsBeh;
+    private PreferenceScreen mPrefSet;
 
     private Runnable mRingtoneLookupRunnable;
 
@@ -153,6 +156,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPrefSet = getPreferenceScreen();
         ContentResolver resolver = getContentResolver();
         int activePhoneType = TelephonyManager.getDefault().getCurrentPhoneType();
 
@@ -182,10 +186,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mHapticFeedback.setPersistent(false);
         mHapticFeedback.setChecked(Settings.System.getInt(resolver,
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 1) != 0);
-	mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
-	mVolumeAdjustSounds.setPersistent(false);
-	mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
-		Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+	    mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
+	    mVolumeAdjustSounds.setPersistent(false);
+	    mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
+		        Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
         mAnnoyingNotifications = (ListPreference) findPreference(KEY_LESS_NOTIFICATION_SOUNDS);
         mAnnoyingNotifications.setOnPreferenceChangeListener(this);
         int notificationThreshold = Settings.System.getInt(resolver,
@@ -210,6 +214,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mConvertSoundToVibration.setPersistent(false);
         mConvertSoundToVibration.setChecked(Settings.System.getInt(resolver,
                 Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION, 1) == 1);
+
+        int CurrentBeh = Settings.System.getInt(resolver, Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        mNotificationsBeh = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
+        mNotificationsBeh.setValue(String.valueOf(CurrentBeh));
+                mNotificationsBeh.setSummary(mNotificationsBeh.getEntry());
+        mNotificationsBeh.setOnPreferenceChangeListener(this);
+
         mRingtonePreference = findPreference(KEY_RINGTONE);
         mNotificationPreference = findPreference(KEY_NOTIFICATION_SOUND);
 
@@ -231,7 +242,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         }
 
         mSoundSettings = (PreferenceGroup) findPreference(KEY_SOUND_SETTINGS);
-
         mMusicFx = mSoundSettings.findPreference(KEY_MUSICFX);
         Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
         PackageManager p = getPackageManager();
@@ -445,6 +455,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+        } else if (preference == mNotificationsBeh) {
+            String val = (String) objValue;
+            Settings.System.putInt(getContentResolver(), 
+                    Settings.System.NOTIFICATIONS_BEHAVIOUR,       
+            Integer.valueOf(val));
+            int index = mNotificationsBeh.findIndexOfValue(val);
+            mNotificationsBeh.setSummary(mNotificationsBeh.getEntries()[index]);
         }
 
         return true;

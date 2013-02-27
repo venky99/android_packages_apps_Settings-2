@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The LiquidSmooth Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -21,11 +36,6 @@
             android:title="@string/lcd_density_title"
             android:summary="@string/lcd_density_summary" />
 
-        <CheckBoxPreference
-            android:key="notification_show_wifi_ssid"
-            android:title="@string/notification_show_wifi_ssid_title"
-            android:summary="@string/notification_show_wifi_ssid_summary" />
-
         <ListPreference
             android:key="pref_low_battery_warning_policy"
             android:title="@string/pref_low_battery_warning_policy_title"
@@ -33,11 +43,23 @@
             android:entryValues="@array/pref_low_battery_warning_policy_values"
             android:defaultValue="3" />
 
+        <CheckBoxPreference
+            android:key="notification_show_wifi_ssid"
+            android:title="@string/notification_show_wifi_ssid_title"
+            android:summary="@string/notification_show_wifi_ssid_summary" />
+
         <ListPreference
-            android:key="notifications_behaviour"
-            android:title="@string/notification_behaviour_title"
-            android:entries="@array/notifs_beh_entries"
-            android:entryValues="@array/notifs_beh_values" />
+            android:key="vibrator_multiplier"
+            android:persistent="false"
+            android:dialogTitle="@string/vibrator_multiplier_title"
+            android:title="@string/vibrator_multiplier_title"
+            android:entries="@array/vibration_multiplier_values"
+            android:entryValues="@array/vibration_multiplier_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="interface_advanced"
+        android:title="@string/advanced_settings_title">
 
 	<PreferenceScreen
 	    android:key="chronus"
@@ -47,11 +69,6 @@
                 android:targetPackage="com.cyanogenmod.lockclock"
 		android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
 	</PreferenceScreen>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="interface_advanced"
-        android:title="@string/advanced_settings_title">
 
         <PreferenceScreen
             android:key="hardware_keys"
@@ -63,27 +80,10 @@
             android:fragment="com.android.settings.liquid.NotificationDrawer"
             android:title="@string/notification_drawer_title" />
 
-        <ListPreference
-            android:key="vibrator_multiplier"
-            android:persistent="false"
-            android:dialogTitle="@string/vibrator_multiplier_title"
-            android:title="@string/vibrator_multiplier_title"
-            android:entries="@array/vibration_multiplier_values"
-            android:entryValues="@array/vibration_multiplier_values" />
-
         <PreferenceScreen
             android:key="recents_ram_bar"
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
-
-        <PreferenceScreen
-            android:key="xposed_dpi"
-            android:title="@string/xposed_dpi_title"
-	    android:summary="@string/xposed_dpi_summary" >
-	    <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="de.robv.android.xposed.mods.appsettings"
-                android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
-        </PreferenceScreen>
 
         <PreferenceScreen
 	    android:key="xposed_installer"
@@ -92,6 +92,15 @@
 	    <intent android:action="android.intent.action.MAIN"
                  android:targetPackage="de.robv.android.xposed.installer"
                  android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="xposed_dpi"
+            android:title="@string/xposed_dpi_title"
+	    android:summary="@string/xposed_dpi_summary" >
+	    <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="de.robv.android.xposed.mods.appsettings"
+                android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
         </PreferenceScreen>
     </PreferenceCategory>
 

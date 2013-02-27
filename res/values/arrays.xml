@@ -2116,9 +2116,9 @@
 
     <!-- Low battery warning policy -->
     <string-array name="pref_low_battery_warning_policy_entries">
-        <item>Pop-up and sound</item>
-        <item>Pop-up only</item>
-        <item>Sound only</item>
+        <item>Popup And Sound</item>
+        <item>Popup Only</item>
+        <item>Sound Only</item>
         <item>Off</item>
     </string-array>
 
@@ -2132,10 +2132,11 @@
     <!-- Notification behavior preferences -->
     <string-array name="notifs_beh_entries">
         <item>Normal</item>
-        <item>Never expand</item>
-        <item>Always expand</item>
-        <item>Old style</item>
+        <item>Never Expand</item>
+        <item>Always Expand</item>
+        <item>Old Style</item>
     </string-array>
+
     <string-array name="notifs_beh_values" translatable="false">
         <item>0</item>
         <item>1</item>

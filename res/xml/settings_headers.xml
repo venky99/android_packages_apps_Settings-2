@@ -83,6 +83,13 @@
         android:fragment="com.android.settings.liquid.NavbarSettings"
         android:icon="@drawable/ic_liquid_navigation" />
 
+    <!-- Piecontrols -->
+    <header
+        android:id="@+id/piecontrols_settings"
+        android:title="@string/pie_controls_title"
+        android:fragment="com.android.settings.liquid.Pie"
+        android:icon="@drawable/ic_liquid_piecontrols" />
+
     <!-- Performance -->
     <header
         android:id="@+id/performance_settings"

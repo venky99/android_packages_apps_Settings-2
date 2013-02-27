@@ -4649,6 +4649,7 @@
     <string name="lock_screen_title">Lockscreen</string>
     <string name="navigation_title">Navigation</string>
     <string name="performance_title">Performance</string>
+    <string name="pie_controls_title">Piecontrols</string>
     <string name="power_menu_title">Powermenu</string>
     <string name="power_widget_title">Powerwidget</string>
     <string name="quick_settings_title">Quicksettings</string>
@@ -4674,7 +4675,7 @@
     <string name="liquid_website_summary">http://goo.im/devs/liquidsmooth\nFind all the latest builds and news here</string>
 
     <!-- Brightness Customization -->
-    <string name="custom_brightness_summary">View or change your custom brightness settings</string>
+    <string name="custom_brightness_summary">View or change custom brightness</string>
     <string name="light_sensor_current_value">Current light sensor value: <xliff:g id="light_level">%d</xliff:g> lux</string>
     <string name="auto_brightness_dialog_title">Automatic brightness levels</string>
     <string name="auto_brightness_level_format"><xliff:g id="start_level">%1$s</xliff:g> -\n<xliff:g id="end_level">%2$s</xliff:g> lux</string>
@@ -4715,7 +4716,7 @@
 
     <!-- Display Animation -->
     <string name="system_power_crt_screen_off_title">CRT Screen Off</string>
-    <string name="system_power_crt_screen_off_summary">Show animation when screen is turned off</string>
+    <string name="system_power_crt_screen_off_summary">Show animation when screen turns off</string>
     <string name="system_power_crt_mode_title">CRT Animation Mode</string>
     <string name="system_power_crt_mode_dialog_title">Show CRT Animation</string>
     <string name="system_power_crt_mode_horizontal">Portrait Horizontal</string>
@@ -4834,10 +4835,10 @@
     <string name="custom_density_dialog_button_reboot">Reboot Now</string>
 
     <!-- Xposed Density -->
-    <string name="xposed_dpi_title">Per-App DPI Settings</string>
-    <string name="xposed_dpi_summary">Customize the DPI values of specific applications</string>
-    <string name="xposed_install_title">DPI Installer</string>
-    <string name="xposed_install_summary">*Install this before using Per-App DPI-Settings*</string>
+    <string name="xposed_dpi_title">Xposed DPI Settings</string>
+    <string name="xposed_dpi_summary">Customize DPI values of specific apps</string>
+    <string name="xposed_install_title">Xposed DPI Installer</string>
+    <string name="xposed_install_summary">*Install before using DPI settings app*</string>
 
     <!-- Lockscreen Activities -->
     <string name="picker_activities">Activities</string>
@@ -4944,7 +4945,7 @@
     <string name="lock_screen_shortcuts_reset">Reset</string>
     <string name="lock_screen_shortcuts_limit">Only Six Shorcuts Allowed!</string>
     <string name="lockscreen_shorcuts_longpress_title">Shortcuts Longpress</string>
-    <string name="lockscreen_shorcuts_longpress_summary">Open lockscreen shortcuts on longpress</string>
+    <string name="lockscreen_shorcuts_longpress_summary">Open lockscreen using longpress</string>
     <string name="lockscreen_shortcuts_icon_picker_alarm">Alarm</string>
     <string name="lockscreen_shortcuts_icon_picker_andy">Andy</string>
     <string name="lockscreen_shortcuts_icon_picker_battery">Battery</string>
@@ -5273,24 +5274,24 @@
     <string name="notification_shortcuts_icon_picker_twitter">Twitter</string>
     <string name="notification_shortcuts_icon_picker_unlock">Unlock</string>
 
-    <!-- Pie Controls -->
-    <string name="pie_controls_title">Pie Controls</string>
-    <string name="pie_controls_summary">Allows navigation and status report</string>
+    <!-- Piecontrols -->
+    <string name="pie_control_title">Pie Control</string>
+    <string name="pie_control_summary">Allows navigation and status report</string>
     <string name="pie_targets_title">Targets</string>
     <string name="pie_gravity_title">Pie Gravity</string>
-    <string name="pie_gravity_summary">Select the location where Pie will be placed at</string>
+    <string name="pie_gravity_summary">Select location of the control</string>
     <string name="pie_gravity_top">Top</string>
     <string name="pie_gravity_bottom">Bottom</string>
     <string name="pie_gravity_right">Right</string>
     <string name="pie_gravity_left">Left</string>
     <string name="pie_mode_title">Pie Style</string>
-    <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
+    <string name="pie_mode_summary">Manage animations and status report</string>
     <string name="pie_mode_bare">Bare</string>
     <string name="pie_mode_quick">Quick</string>
     <string name="pie_mode_default">Default</string>
     <string name="pie_mode_slow">Slow</string>
     <string name="pie_size_title">Pie Size</string>
-    <string name="pie_size_summary">Define Pie controls size</string>
+    <string name="pie_size_summary">Change the size of the control</string>
     <string name="pie_size_small">Small</string>
     <string name="pie_size_default">@string/pie_mode_default</string>
     <string name="pie_size_large">Large</string>
@@ -5302,34 +5303,34 @@
     <string name="pie_outlines_title">Outlines Color</string>
     <string name="pie_status_clock_title">Clock Color</string>
     <string name="pie_status_title">Status Color</string>
-    <string name="pie_chevron_left_title">Left Chevron color</string>
-    <string name="pie_chevron_right_title">Right Chevron color</string>
+    <string name="pie_chevron_left_title">Left Chevron Color</string>
+    <string name="pie_chevron_right_title">Right Chevron Color</string>
     <string name="pie_juice_title">Battery Juice Color</string>
     <string name="pie_button_color_title">Buttons Color</string>
     <string name="pie_gap_title">Pie Gap</string>
-    <string name="pie_gap_summary">Adjust the gap that separates Pie elements</string>
+    <string name="pie_gap_summary">Adjust gap that separates elements</string>
     <string name="pie_gap_none">None</string>
     <string name="pie_gap_small">Small (Default)</string>
     <string name="pie_gap_big">Big</string>
     <string name="pie_gap_huge">Huge</string>
     <string name="pie_center_title">Center Pie</string>
-    <string name="pie_center_summary">If un-checked, pie will appear where your fingers trigger it</string>
+    <string name="pie_center_summary">Control appears where you trigger</string>
     <string name="pie_trigger_title">Trigger Size</string>
-    <string name="pie_trigger_summary">Determine the size of the triggering area that will start pie controls</string>
+    <string name="pie_trigger_summary">Determine size of trigger area</string>
     <string name="pie_trigger_small">Small</string>
     <string name="pie_trigger_normal">Normal (Default)</string>
     <string name="pie_trigger_big">Big</string>
     <string name="pie_trigger_huge">Huge</string>
-    <string name="pie_notifications_title">Enable Chevron Targets</string>
-    <string name="pie_notifications_summary">Enabling, will let the Notification panels and QuickSettings active when swipe.</string>
+    <string name="pie_notifications_title">Chevron Targets</string>
+    <string name="pie_notifications_summary">Allow notifications and quicksettings</string>
     <string name="pie_menu_title">Show Menu Always</string>
-    <string name="pie_menu_summary">Whether or not the menu button will appear when unneeded</string>
+    <string name="pie_menu_summary">Show menu button when unneeded</string>
     <string name="pie_search_title">Show Search Button</string>
-    <string name="pie_search_summary">Access to GoogleNow via Pie</string>
+    <string name="pie_search_summary">Access to google now via control</string>
     <string name="pie_lastapp_title">Last App Button</string>
-    <string name="pie_lastapp_summary">Enable last app button on Pie</string>
+    <string name="pie_lastapp_summary">Enable last app button on control</string>
     <string name="pie_stick_title">Prevent Rotation</string>
-    <string name="pie_stick_summary">If checked Pie will stay in place no matter which orientation</string>
+    <string name="pie_stick_summary">Control stays in place when rotating</string>
     <string name="all_color">Custom Colors</string>
     <string name="stock_color">Default Colors</string>
 
@@ -5452,20 +5453,20 @@
     <string name="quick_pulldown_left">Left</string>
     <string name="quick_pulldown_right">Right</string>
     <string name="title_collapse_panel">Autoclose Panel</string>
-    <string name="summary_collapse_panel">Close quick settings panel upon toggle</string>
+    <string name="summary_collapse_panel">Close quicksettings panel upon toggle</string> 
     <string name="disable_quick_settings_panel">Disable Panel</string>
     <string name="disable_quick_settings_panel_summary">Enable or disable quicksettings</string>
     <string name="quick_settings_enabled">Enabled</string>
     <string name="quick_settings_disabled">Disabled</string>
     <string name="title_no_notifications_pulldown">No Notifications</string>
-    <string name="summary_no_notifications_pulldown">Pulls down quicksettings if you have no notifications</string>
+    <string name="summary_no_notifications_pulldown">Quicksettings when no notifications</string>
     <string name="tiles_reset_title">Reset</string>
     <string name="tiles_reset_message">Restore the default displayed tiles and layout?</string>
 
     <!-- Recents Rambar -->
     <string name="ram_bar">Recents Rambar</string>
     <string name="ram_bar_note_title">Note</string>
-    <string name="ram_bar_note_summary">The Rambar shows the actual android memory utilization. Please note that having cached apps helps your device open apps faster. For further explanations on how android memory management works, check the help menu.</string>
+    <string name="ram_bar_note_summary">Rambar shows the actual android memory utilization. Please note that having cached apps helps your device open apps faster. For further explanations on how android memory management works, check the help menu.</string>
     <string name="ram_bar_mode_title">Rambar Mode</string>
     <string name="ram_bar_mode_dialog_title">Show on recents rambar</string>
     <string name="ram_bar_none">None</string>
@@ -5512,9 +5513,9 @@
     <string name="notification_convert_sound_to_vibration_title">Notification conversion</string>
     <string name="notification_convert_sound_to_vibration_summary">Convert sounds to vibrations when using vibrate mode</string>
     <string name="volume_adjust_sounds_enable_title">Volume adjustment sound</string>
-    <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with volume rocker</string>
+    <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with rocker buttons</string>
     <string name="less_notification_sounds_title">Less frequent notifications</string>
-    <string name="less_notification_sounds_summary">Limit notifications of each app to play once per period</string>
+    <string name="less_notification_sounds_summary">Limit notifications of each app to play once per choosen time period</string>
 
     <!-- Statusbar General -->
     <string name="status_bar_style_title">Style</string>
@@ -5635,9 +5636,9 @@
 
     <!-- Wakeup Options -->
     <string name="pref_volume_wake_title">Volume rocker wake</string>
-    <string name="pref_volume_wake_summary">Pressing the volume rocker up/down will wake the device</string>
+    <string name="pref_volume_wake_summary">Pressing volume rocker up or down will wake device</string>
     <string name="wakeup_when_plugged_unplugged_title">Wake up on charge</string>
-    <string name="wakeup_when_plugged_unplugged_summary">Wake up device if charger is plugged/unplugged</string>
+    <string name="wakeup_when_plugged_unplugged_summary">Wake up device if charger is plugged or unplugged</string>
 
     <!-- Wireless Settings -->
     <string name="wifi_setting_countrycode_title">Wi-Fi region code</string>
@@ -5655,10 +5656,10 @@
     <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
 
    <!-- Low Battery Warning -->
-   <string name="pref_low_battery_warning_policy_title">Low battery warning</string>
+   <string name="pref_low_battery_warning_policy_title">Low Battery Warning</string>
 
-   <!-- Notification Behavior Preferences -->
-   <string name="notification_behaviour_title">Notification behavior</string>
+   <!-- Notification Behavior -->
+   <string name="notification_behaviour_title">Notification Behavior</string>
 
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>

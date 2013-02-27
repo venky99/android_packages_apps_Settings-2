@@ -22,19 +22,19 @@
         android:key="lock_screen"
         android:title="@string/general_settings_title">
 
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.SecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-            <extra android:name="liquid_security" android:value="true" />
-        </PreferenceScreen>
+        <CheckBoxPreference
+            android:key="lockscreen_auto_rotate"
+            android:title="@string/lockscreen_auto_rotate_title"
+            android:summary="@string/lockscreen_auto_rotate_summary" />
 
-        <PreferenceScreen
-            android:key="lock_screen_widgets"
-            android:fragment="com.android.settings.liquid.LockscreenWidgets"
-            android:title="@string/lockscreen_widgets_title"
-            android:summary="@string/lockscreen_widgets_summary" />
+        <ListPreference
+            android:key="lockscreen_battery_status"
+            android:persistent="false"
+            android:dialogTitle="@string/lockscreen_battery_status_title"
+            android:title="@string/lockscreen_battery_status_title"
+            android:entries="@array/lockscreen_battery_status_entries"
+            android:entryValues="@array/lockscreen_battery_status_values"
+            android:defaultValue="0" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -90,25 +90,25 @@
        android:key="options_group"
        android:title="@string/additional_settings_title">
 
-       <CheckBoxPreference
-           android:key="lockscreen_auto_rotate"
-           android:title="@string/lockscreen_auto_rotate_title"
-           android:summary="@string/lockscreen_auto_rotate_summary" />
-
-       <ListPreference
-           android:key="lockscreen_battery_status"
-           android:persistent="false"
-           android:dialogTitle="@string/lockscreen_battery_status_title"
-           android:title="@string/lockscreen_battery_status_title"
-           android:entries="@array/lockscreen_battery_status_entries"
-           android:entryValues="@array/lockscreen_battery_status_values"
-           android:defaultValue="0" />
-
        <PreferenceScreen
            android:key="lockscreen_buttons"
            android:fragment="com.android.settings.liquid.LockscreenButtons"
            android:summary="@string/lockscreen_buttons_summary"
            android:title="@string/lockscreen_buttons_title" />
+
+        <PreferenceScreen
+            android:key="screen_security"
+            android:fragment="com.android.settings.SecuritySettings"
+            android:title="@string/screen_security_category"
+            android:summary="@string/screen_security_summary">
+            <extra android:name="liquid_security" android:value="true" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="lock_screen_widgets"
+            android:fragment="com.android.settings.liquid.LockscreenWidgets"
+            android:title="@string/lockscreen_widgets_title"
+            android:summary="@string/lockscreen_widgets_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

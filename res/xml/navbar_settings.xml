@@ -16,12 +16,6 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceScreen
-        android:key="pie_control"
-        android:fragment="com.android.settings.liquid.Pie"
-        android:title="@string/pie_controls_title"
-        android:summary="@string/pie_controls_summary" />
-
     <PreferenceCategory
         android:key="navigation_general"
         android:title="@string/general_settings_title" >
