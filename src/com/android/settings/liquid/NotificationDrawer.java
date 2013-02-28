@@ -72,7 +72,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String PREF_NOTIFICATION_ALPHA = "notification_alpha";
 
     private ListPreference mNotificationsBeh;
-    private ContentResolver mCr;
     private PreferenceScreen mPrefSet;
     private CheckBoxPreference mShowWifiName;
     private ListPreference mNotificationWallpaper;
@@ -95,7 +94,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPrefSet = getPreferenceScreen();
-        mCr = getContentResolver();
 
         mResolver = getContentResolver();
         mActivity = getActivity();
@@ -107,7 +105,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         customnavTemp = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp.jpg");
         customnavTempLandscape = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp_landscape.jpg");
 
-        int CurrentBeh = Settings.System.getInt(mCr, Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        int CurrentBeh = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
         mNotificationsBeh = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
         mNotificationsBeh.setValue(String.valueOf(CurrentBeh));
                 mNotificationsBeh.setSummary(mNotificationsBeh.getEntry());
@@ -266,6 +264,12 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    mShowWifiName.isChecked() ? 1 : 0);
+            return true;
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -282,11 +286,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Integer.valueOf(val));
             int index = mNotificationsBeh.findIndexOfValue(val);
             mNotificationsBeh.setSummary(mNotificationsBeh.getEntries()[index]);
-            return true;
-        } else if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    mShowWifiName.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mNotifAlpha) {
             float valNav = Float.parseFloat((String) newValue);

@@ -4946,7 +4946,7 @@
     <string name="lock_screen_shortcuts_reset">Reset</string>
     <string name="lock_screen_shortcuts_limit">Only Six Shorcuts Allowed!</string>
     <string name="lockscreen_shorcuts_longpress_title">Shortcuts Longpress</string>
-    <string name="lockscreen_shorcuts_longpress_summary">Open lockscreen using longpress</string>
+    <string name="lockscreen_shorcuts_longpress_summary">Open shortcuts using longpress</string>
     <string name="lockscreen_shortcuts_icon_picker_alarm">Alarm</string>
     <string name="lockscreen_shortcuts_icon_picker_andy">Andy</string>
     <string name="lockscreen_shortcuts_icon_picker_battery">Battery</string>
