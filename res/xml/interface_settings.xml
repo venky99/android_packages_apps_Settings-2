@@ -43,11 +43,6 @@
             android:entryValues="@array/pref_low_battery_warning_policy_values"
             android:defaultValue="3" />
 
-        <CheckBoxPreference
-            android:key="notification_show_wifi_ssid"
-            android:title="@string/notification_show_wifi_ssid_title"
-            android:summary="@string/notification_show_wifi_ssid_summary" />
-
         <ListPreference
             android:key="vibrator_multiplier"
             android:persistent="false"

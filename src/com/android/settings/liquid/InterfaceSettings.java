@@ -57,7 +57,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     public static final String TAG = "UserInterface";
     private static final String ADVANCED_SETTINGS = "interface_advanced";
     private static final String KEY_CARRIER_LABEL = "custom_carrier_label";
-    private static final String KEY_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
     private static final String KEY_NOTIF_STYLE = "notification_style";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
@@ -71,7 +70,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private Preference mNotifStyle;
     private Preference mRamBar;
     private CheckBoxPreference mDualPane;
-    private CheckBoxPreference mShowWifiName;
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
 
@@ -94,10 +92,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             getPreferenceScreen().removePreference(mLcdDensity);
         }
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
-
-        mShowWifiName = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_SHOW_WIFI_SSID);
-        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
 
         mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
         mCustomLabel = findPreference(KEY_CARRIER_LABEL);
@@ -232,11 +226,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.DUAL_PANE_PREFS,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    mShowWifiName.isChecked() ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

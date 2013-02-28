@@ -20,8 +20,24 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
-        android:key="notif_drawer_cat"
+        android:key="notif_drawer_gen"
         android:title="@string/general_settings_title">
+
+        <ListPreference
+            android:key="notifications_behaviour"
+            android:title="@string/notification_behaviour_title"
+            android:entries="@array/notifs_beh_entries"
+            android:entryValues="@array/notifs_beh_values" />
+
+        <CheckBoxPreference
+            android:key="notification_show_wifi_ssid"
+            android:title="@string/notification_show_wifi_ssid_title"
+            android:summary="@string/notification_show_wifi_ssid_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="notif_drawer_cat"
+        android:title="@string/style_settings_title">
 
         <ListPreference
             android:key="notification_wallpaper"
