@@ -4645,7 +4645,7 @@
     <!-- LiquidSmooth Settings -->
     <string name="advanced_settings_title">Advanced</string>
     <string name="general_settings_title">General</string>
-    <string name="style_settings_title">Stylel</string>
+    <string name="style_settings_title">Style</string>
     <string name="user_interface_title">Interface</string>
     <string name="lock_screen_title">Lockscreen</string>
     <string name="navigation_title">Navigation</string>
