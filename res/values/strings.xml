@@ -5662,5 +5662,8 @@
    <!-- Notification Behavior -->
    <string name="notification_behaviour_title">Notification Behavior</string>
 
+   <!-- Koush Supersuer -->
+   <string name="superuser">Superuser</string>
+
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>
