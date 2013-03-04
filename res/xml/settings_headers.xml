@@ -277,7 +277,7 @@
     <!-- Superuser -->
     <header
         android:id="@+id/superuser"
-        android:fragment="com.koushikdutta.superuser.PolicyNativeFragment"
+        android:fragment="com.android.settings.liquid.superuser.PolicyNativeFragment"
         android:icon="@drawable/ic_liquid_superuser"
         android:title="@string/superuser" />
 
