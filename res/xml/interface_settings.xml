@@ -45,9 +45,10 @@
         <ListPreference
             android:key="pref_low_battery_warning_policy"
             android:title="@string/pref_low_battery_warning_policy_title"
+            android:dialogTitle="@string/pref_low_battery_warning_policy_dialog_title"
             android:entries="@array/pref_low_battery_warning_policy_entries"
             android:entryValues="@array/pref_low_battery_warning_policy_values"
-            android:defaultValue="3" />
+            android:defaultValue="0" />
 
         <ListPreference
             android:key="vibrator_multiplier"
@@ -63,14 +64,14 @@
         android:key="interface_advanced"
         android:title="@string/advanced_settings_title">
 
-	    <PreferenceScreen
-	        android:key="chronus"
+	<PreferenceScreen
+	    android:key="chronus"
             android:title="@string/chronus_title"
-	        android:summary="@string/chronus_summary" >
-	        <intent android:action="android.intent.action.MAIN"
+	    android:summary="@string/chronus_summary" >
+	    <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.cyanogenmod.lockclock"
-		        android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
-	    </PreferenceScreen>
+		android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
+	</PreferenceScreen>
 
         <PreferenceScreen
             android:key="hardware_keys"
@@ -94,10 +95,10 @@
         android:title="@string/additional_settings_title">
 
         <PreferenceScreen
-	        android:key="xposed_installer"
+	    android:key="xposed_installer"
             android:title="@string/xposed_install_title"
-	        android:summary="@string/xposed_install_summary" >
-	        <intent android:action="android.intent.action.MAIN"
+	    android:summary="@string/xposed_install_summary" >
+	    <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="de.robv.android.xposed.installer"
                 android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
         </PreferenceScreen>
@@ -105,8 +106,8 @@
         <PreferenceScreen
             android:key="xposed_dpi"
             android:title="@string/xposed_dpi_title"
-	        android:summary="@string/xposed_dpi_summary" >
-	        <intent android:action="android.intent.action.MAIN"
+	    android:summary="@string/xposed_dpi_summary" >
+	    <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="de.robv.android.xposed.mods.appsettings"
                 android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
         </PreferenceScreen>

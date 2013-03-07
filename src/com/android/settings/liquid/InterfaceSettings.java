@@ -163,15 +163,14 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
                     .getContentResolver(), Settings.System.VIBRATION_MULTIPLIER, 1));
             mVibrationMultiplier.setValue(currentValue);
             mVibrationMultiplier.setSummary(currentValue);
+        }
 
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
-                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 3);
+                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
         mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
         mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
-
-        }
     }
 
     @Override
@@ -199,7 +198,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             int lowBatteryWarning = Integer.valueOf((String) newValue);
             int index = mLowBatteryWarning.findIndexOfValue((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, lowBatteryWarning);
+                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY,
+                    lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
         } else if (preference == mUseAltResolver) {
