@@ -1519,6 +1519,7 @@
         <activity android:name=".notificationlight.NotificationLightSettings" />
         <activity android:name=".notificationlight.BatteryLightSettings" />
         <activity android:name=".liquid.QuickSettings" />
+        <activity android:name=".liquid.QuickSettingsTilesStyle" />
         <activity android:name=".liquid.NotificationDrawer" />
         <activity android:name=".liquid.Pie" />
         <activity android:name=".liquid.PieColor" />
