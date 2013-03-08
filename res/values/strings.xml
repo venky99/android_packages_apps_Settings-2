@@ -4885,6 +4885,8 @@
     <string name="lockscreen_buttons_previous">Previous Song</string>
     <string name="lockscreen_buttons_playpause">Play/Pause Music</string>
     <string name="lockscreen_buttons_toggle_sound">Toggle Sound</string>
+    <string name="lockscreen_buttons_camera">Launch camera</string>
+    <string name="lockscreen_buttons_power_off">Power off</string>
 
     <!-- Lockscreen Delay -->
     <string name="delay_and_timeout_title">Delay</string>
