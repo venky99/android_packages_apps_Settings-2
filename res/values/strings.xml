@@ -5582,7 +5582,7 @@
     <!-- Battery Circle -->
     <string name="circle_battery_color">Circle Color</string>
     <string name="battery_text_color">Percent Text Color</string>
-    <string name="battery_text_charging_color">Percentage text charging color</string>
+    <string name="battery_text_charging_color">Percent Text Charging Color</string>
     <string name="circle_battery_animation_speed">Animation Speed</string>
     <string name="circle_battery_animation_speed_none">None</string>
     <string name="circle_battery_animation_speed_slow">Slow</string>

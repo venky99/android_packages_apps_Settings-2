@@ -323,13 +323,13 @@ public class StatusBarBatteryStyle extends SettingsPreferenceFragment implements
         } else if (batteryIconStat == 4 || batteryIconStat == 6) {
             mCircleColor.setEnabled(true);
             mBatteryTextColor.setEnabled(true);
-            mBatteryTextChargingColor.setEnabled(false);
+            mBatteryTextChargingColor.setEnabled(true);
             mCircleAnimSpeed.setEnabled(true);
             mBatteryColorReset.setEnabled(true);
         } else {
             mCircleColor.setEnabled(false);
             mBatteryTextColor.setEnabled(true);
-            mBatteryTextChargingColor.setEnabled(false);
+            mBatteryTextChargingColor.setEnabled(true);
             mCircleAnimSpeed.setEnabled(false);
             mBatteryColorReset.setEnabled(true);
         }
