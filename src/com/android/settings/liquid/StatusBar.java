@@ -41,7 +41,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_SIGNAL = "status_bar_signal";
     private static final String STATUS_BAR_NOTIFICATION_COUNT = "status_bar_notification_count";
     private static final String STATUS_BAR_CATEGORY_GENERAL = "status_bar_general";
-    private static final String KEY_MMS_BREATH = "mms_breath";
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
     private StatusBarBrightnessChangedObserver mStatusBarBrightnessChangedObserver;
@@ -50,7 +49,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mStatusBarNotifCount;
     private PreferenceScreen mClockStyle;
     private PreferenceCategory mPrefCategoryGeneral;
-    private CheckBoxPreference mMMSBreath;
     private CheckBoxPreference mStatusBarBrightnessControl;
 
     @Override
@@ -67,10 +65,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarCmSignal.setValue(String.valueOf(signalStyle));
         mStatusBarCmSignal.setSummary(mStatusBarCmSignal.getEntry());
         mStatusBarCmSignal.setOnPreferenceChangeListener(this);
-
-        mMMSBreath = (CheckBoxPreference) findPreference(KEY_MMS_BREATH);
-        mMMSBreath.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.MMS_BREATH, 0) == 1);
 
         mStatusBarBrightnessControl = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_BRIGHTNESS_CONTROL);
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
@@ -123,9 +117,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_NOTIFICATION_COUNT, value ? 1 : 0);
             return true;
-        } else if (preference == mMMSBreath) {
-            Settings.System.putInt(mContext.getContentResolver(), Settings.System.MMS_BREATH, 
-                    mMMSBreath.isChecked() ? 1 : 0);
         } else if (preference == mStatusBarBrightnessControl) {
             value = mStatusBarBrightnessControl.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
