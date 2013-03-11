@@ -5407,6 +5407,8 @@
     <string name="brightness_slider_top">On Top</string>
     <string name="brightness_slider_bottom">On Bottom</string>
     <string name="brightness_slider_none">Don\'t Show</string>
+    <string name="power_widget_longpress_qs_title">Longpress visibility toggle</string>
+    <string name="power_widget_longpress_qs_summary">Longpress QuickSettings flip button to toggle visibility</string>
 
     <!-- Quicksettings -->
     <string name="title_static_tiles">Static</string>
