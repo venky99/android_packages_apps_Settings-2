@@ -243,7 +243,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         if (timeout == 0)
             timeout = KEYBOARD_ROTATION_TIMEOUT_DEFAULT;
         mKeyboardRotationTimeout.setValue(Integer.toString(timeout));
-        mKeyboardRotationTimeout.setSummary(getString(R.string.keyboard_rotation_timeout_summary, mKeyboardRotationTimeout.getEntry()))
+        mKeyboardRotationTimeout.setSummary(getString(R.string.keyboard_rotation_timeout_summary, mKeyboardRotationTimeout.getEntry()));
     }
 
     private void updateInputMethodSelectorSummary(int value) {
