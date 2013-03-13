@@ -103,8 +103,21 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="interface_additional"
-        android:title="@string/additional_settings_title">
+        android:key="interface_tablet"
+        android:title="@string/tablet_settings_title">
+
+        <ListPreference
+            android:key="user_mode_ui"
+            android:title="@string/user_mode_ui"
+            android:summary="@string/user_mode_ui_summary"
+            android:entries="@array/user_mode_ui_entries"
+            android:entryValues="@array/user_mode_ui_values" />
+
+       <CheckBoxPreference
+            android:key="hide_extras"
+            android:title= "@string/hide_extras"
+            android:summary= "@string/hide_extras_summary"
+            android:defaultValue="false" />
 
         <PreferenceScreen
 	        android:key="xposed_installer"
@@ -125,4 +138,5 @@
         </PreferenceScreen>
 
     </PreferenceCategory>
+
 </PreferenceScreen>

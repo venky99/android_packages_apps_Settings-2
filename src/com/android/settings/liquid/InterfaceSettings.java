@@ -38,6 +38,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.view.Display;
@@ -51,6 +54,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.util.Helpers;
 import com.android.settings.Utils;
 import android.widget.EditText;
 
@@ -67,6 +71,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String KEY_CLASSIC_RECENTS = "classic_recents";
+    private static final String KEY_USER_MODE_UI = "user_mode_ui";
+    private static final String KEY_HIDE_EXTRAS = "hide_extras";
 
     private Preference mLcdDensity;
     private CheckBoxPreference mUseAltResolver;
@@ -78,6 +84,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
     private CheckBoxPreference mClassicRecents;
+    private ListPreference mUserModeUI;
+    private CheckBoxPreference mHideExtras;
 
     private int newDensityValue;
     DensityChanger densityFragment;
@@ -140,6 +148,23 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         mVibrationMultiplier.setValue(currentValue);
         mVibrationMultiplier.setSummary(currentValue);
 
+        mClassicRecents = (CheckBoxPreference) findPreference(KEY_CLASSIC_RECENTS);
+        boolean classicRecents = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CLASSIC_RECENTS_MENU, 0) == 1;
+        mClassicRecents.setChecked(classicRecents);
+        mClassicRecents.setOnPreferenceChangeListener(this);
+
+        mHideExtras = (CheckBoxPreference) findPreference(KEY_HIDE_EXTRAS);
+        mHideExtras.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.HIDE_EXTRAS_SYSTEM_BAR, 0) == 1);
+
+        mUserModeUI = (ListPreference) findPreference(KEY_USER_MODE_UI);
+        int uiMode = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CURRENT_UI_MODE, 0);
+        mUserModeUI.setValue(Integer.toString(Settings.System.getInt(
+                getActivity().getContentResolver(), Settings.System.USER_UI_MODE, uiMode)));
+        mUserModeUI.setOnPreferenceChangeListener(this);
+
         // Only show the hardware keys config on a device that does not have a navbar
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
                 ServiceManager.getService(Context.WINDOW_SERVICE));
@@ -153,12 +178,16 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         }
 
         mNotifStyle = findPreference(KEY_NOTIF_STYLE);
+    }
 
-        mClassicRecents = (CheckBoxPreference) findPreference(KEY_CLASSIC_RECENTS);
-        boolean classicRecents = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CLASSIC_RECENTS_MENU, 0) == 1;
-        mClassicRecents.setChecked(classicRecents);
-        mClassicRecents.setOnPreferenceChangeListener(this);
+    private void updateCustomLabelTextSummary() {
+        mCustomLabelText = Settings.System.getString(getActivity().getContentResolver(),
+                Settings.System.CUSTOM_CARRIER_LABEL);
+        if (mCustomLabelText == null || mCustomLabelText.length() == 0) {
+            mCustomLabel.setSummary(R.string.custom_carrier_label_notset);
+        } else {
+            mCustomLabel.setSummary(mCustomLabelText);
+        }
     }
 
     private void updateRamBar() {
@@ -225,6 +254,17 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
                     Settings.System.CLASSIC_RECENTS_MENU,
                     (Boolean) newValue ? 1 : 0);
             mClassicRecents.setChecked((Boolean)newValue);
+            return true;
+        } else if (preference == mUserModeUI) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
+            Helpers.restartSystemUI();
+            return true;
+        } else if (preference == mHideExtras) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
         }
         return false;
     }

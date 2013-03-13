@@ -56,6 +56,8 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
     ListPreference mNavigationBarHeight;
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
+    SeekBarPreference mWidthPort;
+    SeekBarPreference mWidthLand;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,19 +96,34 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
         mNavigationBarHeightLandscape.setOnPreferenceChangeListener(this);
 
         mNavigationBarWidth = (ListPreference) findPreference(PREF_NAVIGATION_BAR_WIDTH);
+
+        float defaultPort = Settings.System.getFloat(getActivity()
+                .getContentResolver(), Settings.System.NAVIGATION_BAR_WIDTH_PORT, 0f);
+        mWidthPort = (SeekBarPreference) findPreference("width_port");
+        mWidthPort.setInitValue((int) (defaultPort * 2.5f));
+
+        float defaultLand = Settings.System.getFloat(getActivity()
+                .getContentResolver(), Settings.System.NAVIGATION_BAR_WIDTH_LAND, 0f);
+        mWidthLand = (SeekBarPreference) findPreference("width_land");
+        mWidthLand.setInitValue((int) (defaultLand * 2.5f));
+
         if (!Utils.isPhone(getActivity())) {
             PreferenceCategory dimenCategory = (PreferenceCategory) findPreference(KEY_DIMEN_OPTIONS);
             if (mNavigationBarWidth != null)
                 dimenCategory.removePreference(mNavigationBarWidth);
+            if (mWidthPort != null)
+                dimenCategory.removePreference(mWidthPort);
+            if (mWidthLand != null)
+                dimenCategory.removePreference(mWidthLand);
         } else {
             mNavigationBarWidth.setOnPreferenceChangeListener(this);
+            mWidthPort.setOnPreferenceChangeListener(this);
+            mWidthLand.setOnPreferenceChangeListener(this);
         }
-
         setHasOptionsMenu(true);
         mCheckPreferences = true;
         return prefs;
     }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -120,7 +137,6 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
             case R.id.reset:
                 Settings.System.putInt(getActivity().getContentResolver(),
                         Settings.System.NAVIGATION_BAR_GLOW_TINT, 0xffffffff);
-
                 refreshSettings();
                 return true;
             case R.id.reset_dimen:
@@ -139,7 +155,6 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
                 mNavigationBarHeight.setValue("48");
                 mNavigationBarHeightLandscape.setValue("48");
                 mNavigationBarWidth.setValue("42");
-
                 refreshSettings();
                 return true;
              default:
@@ -185,8 +200,17 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
             int dp = Integer.parseInt(newVal);
             int height = mapChosenDpToPixels(dp);
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE,
-                    height);
+                    Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE, height);
+            return true;
+        } else if (preference == mWidthPort) {
+            float val = Float.parseFloat((String) newValue);
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_WIDTH_PORT, val * 0.4f);
+            return true;
+        } else if (preference == mWidthLand) {
+            float val = Float.parseFloat((String) newValue);
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_WIDTH_LAND, val * 0.4f);
             return true;
         }
         return false;
@@ -216,5 +240,4 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
     public void onResume() {
         super.onResume();
     }
-
 }

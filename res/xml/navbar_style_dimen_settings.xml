@@ -41,6 +41,14 @@
             android:title="@string/navigation_bar_width_title"
             android:summary="@string/navigation_bar_width_summary" />
 
+        <com.android.settings.widget.SeekBarPreference
+            android:key="width_port"
+            android:title="@string/width_port_title" />
+
+        <com.android.settings.widget.SeekBarPreference
+            android:key="width_land"
+            android:title="@string/width_land_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
