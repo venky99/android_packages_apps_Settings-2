@@ -20,7 +20,7 @@
     android:title="@string/quicksettings_tiles_style">
 
     <PreferenceCategory
-        android:title="@string/quicksettings_tiles_style">
+        android:title="@string/style_settings_title">
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
              android:key="quick_tiles_bg_color"
@@ -40,7 +40,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/quicksettings_tiles_style_additional_options">
+        android:title="@string/additional_settings_title">
 
         <ListPreference
             android:key="tiles_per_row"
