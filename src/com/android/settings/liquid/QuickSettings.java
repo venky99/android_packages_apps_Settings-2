@@ -377,11 +377,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         }
     }
 
-    private boolean deviceSupportsUsbTether() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return (cm.getTetherableUsbRegexs().length != 0);
-    }
-
     private boolean deviceSupportsWifiDisplay() {
         DisplayManager dm = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
         return (dm.getWifiDisplayStatus().getFeatureState() != WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE);
@@ -396,5 +391,4 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return (cm.getTetherableUsbRegexs().length != 0);
     }
-
 }
