@@ -97,7 +97,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_RINGTONE, KEY_DTMF_TONE, KEY_CATEGORY_CALLS,
-            KEY_EMERGENCY_TONE, KEY_INCREASING_RING
+            KEY_EMERGENCY_TONE, KEY_INCREASING_RING, KEY_VIBRATE
     };
 
     private static final int MSG_UPDATE_RINGTONE_SUMMARY = 1;
@@ -225,8 +225,14 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mHapticFeedback.setChecked(Settings.System.getInt(resolver,
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 1) != 0);
         mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
-        mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
-                Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+        if (mVolumeAdjustSounds != null) {
+            if (!Utils.hasVolumeRocker(getActivity())) {
+                getPreferenceScreen().removePreference(mVolumeAdjustSounds);
+            } else {
+                mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
+                        Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
+            }
+        }
         mLockSounds = (CheckBoxPreference) findPreference(KEY_LOCK_SOUNDS);
         mLockSounds.setPersistent(false);
         mLockSounds.setChecked(Settings.System.getInt(resolver,
@@ -259,9 +265,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         if (vibrator == null || !vibrator.hasVibrator()) {
             removePreference(KEY_VIBRATE);
             removePreference(KEY_HAPTIC_FEEDBACK);
-        }
-        if (!Utils.isVoiceCapable(getActivity())) {
-            removePreference(KEY_VIBRATE);
+            removePreference(KEY_CONVERT_SOUND_TO_VIBRATE);
         }
 
         if (TelephonyManager.PHONE_TYPE_CDMA == activePhoneType) {
