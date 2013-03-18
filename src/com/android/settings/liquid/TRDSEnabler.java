@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.android.settings.liquid;
 
 import android.util.Slog;
 import android.content.Context;
