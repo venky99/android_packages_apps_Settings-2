@@ -5600,6 +5600,11 @@
     <string name="less_notification_sounds_summary">Limit notifications of each app to play once per choosen time period</string>
     <string name="swap_volume_buttons_title">Swap volume buttons</string>
     <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
+    <string name="power_notifications_category_title">Power sounds</string>
+    <string name="power_notifications_enable_title">Enable</string>
+    <string name="power_notifications_vibrate_title">Vibrate</string>
+    <string name="power_notifications_ringtone_title">Notification sound</string>
+    <string name="power_notifications_ringtone_silent">Silent</string>
 
     <!-- Statusbar General -->
     <string name="status_bar_style_title">Style</string>
