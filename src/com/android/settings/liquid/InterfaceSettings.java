@@ -186,11 +186,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, lowBatteryWarning);
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
-        } else if (preference == mDualPane) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.DUAL_PANE_PREFS,
-                    (Boolean) newValue ? 1 : 0);
-            return true;
         }
         return false;
     }
