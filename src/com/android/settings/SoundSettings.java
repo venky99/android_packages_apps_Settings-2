@@ -170,6 +170,14 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVibrateWhenRinging.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VIBRATE_WHEN_RINGING, 0) != 0);
 
+        mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
+        mVolumeOverlay.setOnPreferenceChangeListener(this);
+        int volumeOverlay = Settings.System.getInt(getContentResolver(),
+                Settings.System.MODE_VOLUME_OVERLAY,
+                VolumePanel.VOLUME_OVERLAY_EXPANDABLE);
+        mVolumeOverlay.setValue(Integer.toString(volumeOverlay));
+        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
+
         mDtmfTone = (CheckBoxPreference) findPreference(KEY_DTMF_TONE);
         mDtmfTone.setPersistent(false);
         mDtmfTone.setChecked(Settings.System.getInt(resolver,
