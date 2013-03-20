@@ -117,6 +117,15 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         mDisableFullscreenKeyboard.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.DISABLE_FULLSCREEN_KEYBOARD, 0) == 1);
 
+        mKeyboardRotationToggle = (CheckBoxPreference) findPreference(KEYBOARD_ROTATION_TOGGLE);
+        mKeyboardRotationToggle.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0) > 0);
+
+        mKeyboardRotationTimeout = (ListPreference) findPreference(KEYBOARD_ROTATION_TIMEOUT);
+        mKeyboardRotationTimeout.setOnPreferenceChangeListener(this);
+        updateRotationTimeout(Settings.System.getInt(getActivity()
+                    .getContentResolver(), Settings.System.KEYBOARD_ROTATION_TIMEOUT, KEYBOARD_ROTATION_TIMEOUT_DEFAULT));
+
         try {
             mDefaultInputMethodSelectorVisibility = Integer.valueOf(
                     getString(R.string.input_method_selector_visibility_default_value));
@@ -228,15 +237,6 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                 getPreferenceScreen().removePreference(pc);
             }
         }
-
-        mKeyboardRotationToggle = (CheckBoxPreference) findPreference(KEYBOARD_ROTATION_TOGGLE);
-        mKeyboardRotationToggle.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0) > 0);
-
-        mKeyboardRotationTimeout = (ListPreference) findPreference(KEYBOARD_ROTATION_TIMEOUT);
-        mKeyboardRotationTimeout.setOnPreferenceChangeListener(this);
-        updateRotationTimeout(Settings.System.getInt(getActivity()
-                    .getContentResolver(), Settings.System.KEYBOARD_ROTATION_TIMEOUT, KEYBOARD_ROTATION_TIMEOUT_DEFAULT));
     }
 
     public void updateRotationTimeout(int timeout) {
