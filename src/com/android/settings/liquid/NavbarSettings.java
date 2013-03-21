@@ -87,8 +87,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         mEnableNavigationBar = (CheckBoxPreference) findPreference(ENABLE_NAVIGATION_BAR);
         mEnableNavigationBar.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1);
-        updateNavbarPreferences(Settings.System.getInt(getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1);
 
         // don't allow devices that must use a navigation bar to disable it
         if (hasNavBarByDefault) {
@@ -105,7 +103,8 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                     Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 0);
         }
 
-        mConfigureWidgets = findPreference(NAVIGATION_BAR_WIDGETS);
+        updateNavbarPreferences(Settings.System.getInt(getContentResolver(),
+                Settings.System.NAVIGATION_BAR_SHOW, hasNavBarByDefault ? 1 : 0) == 1);
     }
 
     private void updateNavbarPreferences( boolean show ) {
@@ -115,6 +114,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         mButtonPreference.setEnabled(show);
         mRingPreference.setEnabled(show);
         mStyleDimenPreference.setEnabled(show);
+        mNavigationBarCanMove.setEnabled(show);
     }
 
     @Override
