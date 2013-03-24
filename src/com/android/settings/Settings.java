@@ -41,6 +41,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -888,4 +889,5 @@ public class Settings extends PreferenceActivity
     public static class RamBarActivity extends Settings { /* empty */ }
     public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class NotificationShortcutsSettingsActivity extends Settings { /* empty */ }
+    public static class PowerMenuSettingsActivity extends Settings { /* empty */ }
 }
