@@ -29,8 +29,6 @@ import android.provider.Settings;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
 import com.android.settings.Utils;
-import com.android.settings.util.Helpers;
-
 
 public class NavbarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
@@ -130,7 +128,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                     Settings.System.NAVIGATION_BAR_SHOW,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             updateNavbarPreferences(((CheckBoxPreference) preference).isChecked());
-            Helpers.restartSystemUI();
             return true;
         } else if (preference == mNavigationBarCanMove) {
             Settings.System.putInt(getActivity().getContentResolver(),
