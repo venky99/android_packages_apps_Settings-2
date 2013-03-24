@@ -4782,6 +4782,7 @@
     <string name="hardware_keys_action_kill_app">Kill App</string>
     <string name="hardware_keys_action_last_app">Switch To Last App</string>
     <string name="hardware_keys_action_custom_app">Custom App</string>
+    <string name="hardware_keys_action_widgets">Widgets Viewpager</string>
 
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
@@ -5455,6 +5456,7 @@
     <string name="title_tile_wifi">Wi-Fi</string>
     <string name="title_tile_wimax">WiMAX</string>
     <string name="title_tile_user">User Switcher</string>
+    <string name="title_tile_volume">Volume</string>
     <string name="title_tile_networkmode">Network Mode</string>
     <string name="title_tile_reboot">Reboot</string>
     <string name="title_tile_nfc">NFC</string>
