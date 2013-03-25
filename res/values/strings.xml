@@ -1321,8 +1321,6 @@
     <string name="wifi_menu_connect">Connect to network</string>
     <!-- Menu option to delete a Wi-Fi network -->
     <string name="wifi_menu_forget">Forget network</string>
-    <!-- Menu option to delete all Wi-Fi networks -->
-    <string name="wifi_menu_forget_all">Forget all networks</string>
     <!-- Menu option to modify a Wi-Fi network configuration -->
     <string name="wifi_menu_modify">Modify network</string>
     <!-- Wi-Fi settings. text displayed when Wi-Fi is off and network list is empty [CHAR LIMIT=50]-->
@@ -4458,7 +4456,7 @@
     <string name="mem_info">Memory</string>
     <!-- About phone screen, status item label -->
 
-    <!-- INTERFACE Settings  -->
+    <!-- INTERFACE Settings -->
     <!-- Settings main menu category heading. Interface (Launcher, Themes, System). [CHAR LIMIT=40] -->
     <string name="header_category_interface">LIQUIDSMOOTH</string>
 
@@ -5397,7 +5395,7 @@
     <string name="title_toggle_autorotate">Orientation</string>
     <string name="title_toggle_airplane">Airplane Mode</string>
     <string name="title_toggle_flashlight">Torch</string>
-    <string name="title_toggle_sleep">Go To Sleep</string>
+    <string name="title_toggle_power">Power Button</string>
     <string name="title_toggle_media_play_pause">Play/Pause</string>
     <string name="title_toggle_media_previous">Skip To Previous</string>
     <string name="title_toggle_media_next">Skip To Next</string>
@@ -5439,7 +5437,7 @@
     <string name="title_tile_battery">Battery Stats</string>
     <string name="title_tile_bluetooth">Bluetooth</string>
     <string name="title_tile_brightness">Brightness</string>
-    <string name="title_tile_sleep">Go To Sleep</string>
+    <string name="title_tile_power">Power Button</string>
     <string name="title_tile_gps">GPS</string>
     <string name="title_tile_torch">Torch</string>
     <string name="title_tile_lockscreen">Lockscreen</string>
