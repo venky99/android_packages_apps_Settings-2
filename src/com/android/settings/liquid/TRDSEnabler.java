@@ -16,6 +16,7 @@
 
 package com.android.settings.liquid;
 
+import android.app.ActivityManager;
 import android.util.Slog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import android.content.IntentFilter;
 import android.provider.Settings;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
+import java.util.List;
 
 public class TRDSEnabler implements CompoundButton.OnCheckedChangeListener {
     private final Context mContext;
