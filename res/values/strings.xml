@@ -5066,10 +5066,10 @@
     <string name="navbar_action_menu">Menu</string>
     <string name="navbar_action_ime">Open IME Switcher</string>
     <string name="navbar_action_kill">Kill App</string>
+    <string name="navbar_action_widgets">Widgets Viewpager</string>
     <string name="navbar_action_power">Screen off</string>
     <string name="navbar_action_notifications">Notifications</string>
     <string name="navbar_action_none">None</string>
-    <string name="navbar_widgets">Widgets</string>
     <string name="navbar_enable_bar">Enable Navbar</string>
     <string name="navbar_restart_systemui_summary">Change this for statusbar to restart now</string>
     <string name="navigation_bar_height_title">Navbar Height</string>
@@ -5110,6 +5110,7 @@
     <string name="interface_softkeys_ring_silent_title">Toggle Ring/Silent</string>
     <string name="interface_softkeys_ring_vib_silent_title">Toggle Ring/Vibrate/Silent</string>
     <string name="interface_softkeys_kill_process_title">Kill App</string>
+    <string name="interface_softkeys_widgets">Widgets Viewpager</string>
     <string name="interface_softkey_package_removed">Previously selected package was not found</string>
     <string name="interface_navring_settings_title">Navring</string>
     <string name="interface_navring_settings_summary">Edit your custom navring apps</string>
@@ -5144,9 +5145,9 @@
     <string name="search">Search</string>
     <string name="screenshot">Screenshot</string>
     <string name="menu">Menu</string>
-    <string name="toggle_widgets">Toggle Widgets</string>
     <string name="open_ime_switcher">Open IME Switcher</string>
     <string name="kill_app">Kill App</string>
+    <string name="widgets">Widgets Viewpager</string>
     <string name="lastapp">Last App</string>
     <string name="power">Screen off</string>
     <string name="notifications">Notifications</string>
@@ -5201,14 +5202,23 @@
     <string name="nav_bar_style_reset">Reset</string>
 
     <!-- Navigation Widgets -->
-    <string name="navbar_widgets_instructions">Swipe To View</string>
+    <string name="navbar_widgets_note_title">Note</string>
+    <string name="navbar_widgets_note_summary">To show navbar widgets enable in hardware keys, navbar buttons or ring targets.</string>
+    <string name="navbar_widgets_title">Navbar Widgets</string>
+    <string name="navbar_widgets_style_settings_title">Widgets Style</string>
+    <string name="navbar_widgets_style_settings_summary">Change widgets viewpager background style</string>
+    <string name="navbar_widgets_summary">Add your custom widgets to the viewpager</string>
+    <string name="navbar_widgets_instructions">Swipe To View (Click To Choose)</string>
     <string name="navbar_widgets_reset">Reset Widgets</string>
     <string name="navbar_widget_summary">Widget %1$s Of %2$s</string>
     <string name="navbar_widget_summary_add">Click To Add Widget</string>
-    <string name="navbar_widgets_title">Navbar Widgets</string>
     <string name="navbar_widgets_shiftLeft">Shift Left</string>
     <string name="navbar_widgets_shiftRight">Shift Right</string>
     <string name="navbar_widgets_delete">Delete Widget</string>
+    <string name="navbar_widgets_text_color_title">Widgets Text Color</string>
+    <string name="navbar_widgets_bg_color_title">Widgets Background Color</string>
+    <string name="navbar_widgets_transparency_title">Widgets Transparency</string>
+    <string name="navbar_widgets_style_reset">Reset Style</string>
 
     <!-- Notification Drawer -->
     <string name="notification_drawer_title">Notification Drawer</string>

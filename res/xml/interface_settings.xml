@@ -50,6 +50,7 @@
             android:title="@string/vibrator_multiplier_title"
             android:entries="@array/vibration_multiplier_values"
             android:entryValues="@array/vibration_multiplier_values" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -79,6 +80,7 @@
             android:key="recents_ram_bar"
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -102,6 +104,7 @@
                 android:targetPackage="de.robv.android.xposed.mods.appsettings"
                 android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
         </PreferenceScreen>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

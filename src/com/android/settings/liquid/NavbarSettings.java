@@ -17,7 +17,6 @@
 package com.android.settings.liquid;
 
 import android.os.Bundle;
-import android.app.FragmentTransaction;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -42,7 +41,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     private static final String PREF_RING = "navbar_targets_settings";
     private static final String PREF_STYLE_DIMEN = "navbar_style_dimen_settings";
     private static final String PREF_NAVIGATION_BAR_CAN_MOVE = "navbar_can_move";
-    private static final String NAVIGATION_BAR_WIDGETS = "navigation_bar_widgets";
     private static final String KEY_ADVANCED_OPTIONS= "advanced_cat";
 
     ListPreference menuDisplayLocation;
@@ -53,7 +51,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     PreferenceScreen mButtonPreference;
     PreferenceScreen mRingPreference;
     PreferenceScreen mStyleDimenPreference;
-    Preference mConfigureWidgets;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -133,13 +130,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NAVIGATION_BAR_CAN_MOVE,
                     ((CheckBoxPreference) preference).isChecked() ? 0 : 1);
-            return true;
-        } else if (preference == mConfigureWidgets) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            WidgetConfigurationFragment fragment = new WidgetConfigurationFragment();
-            	ft.addToBackStack("config_widgets");
-            	ft.replace(this.getId(), fragment);
-            	ft.commit();
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

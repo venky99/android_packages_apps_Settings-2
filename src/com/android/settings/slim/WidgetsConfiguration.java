@@ -1,5 +1,20 @@
+/*
+ * Copyright (C) 2013 Slimroms
+ * Copyright (C) 2011 AOKP
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-package com.android.settings.liquid;
+package com.android.settings.slim;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -26,12 +41,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
-
 import com.android.settings.R;
 
 import java.util.ArrayList;
 
-public class WidgetConfigurationFragment extends DialogFragment {
+public class WidgetsConfiguration extends DialogFragment {
 
     private static final String TAG = "Widget";
     public static final String ACTION_ALLOCATE_ID = "com.android.systemui.ACTION_ALLOCATE_ID";
@@ -51,8 +65,9 @@ public class WidgetConfigurationFragment extends DialogFragment {
     BroadcastReceiver mWidgetIdReceiver = new BroadcastReceiver() {
 
         public void onReceive(Context context, Intent intent) {
-            int widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,-1);
-            if (widgetId == 0) { // Widgetselection was cancelled
+            int widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                                AppWidgetManager.INVALID_APPWIDGET_ID);
+            if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
                 return;
             }
             // Need to De-Allocate the ID that this was replacing.
@@ -64,11 +79,10 @@ public class WidgetConfigurationFragment extends DialogFragment {
                 mContext.sendBroadcast(delete);
                 mWidgets.remove(mCurrentPage);
             }
-            mWidgets.add(mCurrentPage ,new NavBarWidget(widgetId));
+            mWidgets.add(mCurrentPage, new NavBarWidget(widgetId));
             saveWidgets();
             refreshParams();
             mViewPager.setCurrentItem(mCurrentPage);
-            updateSummary(mCurrentPage);
         };
     };
 
@@ -114,6 +128,14 @@ public class WidgetConfigurationFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
         refreshParams();
+        mViewPager.setCurrentItem(mCurrentPage);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        refreshParams();
+        mViewPager.setCurrentItem(mCurrentPage);
     }
 
     @Override
@@ -136,21 +158,23 @@ public class WidgetConfigurationFragment extends DialogFragment {
             NavBarWidget moveme = mWidgets.remove(page);
             mWidgets.add(page -1, moveme);
             saveWidgets();
+            mCurrentPage = page - 1;
             refreshParams();
-            mViewPager.setCurrentItem(page - 1);
+            mViewPager.setCurrentItem(mCurrentPage);
         }
     }
-    
+
     private void shiftrightWidget(int page) {
         if (page < (mWidgets.size()-2) && mWidgets.size() > 1) {
             NavBarWidget moveme = mWidgets.remove(page);
             mWidgets.add(page +1, moveme);
             saveWidgets();
+            mCurrentPage = page + 1;
             refreshParams();
-            mViewPager.setCurrentItem(page + 1);
+            mViewPager.setCurrentItem(mCurrentPage);
         }
     }
-    
+
     private void removeWidget(int page) {
         if (page < (mWidgets.size() -1)) {
             NavBarWidget removedWidget =  mWidgets.remove(page);
@@ -177,7 +201,7 @@ public class WidgetConfigurationFragment extends DialogFragment {
                 int appWidgetId = Integer.parseInt(split[i]);
                 widgets.add(new NavBarWidget(appWidgetId));
             }
-        } 
+        }
         widgets.add(new NavBarWidget(-1)); // add +1 button!
         return widgets;
     }
@@ -190,7 +214,6 @@ public class WidgetConfigurationFragment extends DialogFragment {
                 mViewPager.setOnPageChangeListener(mNewPageListener);
             } else {
                 mViewPager.setAdapter(mAdapter);
-                // stupid hack to force the Viewpager to recreate all views.
             }
             int dp = mAdapter.getHeight(mViewPager.getCurrentItem());
             float px = dp * mContext.getResources().getDisplayMetrics().density;
@@ -295,7 +318,7 @@ public class WidgetConfigurationFragment extends DialogFragment {
          * Create the page for the given position. The adapter is responsible for
          * adding the view to the container given here, although it only must ensure
          * this is done by the time it returns from {@link #finishUpdate()}.
-         * 
+         *
          * @param container The containing View in which the page will be shown.
          * @param position The page position to be instantiated.
          * @return Returns an Object representing the new page. This does not need
@@ -321,7 +344,7 @@ public class WidgetConfigurationFragment extends DialogFragment {
          * Remove a page for the given position. The adapter is responsible for
          * removing the view from its container, although it only must ensure this
          * is done by the time it returns from {@link #finishUpdate()}.
-         * 
+         *
          * @param container The containing View from which the page will be removed.
          * @param position The page position to be removed.
          * @param object The same object that was returned by
@@ -344,7 +367,7 @@ public class WidgetConfigurationFragment extends DialogFragment {
          * Called when the a change in the shown pages has been completed. At this
          * point you must ensure that all of the pages have actually been added or
          * removed from the container as appropriate.
-         * 
+         *
          * @param container The containing View which is displaying this adapter's
          *            page views.
          */
@@ -371,7 +394,7 @@ public class WidgetConfigurationFragment extends DialogFragment {
         ImageView mView = null;
         Drawable mPreview = null;
         String mTitle;
-        
+
         public NavBarWidget(int appWidgetId) {
             mWidgetId = appWidgetId;
             if (appWidgetId == -1) {
@@ -394,7 +417,6 @@ public class WidgetConfigurationFragment extends DialogFragment {
                         } catch (NameNotFoundException e) {
                             mPreview = mContext.getResources().getDrawable(R.drawable.widget_na);
                         }
-                        
                     }
                 }
             }
