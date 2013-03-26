@@ -4678,8 +4678,7 @@
     <string name="liquid_source_title">LiquidSmooth Github</string>
     <string name="liquid_website_title">LiquidSmooth Goo.im</string>
     <string name="liquid_facebook_title">LiquidSmooth Facebook</string>
-    <string name="donate_cyanogen">http://forum.cyanogenmod.com/donate</string>
-    <string name="donate_slim">http://forum.xda-developers.com/donatetome.php?u=4135991</string>
+    <string name="donate_slim">http://www.slimroms.net/index.php/donations</string>
     <string name="liquid_facebook_summary">https://www.facebook.com/liquidsmoothroms\nPlease like us and join in on facebook</string>
     <string name="liquid_source_summary">Source at http://github.com/LiquidSmooth\nLiquidSmooth is fully open source code</string>
     <string name="liquid_website_summary">http://goo.im/devs/liquidsmooth\nFind all the latest builds and news here</string>
@@ -4743,7 +4742,7 @@
     <string name="display_rotation_270_title">270 Degrees</string>
 
     <!-- Gestures Options -->
-    <string name="gestures_action_empty">No Action</string>
+    <string name="gestures_action_empty">None</string>
     <string name="gestures_action_home">Go To Home</string>
     <string name="gestures_action_back">Emulate Back Key</string>
     <string name="gestures_action_menu">Emulate Menu Key</string>
@@ -4768,19 +4767,19 @@
     <string name="hardware_keys_show_overflow_summary">Display the 3-dot overflow menu button</string>
     <string name="hardware_keys_show_overflow_toast_enable">The action overflow button may not be visible until apps are restarted</string>
     <string name="hardware_keys_show_overflow_toast_disable">The action overflow button may not be hidden until apps are restarted</string>
-    <string name="hardware_keys_action_nothing">No Action</string>
-    <string name="hardware_keys_action_home">Home Button</string>
-    <string name="hardware_keys_action_back">Back Button</string>
-    <string name="hardware_keys_action_menu">Open/Close Menu</string>
-    <string name="hardware_keys_action_app_switch">Recent Apps Switcher</string>
-    <string name="hardware_keys_action_search">Search Assistant</string>
+    <string name="hardware_keys_action_nothing">None</string>
+    <string name="hardware_keys_action_home">Home</string>
+    <string name="hardware_keys_action_back">Back</string>
+    <string name="hardware_keys_action_menu">Menu</string>
+    <string name="hardware_keys_action_app_switch">Recents</string>
+    <string name="hardware_keys_action_search">Search</string>
     <string name="hardware_keys_action_voice_search">Voice Search</string>
     <string name="hardware_keys_action_in_app_search">In-App Search</string>
-    <string name="hardware_keys_action_power">Power Off</string>
-    <string name="hardware_keys_action_notifications">Notification Shade</string>
+    <string name="hardware_keys_action_power">Screen Off</string>
+    <string name="hardware_keys_action_notifications">Notifications</string>
     <string name="hardware_keys_action_expanded">Expanded Desktop</string>
     <string name="hardware_keys_action_kill_app">Kill App</string>
-    <string name="hardware_keys_action_last_app">Switch To Last App</string>
+    <string name="hardware_keys_action_last_app">Last App</string>
     <string name="hardware_keys_action_custom_app">Custom App</string>
     <string name="hardware_keys_action_widgets">Widgets Viewpager</string>
 
@@ -4885,7 +4884,7 @@
     <string name="lockscreen_long_press_back_title">Longpress Back</string>
     <string name="lockscreen_long_press_home_title">Longpress Home</string>
     <string name="lockscreen_long_press_menu_title">Longpress Menu</string>
-    <string name="lockscreen_buttons_no_action">No Action</string>
+    <string name="lockscreen_buttons_no_action">None</string>
     <string name="lockscreen_buttons_flashlight">Flashlight</string>
     <string name="lockscreen_buttons_next">Next Song</string>
     <string name="lockscreen_buttons_previous">Previous Song</string>
@@ -5066,7 +5065,7 @@
     <string name="navbar_action_ime">Open IME Switcher</string>
     <string name="navbar_action_kill">Kill App</string>
     <string name="navbar_action_widgets">Widgets Viewpager</string>
-    <string name="navbar_action_power">Screen off</string>
+    <string name="navbar_action_power">Screen Off</string>
     <string name="navbar_action_notifications">Notifications</string>
     <string name="navbar_action_none">None</string>
     <string name="navbar_enable_bar">Enable Navbar</string>
@@ -5117,7 +5116,7 @@
     <string name="summary_navring_amount">Changing this will reset your targets</string>
     <string name="interface_navring_custom_pref_summary">Release on target to launch</string>
     <string name="interface_navring_pref_default_summary">Tap to select a custom ring target</string>
-    <string name="interface_navring_assist_title">Google Now/Web Search</string>
+    <string name="interface_navring_assist_title">Search</string>
     <string name="interface_navring">Ring Targets</string>
     <string name="navbar_ring">Custom Targets</string>
     <string name="navring_enable_long">Navring Longpress</string>
@@ -5148,19 +5147,17 @@
     <string name="kill_app">Kill App</string>
     <string name="widgets">Widgets Viewpager</string>
     <string name="lastapp">Last App</string>
-    <string name="power">Screen off</string>
+    <string name="power">Screen Off</string>
     <string name="notifications">Notifications</string>
     <string name="custom_app">Custom App</string>
-    <string name="menu_power">Powermenu</string>
     <string name="blank">None</string>
     <string name="none">None</string>
-    <string name="navbar_action_home_longpress_default">None</string>
-    <string name="take_screenshot">Take Screenshot</string>
+    <string name="take_screenshot">Screenshot</string>
     <string name="ring_vib">Ring/Vibrate</string>
     <string name="ring_silent">Ring/Silent</string>
     <string name="ring_vib_silent">Ring/Vibrate/Silent</string>
     <string name="screen_off">Screen Off</string>
-    <string name="google_now">Google Now/Web Search</string>
+    <string name="google_now">Search</string>
     <string name="one_target">1 Target</string>
     <string name="two_targets">2 Targets</string>
     <string name="three_targets">3 Targets</string>
