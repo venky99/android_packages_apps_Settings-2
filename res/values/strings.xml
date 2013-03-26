@@ -5722,8 +5722,12 @@
     <!-- Superuser -->
     <string name="superuser">Superuser</string>
 
-    <!-- TRDS Settings -->
+    <!-- Dark Liquid -->
     <string name="trds_settings_title">Dark Liquid</string>
+
+    <!-- Lock volume keys -->
+    <string name="sound_lock_volume_keys_title">Lock volume keys</string>
+    <string name="sound_lock_volume_keys_summary">Prevents accidental unset of silent mode by pressing volume keys</string>
 
     <!-- Wireless display -->
     <string name="pref_wifi_disable_hdcp_title">Skip HDCP negotiation</string>

@@ -88,6 +88,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_CONVERT_SOUND_TO_VIBRATE = "notification_convert_sound_to_vibration";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
     private static final String KEY_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
+    private static final String KEY_LOCK_VOLUME_KEYS = "lock_volume_keys";
 
     private static final String SILENT_MODE_OFF = "off";
     private static final String SILENT_MODE_VIBRATE = "vibrate";
@@ -116,6 +117,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private Preference mNotificationPreference;
     private PreferenceScreen mQuietHours;
     private CheckBoxPreference mSafeHeadsetVolume;
+    private CheckBoxPreference mLockVolumeKeys;
 
     private Runnable mRingtoneLookupRunnable;
 
@@ -219,6 +221,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                 Settings.System.SAFE_HEADSET_VOLUME_RESTORE, 1) != 0);
 
         mConvertSoundToVibration = (CheckBoxPreference) findPreference(KEY_CONVERT_SOUND_TO_VIBRATE);
+
         mConvertSoundToVibration.setPersistent(false);
         mConvertSoundToVibration.setChecked(Settings.System.getInt(resolver,
                 Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION, 1) == 1);
@@ -242,6 +245,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         }
 
         mSoundSettings = (PreferenceGroup) findPreference(KEY_SOUND_SETTINGS);
+
+        mLockVolumeKeys = (CheckBoxPreference) findPreference(KEY_LOCK_VOLUME_KEYS);
+        mLockVolumeKeys.setChecked(Settings.System.getInt(resolver,
+                Settings.System.LOCK_VOLUME_KEYS, 0) != 0);
+
         mMusicFx = mSoundSettings.findPreference(KEY_MUSICFX);
         Intent i = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
         PackageManager p = getPackageManager();
@@ -380,6 +388,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 	    Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED,
 	    	    mVolumeAdjustSounds.isChecked() ? 1 : 0);
 
+        } else if (preference == mLockVolumeKeys) {
+            Settings.System.putInt(getContentResolver(), Settings.System.LOCK_VOLUME_KEYS,
+                    mLockVolumeKeys.isChecked() ? 1 : 0);
+
         } else if (preference == mLockSounds) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SOUNDS_ENABLED,
                     mLockSounds.isChecked() ? 1 : 0);
@@ -411,12 +423,15 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                     super.onPreferenceTreeClick(ps, ps);
                 }
             }
+
         } else if (preference == mDockSounds) {
             Settings.Global.putInt(getContentResolver(), Settings.Global.DOCK_SOUNDS_ENABLED,
                     mDockSounds.isChecked() ? 1 : 0);
+
         } else if (preference == mDockAudioMediaEnabled) {
             Settings.Global.putInt(getContentResolver(), Settings.Global.DOCK_AUDIO_MEDIA_ENABLED,
                     mDockAudioMediaEnabled.isChecked() ? 1 : 0);
+
         } else if (preference == mVolBtnMusicCtrl) {
             Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                     mVolBtnMusicCtrl.isChecked() ? 1 : 0);
