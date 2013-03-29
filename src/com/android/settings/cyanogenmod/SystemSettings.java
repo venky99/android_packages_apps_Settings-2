@@ -109,6 +109,8 @@ public class SystemSettings extends SettingsPreferenceFragment {
                 if (!windowManager.hasNavigationBar()) {
                     removeNavbar = true;
                 }
+            } catch (RemoteException e) {
+                // Do nothing
             }
 
             // Act on the above
