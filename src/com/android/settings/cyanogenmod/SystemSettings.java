@@ -50,10 +50,12 @@ public class SystemSettings extends SettingsPreferenceFragment {
     private static final String KEY_QUICK_SETTINGS = "quick_settings_panel";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_POWER_MENU = "power_menu";
+    private static final String KEY_PIE_CONTROL = "pie_control";
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
     private CheckBoxPreference mShowNavbar;
+    private PreferenceScreen mPieControl;
     private boolean mIsPrimary;
 
     @Override
@@ -62,6 +64,23 @@ public class SystemSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.system_settings);
         PreferenceScreen prefScreen = getPreferenceScreen();
+
+        // Only show the hardware keys config on a device that does not have a navbar
+        // and the navigation bar config on phones that has a navigation bar
+        boolean removeKeys = false;
+        boolean removeNavbar = false;
+
+        IWindowManager windowManager = IWindowManager.Stub.asInterface(
+                ServiceManager.getService(Context.WINDOW_SERVICE));
+        try {
+            if (windowManager.hasNavigationBar()) {
+                removeKeys = true;
+            } else {
+                removeNavbar = true;
+            }
+        } catch (RemoteException e) {
+            // Do nothing
+        }
 
         // Determine which user is logged in
         mIsPrimary = UserHandle.myUserId() == UserHandle.USER_OWNER;
@@ -73,8 +92,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
                 if (getResources().getBoolean(
                         com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
                     prefScreen.removePreference(mBatteryPulse);
-                } else {
-                    updateBatteryPulseDescription();
+                    mBatteryPulse = null;
                 }
             }
 
@@ -91,8 +109,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
                 if (!windowManager.hasNavigationBar()) {
                     removeNavbar = true;
                 }
-            } catch (RemoteException e) {
-                // Do nothing
             }
 
             // Act on the above
@@ -120,13 +136,43 @@ public class SystemSettings extends SettingsPreferenceFragment {
         if (mNotificationPulse != null) {
             if (!getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed)) {
                 prefScreen.removePreference(mNotificationPulse);
-            } else {
-                updateLightPulseDescription();
+                mNotificationPulse = null;
             }
+        }
+
+        // Pie controls
+        mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
+        if (mPieControl != null && removeNavbar) {
+            // Remove on devices without a navbar to start with
+            prefScreen.removePreference(mPieControl);
+            mPieControl = null;
         }
 
         // Don't display the lock clock preference if its not installed
         removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // All users
+        if (mNotificationPulse != null) {
+            updateLightPulseDescription();
+        }
+        if (mPieControl != null) {
+            updatePieControlDescription();
+        }
+
+        // Primary user only
+        if (mIsPrimary && mBatteryPulse != null) {
+            updateBatteryPulseDescription();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     private void updateLightPulseDescription() {
@@ -158,22 +204,13 @@ public class SystemSettings extends SettingsPreferenceFragment {
         return true;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // All users
-        updateLightPulseDescription();
-
-        // Primary user only
-        if (mIsPrimary) {
-            updateBatteryPulseDescription();
+    private void updatePieControlDescription() {
+        if (Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.PIE_CONTROLS, 0) == 1) {
+            mPieControl.setSummary(getString(R.string.pie_control_enabled));
+        } else {
+            mPieControl.setSummary(getString(R.string.pie_control_disabled));
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
