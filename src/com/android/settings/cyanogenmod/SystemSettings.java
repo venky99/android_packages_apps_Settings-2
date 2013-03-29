@@ -127,7 +127,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
 
         // Pie controls
         mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
-        if (mPieControl != null && removeNavbar) {
+        if (mPieControl != null) {
             // Remove on devices without a navbar to start with
             prefScreen.removePreference(mPieControl);
             mPieControl = null;
