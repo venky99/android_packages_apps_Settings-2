@@ -100,12 +100,12 @@
             android:targetClass="com.brewcrewfoo.performance.activities.MainActivity" />
     </header>
 
-    <!-- Piecontrols -->
+    <!-- Piecontrol -->
     <header
-        android:id="@+id/piecontrols_settings"
-        android:title="@string/pie_controls_title"
-        android:fragment="com.android.settings.liquid.Pie"
-        android:icon="@drawable/ic_liquid_piecontrols" />
+        android:id="@+id/piecontrol_settings"
+        android:title="@string/pie_control_title"
+        android:fragment="com.android.settings.liquid.PieControl"
+        android:icon="@drawable/ic_liquid_piecontrol" />
 
     <!-- INTERFACE -->
     <header android:id="@+id/interface_section"
