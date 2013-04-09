@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/pie_controls_title">
 
@@ -87,6 +86,7 @@
             android:key="pie_center"
             android:title="@string/pie_center_title"
             android:summary="@string/pie_center_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -112,6 +112,7 @@
             android:key="pie_restart_launcher"
             android:title="@string/pie_restart_launcher_title"
             android:summary="@string/pie_restart_launcher_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
