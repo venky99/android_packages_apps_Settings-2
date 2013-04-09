@@ -7,10 +7,11 @@
         android:title="@string/devs">
 
         <com.android.settings.widget.DeveloperPreference
-           android:title="LiquidSmooth"
-           liquid:nameDev="liquidsmooth"
+           android:title="Liquid0624"
+           liquid:nameDev="liquid0624"
            liquid:twitterHandle="liquid0624"
            liquid:donateLink="@string/donate_liquid" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:key="devs_co"
@@ -32,6 +33,7 @@
            android:title="Deadman96385"
            liquid:nameDev="Deadman96385"
            liquid:twitterHandle="Deadman96385" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:key="links"
@@ -51,22 +53,18 @@
             android:key="liquid_website"
             android:title="@string/liquid_website_title"
             android:summary="@string/liquid_website_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:key="contributors"
         android:title="@string/contributors">
 
         <com.android.settings.widget.DeveloperPreference
-            android:title="CyanogenMod"
-            liquid:nameDev="cyanogenmod"
-            liquid:twitterHandle="cyanogenmod"
-            liquid:donateLink="@string/donate_cyanogen" />
-
-        <com.android.settings.widget.DeveloperPreference
             android:title="Slimroms"
             liquid:nameDev="slimroms"
             liquid:twitterHandle="slimroms"
             liquid:donateLink="@string/donate_slim" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
