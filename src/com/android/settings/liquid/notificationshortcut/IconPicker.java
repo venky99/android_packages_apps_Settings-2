@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.notificationshortcut;
+package com.android.settings.liquid.notificationshortcut;
 
 import java.io.File;
 import java.util.ArrayList;
