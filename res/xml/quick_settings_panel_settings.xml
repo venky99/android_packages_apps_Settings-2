@@ -47,11 +47,6 @@
             android:title="@string/title_no_notifications_pulldown"
             android:dependency="disable_quick_settings"
             android:summary="@string/summary_no_notifications_pulldown" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="static_tiles"
-        android:title="@string/title_static_tiles" >
 
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
@@ -59,6 +54,12 @@
             android:title="@string/quicksettings_tiles_style"
             android:dependency="disable_quick_settings"
             android:summary="@string/summary_quicksettings_tiles_style" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="static_tiles"
+        android:title="@string/title_static_tiles" >
 
         <PreferenceScreen
             android:key="tile_picker"
@@ -91,6 +92,7 @@
             android:entries="@array/entries_ring_widget"
             android:dependency="disable_quick_settings"
             android:entryValues="@array/values_ring_widget" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -127,6 +129,7 @@
             android:key="dynamic_wifi"
             android:dependency="disable_quick_settings"
             android:title="@string/title_dynamic_wifi" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
