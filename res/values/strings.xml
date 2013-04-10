@@ -5041,13 +5041,13 @@
     <string name="lockscreen_hide_initial_page_hints_title">Show Page Hints</string>
     <string name="lockscreen_hide_initial_page_hints_summary">Enables initial page hints for the widgets</string>
     <string name="lockscreen_longpress_challenge_title">Longpress Challenge</string>
-    <string name="lockscreen_longpress_challenge_summary">Unlock the device by long pressing the handle</string>
+    <string name="lockscreen_longpress_challenge_summary">Unlock device by long pressing handle</string>
     <string name="lockscreen_maximize_widgets_title">Maximize Widgets</string>
-    <string name="lockscreen_maximize_widgets_summary">Show widgets maximized and keyguard minimized</string>
+    <string name="lockscreen_maximize_widgets_summary">Show widgets with keyguard hidden</string>
     <string name="lockscreen_unlimited_widgets_title">Unlimited Widgets</string>
-    <string name="lockscreen_unlimited_widgets_summary">Adding too many will cause performance issues</string>
+    <string name="lockscreen_unlimited_widgets_summary">Adding too many can cause issues</string>
     <string name="lockscreen_use_widget_container_carousel_title">Widget Carousel</string>
-    <string name="lockscreen_use_widget_container_carousel_summary">Use carousel when switching between widgets</string>
+    <string name="lockscreen_use_widget_container_carousel_summary">Use carousel when changing widgets</string>
     <string name="keyguard_picker_all_widgets_title">Show All Widgets</string>
 
     <!-- Navigation Buttons -->
@@ -5246,10 +5246,10 @@
     <!-- Notification Shortcuts -->
     <string name="notification_shortcuts_grouptitle">Shortcuts</string>
     <string name="notification_shortcuts_settings_title">Notification Shortcuts</string>
-    <string name="notification_shortcuts_settings_summary">Show shortcuts in the notification drawer</string>
+    <string name="notification_shortcuts_settings_summary">Enable shortcuts in drawer</string>
     <string name="notification_shortcuts_empty_title">Empty</string>
     <string name="notification_shortcuts_edit_title">Edit Shortcut</string>
-    <string name="notification_shortcuts_edit_msg">Select or change the desired application or icon</string>
+    <string name="notification_shortcuts_edit_msg">Select or change desired app or icon</string>
     <string name="notification_shortcuts_reset_title">Clear Shortcuts</string>
     <string name="notification_shortcuts_category_reset_title">Reset</string>
     <string name="notification_shortcuts_title">Shortcuts</string>
@@ -5260,9 +5260,9 @@
     <string name="notification_shortcuts_move_up">Moved <xliff:g id="app_name">%s</xliff:g> up a slot</string>
     <string name="notification_shortcuts_move_down">Moved <xliff:g id="app_name">%s</xliff:g> down a slot</string>
     <string name="notification_shortcuts_color_title">Shortcut Icon Color</string>
-    <string name="notification_shortcuts_color_summary">Colorize the stock and/or application shortcut icons</string>
+    <string name="notification_shortcuts_color_summary">Color stock or app shortcut icons</string>
     <string name="notification_shortcuts_colorize_toggle_title">Colorize App Icons</string>
-    <string name="notification_shortcuts_colorize_toggle_summary">Colorizes any app icons with the chosen color</string>
+    <string name="notification_shortcuts_colorize_toggle_summary">Color app icons with chosen color</string>
     <string name="notification_shortcuts_hide_carrier_title">Hide Carrier Label</string>
 
     <!-- Notification Icons -->
@@ -5369,7 +5369,7 @@
     <string name="all_color">Custom Colors</string>
     <string name="stock_color">Default Colors</string>
     <string name="pie_restart_launcher_title">Restart Launcher</string>
-    <string name="pie_restart_launcher_summary">Changing screensize can have side effects</string>
+    <string name="pie_restart_launcher_summary">Changing size may have side effects</string>
 
     <!-- Powermenu -->
     <string name="power_menu_reboot_title">Rebootmenu</string>
@@ -5438,8 +5438,8 @@
     <string name="brightness_slider_top">On Top</string>
     <string name="brightness_slider_bottom">On Bottom</string>
     <string name="brightness_slider_none">Don\'t Show</string>
-    <string name="power_widget_longpress_qs_title">Longpress visibility toggle</string>
-    <string name="power_widget_longpress_qs_summary">Longpress QuickSettings flip button to toggle visibility</string>
+    <string name="power_widget_longpress_qs_title">Longpress Visibility</string>
+    <string name="power_widget_longpress_qs_summary">Longpress quicksettings to toggle</string>
 
     <!-- Quicksettings -->
     <string name="title_static_tiles">Static</string>
@@ -5687,8 +5687,8 @@
     <string name="adb_notify">USB debugging notify</string>
     <string name="adb_notify_summary">Display a notification when USB debugging is connected</string>
     <string name="pref_ring_mode_title">Sound Modes</string>
-    <string name="pref_ring_mode_summary">View or change the Sound button modes</string>
-    <string name="pref_network_mode_title">Network modes</string>
+    <string name="pref_ring_mode_summary">View or change the sound button modes</string>
+    <string name="pref_network_mode_title">Network Modes</string>
     <string name="pref_screentimeout_mode_title">Screen Timeout Modes</string>
     <string name="cm_sound_mode_silent">Silent</string>
     <string name="cm_sound_mode_vibrate">Vibrate</string>
