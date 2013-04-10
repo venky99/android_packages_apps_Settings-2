@@ -44,7 +44,7 @@
 
     <!-- Category headings in left-pane header menu --> <skip />
     <!-- Settings main menu category heading. Wireless and networks (Wi-Fi, Bluetooth, data usage...). [CHAR LIMIT=40] -->
-    <string name="header_category_wireless_networks">WIRELESS &amp; NETWORKS</string>
+    <string name="header_category_wireless_networks">WIRELESS</string>
     <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
     <string name="header_category_device">DEVICE</string>
     <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
@@ -625,7 +625,7 @@
 
     <!-- Date and time settings --><skip />
     <!-- Main Settings screen setting option name to go into the date and time settings-->
-    <string name="date_and_time_settings_title">Date &amp; time</string>
+    <string name="date_and_time_settings_title">Date &amp; Time</string>
     <!-- Title for Date & Time settings screen in SetupWizard [CHAR LIMIT=40] -->
     <string name="date_and_time_settings_title_setup_wizard">Set date and time</string>
     <!-- Main Settings screen setting option summary text for the item to go into the date and time settings. -->
@@ -693,7 +693,7 @@
     <!-- Text shown for title of user info setting [CHAR LIMIT=20]-->
     <string name="user_info_settings_title">User info</string>
     <!-- Main Settings screen setting option title for the item to take you to the location screen -->
-    <string name="location_settings_title">Location access</string>
+    <string name="location_settings_title">Location</string>
     <!-- Main Settings screen setting option title for the item to take you to the security screen -->
     <string name="security_settings_title">Security</string>
     <!-- Main Settings screen setting option summary text for the item tot ake you to the security and location screen -->
@@ -2341,9 +2341,9 @@
 
     <!-- About --> <skip />
     <!-- Main settings screen, setting title for the user to go into the About phone screen -->
-    <string name="about_settings" product="tablet">About tablet</string>
+    <string name="about_settings" product="tablet">About Tablet</string>
     <!-- Main settings screen, setting title for the user to go into the About phone screen -->
-    <string name="about_settings" product="default">About phone</string>
+    <string name="about_settings" product="default">About Phone</string>
     <!-- Main settings screen, setting summary for the user to go into the About phone screen-->
     <string name="about_settings_summary">View legal info, status, software version</string>
     <!-- About phone settings screen, setting option name to go to dialog that shows legal info -->
@@ -2821,9 +2821,9 @@
 
     <!-- Language Settings --> <skip />
     <!-- Title of setting on main settings screen.  This item will take the user to the screen to tweak settings realted to locale and text -->
-    <string name="language_settings">Language &amp; input</string>
+    <string name="language_settings">Language &amp; Input</string>
     <!-- Title of Language and keyboard settings screen -->
-    <string name="language_keyboard_settings_title">Language &amp; input</string>
+    <string name="language_keyboard_settings_title">Language &amp; Input</string>
     <!-- On Language & keyboard settings screen, heading. Inside the "Language & keyboard settings" screen, this is the header for settings that relate to language (select the system language, user dictionary for the language). -->
     <string name="language_settings_category">Language settings</string>
     <!-- On Language & keyboard settings screen, heading. Inside the "Language & keyboard settings" screen, this is the header for settings that relate to keyboard (enable/disable each keyboard, settings for each keyboard). -->
@@ -3005,7 +3005,7 @@
     <string name="builtin_keyboard_settings_summary">Physical keyboard settings</string>
 
     <!-- Development Settings.  the title for the item to take the user to Development settings.  Development settings are settings meant for application developers.  -->
-    <string name="development_settings_title">Developer options</string>
+    <string name="development_settings_title">Development</string>
     <!-- Development Settings summary.  The summary of the item to take the user to Development settings.  Development settings are settings meant for application developers. -->
     <string name="development_settings_summary">Set options for app development</string>
     <!-- Setting checkbox title for Whether to enable Android debugging support on the phone. -->
@@ -3579,11 +3579,11 @@
 
     <!-- Backup and reset Settings screen --><skip />
     <!-- Backup and reset settings menu title -->
-    <string name="privacy_settings">Backup &amp; reset</string>
+    <string name="privacy_settings">Backup &amp; Reset</string>
     <!-- Privacy settings activity title -->
-    <string name="privacy_settings_title">Backup &amp; reset</string>
+    <string name="privacy_settings_title">Backup &amp; Reset</string>
     <!-- Backup section title -->
-    <string name="backup_section_title">Backup &amp; restore</string>
+    <string name="backup_section_title">Backup &amp; Reset</string>
     <!-- Personal data section title -->
     <string name="personal_data_section_title">Personal data</string>
     <!-- Backup data menu title -->
@@ -4027,7 +4027,7 @@
         for background apps</string>
 
     <!-- Activity title for network data usage summary. [CHAR LIMIT=25] -->
-    <string name="data_usage_summary_title">Data usage</string>
+    <string name="data_usage_summary_title">Data Usage</string>
     <!-- Title for option to pick visible time range from a list available usage periods. [CHAR LIMIT=25] -->
     <string name="data_usage_cycle">Data usage cycle</string>
     <!-- Title for checkbox menu option to enable mobile data when roaming. [CHAR LIMIT=26] -->
@@ -4463,9 +4463,9 @@
     <string name="mem_info">Memory</string>
     <!-- About phone screen, status item label -->
 
-    <!-- INTERFACE Settings -->
-    <!-- Settings main menu category heading. Interface (Launcher, Themes, System). [CHAR LIMIT=40] -->
-    <string name="header_category_interface">LIQUIDSMOOTH</string>
+    <!-- CATEGORY Settings -->
+    <string name="header_category_customize">CUSTOMIZE</string>
+    <string name="header_category_interface">INTERFACE</string>
 
     <!-- Profiles settings  -->
     <string name="profiles_settings_title">Profiles</string>
