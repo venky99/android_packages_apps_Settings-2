@@ -55,7 +55,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class SoundSettings extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener, DialogInterface.OnClickListener {
+        Preference.OnPreferenceChangeListener {
     private static final String TAG = "SoundSettings";
 
     private static final int DIALOG_NOT_DOCKED = 1;
@@ -109,10 +109,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mSoundEffects;
     private CheckBoxPreference mHapticFeedback;
     private CheckBoxPreference mVolumeAdjustSounds;
-    private CheckBoxPreference mConvertSoundToVibration;
     private Preference mMusicFx;
     private CheckBoxPreference mLockSounds;
     private CheckBoxPreference mVolBtnMusicCtrl;
+    private CheckBoxPreference mConvertSoundToVibration;
     private Preference mRingtonePreference;
     private Preference mNotificationPreference;
     private PreferenceScreen mQuietHours;
@@ -226,7 +226,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
         mConvertSoundToVibration.setPersistent(false);
         mConvertSoundToVibration.setChecked(Settings.System.getInt(resolver,
-                Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION, 1) == 1);
+                Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION, 1) != 0);
 
         mRingtonePreference = findPreference(KEY_RINGTONE);
         mNotificationPreference = findPreference(KEY_NOTIFICATION_SOUND);
@@ -386,9 +386,9 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.HAPTIC_FEEDBACK_ENABLED,
                     mHapticFeedback.isChecked() ? 1 : 0);
 
- 	} else if (preference == mVolumeAdjustSounds) {
-	    Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED,
-	    	    mVolumeAdjustSounds.isChecked() ? 1 : 0);
+        } else if (preference == mVolumeAdjustSounds) {
+            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED,
+                    mVolumeAdjustSounds.isChecked() ? 1 : 0);
 
         } else if (preference == mLockVolumeKeys) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCK_VOLUME_KEYS,
@@ -397,6 +397,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         } else if (preference == mLockSounds) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SOUNDS_ENABLED,
                     mLockSounds.isChecked() ? 1 : 0);
+
+        } else if (preference == mConvertSoundToVibration) {
+            Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION,
+                    mConvertSoundToVibration.isChecked() ? 1 : 0);
 
         } else if (preference == mMusicFx) {
             // let the framework fire off the intent
@@ -442,10 +446,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         } else if (preference == mSafeHeadsetVolume) {
             Settings.System.putInt(getContentResolver(), Settings.System.SAFE_HEADSET_VOLUME,
                     mSafeHeadsetVolume.isChecked() ? 1 : 0);
-
-        } else if (preference == mConvertSoundToVibration) {
-            Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION,
-                    mConvertSoundToVibration.isChecked() ? 1 : 0);
 
         } else if (preference == mHeadsetConnectPlayer) {
             Settings.System.putInt(getContentResolver(), Settings.System.HEADSET_CONNECT_PLAYER,
@@ -585,37 +585,5 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         ab.setMessage(R.string.dock_not_found_text);
         ab.setPositiveButton(android.R.string.ok, null);
         return ab.create();
-    }
-
-    private void dismissDialog() {
-        if (mWaiverDialog != null) {
-            mWaiverDialog.dismiss();
-            mWaiverDialog = null;
-        }
-    }
-
-    public void onClick(DialogInterface dialog, int which) {
-        if (dialog == mWaiverDialog) {
-            if (which == DialogInterface.BUTTON_POSITIVE) {
-                mDialogClicked = true;
-                Settings.System.putInt(getContentResolver(), Settings.System.SAFE_HEADSET_VOLUME, 0);
-            }
-        }
-    }
-
-    public void onDismiss(DialogInterface dialog) {
-        // Assuming that onClick gets called first
-        if (dialog == mWaiverDialog) {
-            if (!mDialogClicked) {
-                mSafeHeadsetVolume.setChecked(true);
-            }
-            mWaiverDialog = null;
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        dismissDialog();
-        super.onDestroy();
     }
 }
