@@ -5561,7 +5561,8 @@
     <string name="volume_overlay_title">Volume panel style</string>
     <string name="volbtn_music_controls_title">Volume rocker music controls</string>
     <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rockers seeks tracks</string>
-    <string name="headset_connect_player_title">Launch music app on connect</string>
+    <string name="headset_connect_player_title">Launch music app</string>
+    <string name="headset_connect_player_summary">Launch the default music app when headset is connected</string>
     <string name="safe_headset_volume_title">Safe headset volume</string>
     <string name="safe_headset_volume_summary">Prevent loud volume levels when headset is first plugged in</string>
     <string name="volume_ring_only_description">Ringtone</string>
