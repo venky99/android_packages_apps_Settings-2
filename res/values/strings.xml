@@ -5504,7 +5504,6 @@
     <string name="title_tile_nfc">NFC</string>
     <string name="title_tile_screen_timeout">Screen Timeout</string>
     <string name="title_tile_usb_tether">USB Tether</string>
-    <string name="title_tile_favcontact">Favorite Contact</string>
     <string name="title_tile_fcharge">Fast Charge</string>
     <string name="title_tile_quiet_hours">Quiet Hours</string>
     <string name="title_dynamic_tiles">Dynamic</string>
