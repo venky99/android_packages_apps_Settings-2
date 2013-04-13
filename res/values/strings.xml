@@ -5616,6 +5616,8 @@
     <string name="mms_breath_summary">Show sms icon with breathing</string>
     <string name="missed_call_breath">Breathing Missed Call</string>
     <string name="missed_call_breath_summary">Show missed call breathing</string>
+    <string name="auto_hide_statusbar">Autohide Statusbar</string>
+    <string name="auto_hide_statusbar_summary">When there are no notifications</string>
 
     <!-- Battery Bar -->
     <string name="battery_bar">Battery Bar Location</string>
