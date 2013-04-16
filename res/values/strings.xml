@@ -5104,7 +5104,7 @@
     <string name="navbar_action_notifications">Notifications</string>
     <string name="navbar_action_none">None</string>
     <string name="navbar_enable_bar">Enable Navbar</string>
-    <string name="navbar_restart_systemui_summary">Change this for statusbar to restart now</string>
+    <string name="navbar_enable_bar_summary">This enables navigation bar</string>
     <string name="navigation_bar_height_title">Navbar Height</string>
     <string name="navigation_bar_height_summary">Set height while in portrait mode</string>
     <string name="navigation_bar_height_landscape_title">Navbar Landscape</string>
