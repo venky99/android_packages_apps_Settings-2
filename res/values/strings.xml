@@ -4513,7 +4513,6 @@ alog [CHAR LIMIT=none] -->
     <string name="quick_links_title">Quick Links</string>
     <string name="rom_control_title">ROM Control</string>
     <string name="themes_title">Themes</string>
-    <string name="performance_title">Performance Control</string>
 
     <string name="mod_version">AOKP version</string>
     <string name="mod_version_default">Unknown</string>
