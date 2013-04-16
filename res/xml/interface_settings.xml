@@ -18,18 +18,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:key="interface_general"
-        android:title="@string/general_settings_title">
-
-        <CheckBoxPreference
-            android:key="use_alt_resolver"
-            android:title="@string/alt_resolver"
-            android:summary="@string/alt_resolver_summary"
-            android:defaultValue="false" />
-
-        <Preference
-            android:key="custom_carrier_label"
-            android:title="@string/custom_carrier_label_title" />
+        android:key="interface_display"
+        android:title="@string/display_settings_title">
 
         <CheckBoxPreference
             android:key="force_dual_pane"
@@ -41,6 +31,28 @@
             android:fragment="com.android.settings.liquid.DensityChanger"
             android:title="@string/lcd_density_title"
             android:summary="@string/lcd_density_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="interface_general"
+        android:title="@string/general_settings_title">
+
+        <CheckBoxPreference
+            android:key="use_alt_resolver"
+            android:title="@string/alt_resolver"
+            android:summary="@string/alt_resolver_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="classic_recents"
+            android:title="@string/show_classic_recents"
+            android:summary="@string/show_classic_recents_summary"
+            android:defaultValue="false" />
+
+        <Preference
+            android:key="custom_carrier_label"
+            android:title="@string/custom_carrier_label_title" />
 
         <ListPreference
             android:key="pref_low_battery_warning_policy"
@@ -64,14 +76,14 @@
         android:key="interface_advanced"
         android:title="@string/advanced_settings_title">
 
-	<PreferenceScreen
-	    android:key="chronus"
+	    <PreferenceScreen
+	        android:key="chronus"
             android:title="@string/chronus_title"
-	    android:summary="@string/chronus_summary" >
-	    <intent android:action="android.intent.action.MAIN"
+	        android:summary="@string/chronus_summary" >
+	        <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.cyanogenmod.lockclock"
-		android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
-	</PreferenceScreen>
+		        android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
+	    </PreferenceScreen>
 
         <PreferenceScreen
             android:key="hardware_keys"
@@ -95,10 +107,10 @@
         android:title="@string/additional_settings_title">
 
         <PreferenceScreen
-	    android:key="xposed_installer"
+	        android:key="xposed_installer"
             android:title="@string/xposed_install_title"
-	    android:summary="@string/xposed_install_summary" >
-	    <intent android:action="android.intent.action.MAIN"
+	        android:summary="@string/xposed_install_summary" >
+	        <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="de.robv.android.xposed.installer"
                 android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
         </PreferenceScreen>
@@ -106,12 +118,11 @@
         <PreferenceScreen
             android:key="xposed_dpi"
             android:title="@string/xposed_dpi_title"
-	    android:summary="@string/xposed_dpi_summary" >
-	    <intent android:action="android.intent.action.MAIN"
+	        android:summary="@string/xposed_dpi_summary" >
+	        <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="de.robv.android.xposed.mods.appsettings"
                 android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
         </PreferenceScreen>
 
     </PreferenceCategory>
-
 </PreferenceScreen>

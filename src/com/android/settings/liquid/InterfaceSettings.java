@@ -66,6 +66,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
     private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
+    private static final String KEY_CLASSIC_RECENTS = "classic_recents";
 
     private Preference mLcdDensity;
     private CheckBoxPreference mUseAltResolver;
@@ -76,6 +77,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     private CheckBoxPreference mDualPane;
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
+    private CheckBoxPreference mClassicRecents;
 
     private int newDensityValue;
     DensityChanger densityFragment;
@@ -151,6 +153,12 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         }
 
         mNotifStyle = findPreference(KEY_NOTIF_STYLE);
+
+        mClassicRecents = (CheckBoxPreference) findPreference(KEY_CLASSIC_RECENTS);
+        boolean classicRecents = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CLASSIC_RECENTS_MENU, 0) == 1;
+        mClassicRecents.setChecked(classicRecents);
+        mClassicRecents.setOnPreferenceChangeListener(this);
     }
 
     private void updateRamBar() {
@@ -212,6 +220,11 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
                     Settings.System.DUAL_PANE_PREFS,
                     (Boolean) newValue ? 1 : 0);
             return true;
+        } else if (preference == mClassicRecents) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CLASSIC_RECENTS_MENU,
+                    (Boolean) newValue ? 1 : 0);
+            mClassicRecents.setChecked((Boolean)newValue);
         }
         return false;
     }
