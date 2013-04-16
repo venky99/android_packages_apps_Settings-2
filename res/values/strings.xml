@@ -4719,6 +4719,7 @@
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color below to apply</string>
+    <string name="color_default">Default</string>
     <string name="arrow_right">→</string>
     <string name="arrow_down">↓</string>
     <string name="hex">Hex:</string>
@@ -5779,7 +5780,7 @@
 
     <!-- Classic Recent Menu -->
     <string name="show_classic_recents">Classic Recents</string>
-    <string name="show_classic_recents_summary">Show classic styled recents menu</string>
+    <string name="show_classic_recents_summary">Show classic style recents menu</string>
 
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>
