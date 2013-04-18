@@ -70,6 +70,8 @@ public class DisplayBrightness extends SeekBarDialogPreference implements
 
     private boolean mRestoredOldState;
 
+    private AutoBrightnessCustomizeDialog mCustomizeDialog;
+
     private static final int SEEK_BAR_RANGE = 10000;
 
     private ContentObserver mBrightnessObserver = new ContentObserver(new Handler()) {
@@ -129,8 +131,7 @@ public class DisplayBrightness extends SeekBarDialogPreference implements
             adjustButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog d = new AutoBrightnessCustomizeDialog(getContext());
-                    d.show();
+                    showCustomizeDialog(null);
                 }
             });
         }
@@ -352,6 +353,26 @@ public class DisplayBrightness extends SeekBarDialogPreference implements
         mAutomaticMode = mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
         Settings.System.putInt(getContext().getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE, mode);
+    }
+
+    private void showCustomizeDialog(Bundle state) {
+        if (mCustomizeDialog != null && mCustomizeDialog.isShowing()) {
+            return;
+        }
+
+        mCustomizeDialog = new AutoBrightnessCustomizeDialog(getContext());
+        if (state != null) {
+            mCustomizeDialog.onRestoreInstanceState(state);
+        }
+        mCustomizeDialog.show();
+    }
+
+    @Override
+    public void onActivityDestroy() {
+        super.onActivityDestroy();
+        if (mCustomizeDialog != null) {
+            mCustomizeDialog.dismiss();
+        }
     }
 
     @Override
