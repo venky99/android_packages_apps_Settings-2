@@ -5421,9 +5421,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_gap_title">Pie Gap</string>
     <string name="pie_gap_summary">Adjust gap that separates elements</string>
     <string name="pie_gap_none">None</string>
-    <string name="pie_gap_small">Small</string>
+    <string name="pie_gap_small">Small (Default)</string>
     <string name="pie_gap_big">Big</string>
-    <string name="pie_gap_huge">Huge (Default)</string>
+    <string name="pie_gap_huge">Huge</string>
     <string name="pie_center_title">Center Pie</string>
     <string name="pie_center_summary">Control appears where you trigger</string>
     <string name="pie_trigger_title">Trigger Size</string>
