@@ -5444,8 +5444,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_stick_summary">Control stays in place when rotating</string>
     <string name="all_color">Custom Colors</string>
     <string name="stock_color">Default Colors</string>
-    <string name="pie_restart_launcher_title">Restart Launcher</string>
-    <string name="pie_restart_launcher_summary">Changing size may have side effects</string>
 
     <!-- Powermenu -->
     <string name="power_menu_reboot_title">Rebootmenu</string>
