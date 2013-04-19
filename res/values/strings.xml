@@ -4697,7 +4697,7 @@
     <string name="liquid_source_summary">Source at http://github.com/LiquidSmooth\nLiquidSmooth is fully open source code</string>
     <string name="liquid_website_summary">http://goo.im/devs/liquidsmooth\nFind all the latest builds and news here</string>
 
-    <!-- Automatic brightness customization -->
+    <!-- Brightness Customization -->
     <string name="custom_brightness_summary">View or change custom brightness</string>
     <string name="light_sensor_current_value">Current light sensor value: <xliff:g id="light_level">%d</xliff:g> lux</string>
     <string name="auto_brightness_dialog_title">Automatic brightness levels</string>
@@ -5386,7 +5386,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notification_shortcuts_icon_picker_unlock">Unlock</string>
 
     <!-- Piecontrol -->
-    <string name="pie_control_title">Piecontrol</string>
     <string name="pie_control_dialog_title">Piecontrol</string>
     <string name="pie_control_always">Show Always</string>
     <string name="pie_control_expanded">Expanded Desktop Mode</string>
