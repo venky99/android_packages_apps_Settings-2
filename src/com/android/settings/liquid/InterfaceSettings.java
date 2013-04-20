@@ -146,12 +146,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         mVibrationMultiplier.setValue(currentValue);
         mVibrationMultiplier.setSummary(currentValue);
 
-        mClassicRecents = (CheckBoxPreference) findPreference(KEY_CLASSIC_RECENTS);
-        boolean classicRecents = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CLASSIC_RECENTS_MENU, 0) == 1;
-        mClassicRecents.setChecked(classicRecents);
-        mClassicRecents.setOnPreferenceChangeListener(this);
-
         mHideExtras = (CheckBoxPreference) findPreference(KEY_HIDE_EXTRAS);
         mHideExtras.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.HIDE_EXTRAS_SYSTEM_BAR, 0) == 1);
