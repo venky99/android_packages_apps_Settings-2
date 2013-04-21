@@ -4612,6 +4612,7 @@
 
     <string name="link_volume_ringtones">Link ringtone &amp; notifications volumes</string>
     <string name="link_volume_mutes">Silent mode affects notifications</string>
+    <string name="volume_keys_control_ring_stream">Volume keys control ringtone volume</string>
     <string name="ring_mode_title">Ring mode</string>
     <string name="ring_mode_normal">Normal</string>
     <string name="ring_mode_vibrate">Vibrate</string>
