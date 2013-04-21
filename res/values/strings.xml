@@ -5442,7 +5442,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_qty_summary">Changing this will reset buttons</string>
     <string name="pie_action_title">Button %1$s Action &amp; Icon</string>
     <string name="pie_longpress_title">Button %1$s longpress action</string>
-    <string name="pie_enable_long">Enable longpress for pie buttons</string>
+    <string name="pie_enable_long">Longpress Pie Buttons</string>
     <string name="pie_button">Buttons</string>
     <string name="pie_button_cat">Buttons</string>
     <string name="pie_action_custom_app">Custom App</string>

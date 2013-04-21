@@ -1550,6 +1550,11 @@
         <activity android:name=".liquid.NavbarStyleDimenSettings" />
         <activity android:name=".liquid.NavBarStyle" />
         <activity android:name=".liquid.NavBarButtonStyle" />
+        <activity android:name=".liquid.PieButtonSettings" />
+        <activity android:name=".liquid.PieButtonStyleSettings" />
+        <activity android:name=".liquid.PieControl" />
+        <activity android:name=".liquid.PieStyleSettings" />
+        <activity android:name=".liquid.PieTriggerSettings" />
         <activity android:name=".liquid.RamBar" />
         <activity android:name=".liquid.WidgetsConfiguration" />
         <activity android:name=".liquid.WidgetsSettings" />

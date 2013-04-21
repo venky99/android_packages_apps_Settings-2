@@ -25,25 +25,31 @@
         android:title="@string/pie_control_title"
         android:dialogTitle="@string/pie_control_dialog_title" />
 
-    <PreferenceScreen
-        android:key="pie_button"
-        android:fragment="com.android.settings.liquid.PieButtonSettings"
-        android:title="@string/pie_button" />
+    <PreferenceCategory
+        android:key="pie_buttons_cat"
+        android:title="@string/general_settings_title" >
 
-    <PreferenceScreen
-        android:key="pie_button_style"
-        android:fragment="com.android.settings.liquid.PieButtonStyleSettings"
-        android:title="@string/pie_button_style" />
+        <PreferenceScreen
+            android:key="pie_button"
+            android:fragment="com.android.settings.liquid.PieButtonSettings"
+            android:title="@string/pie_button" />
 
-    <PreferenceScreen
-        android:key="pie_style"
-        android:fragment="com.android.settings.liquid.PieStyleSettings"
-        android:title="@string/pie_style" />
+        <PreferenceScreen
+            android:key="pie_button_style"
+            android:fragment="com.android.settings.liquid.PieButtonStyleSettings"
+            android:title="@string/pie_button_style" />
 
-    <PreferenceScreen
-        android:key="pie_trigger"
-        android:fragment="com.android.settings.liquid.PieTriggerSettings"
-        android:title="@string/pie_trigger" />
+        <PreferenceScreen
+            android:key="pie_style"
+            android:fragment="com.android.settings.liquid.PieStyleSettings"
+            android:title="@string/pie_style" />
+
+        <PreferenceScreen
+            android:key="pie_trigger"
+            android:fragment="com.android.settings.liquid.PieTriggerSettings"
+            android:title="@string/pie_trigger" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/pie_additional_options">
