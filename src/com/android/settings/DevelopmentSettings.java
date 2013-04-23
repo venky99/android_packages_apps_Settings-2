@@ -154,6 +154,7 @@ public class DevelopmentSettings extends PreferenceFragment
     private boolean mLastEnabledState;
     private boolean mHaveDebugSettings;
     private boolean mDontPokeProperties;
+    private boolean mLiquidBuild;
 
     private CheckBoxPreference mEnableAdb;
     private CheckBoxPreference mAdbNotify;
@@ -214,6 +215,9 @@ public class DevelopmentSettings extends PreferenceFragment
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        mLiquidBuild = (android.os.Build.VERSION.CODENAME.equals("NIGHTLY") 
+                || android.os.Build.VERSION.CODENAME.equals("OFFICIAL"));
 
         mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
         mBackupManager = IBackupManager.Stub.asInterface(
@@ -439,7 +443,7 @@ public class DevelopmentSettings extends PreferenceFragment
         final ContentResolver cr = context.getContentResolver();
         mHaveDebugSettings = false;
         updateCheckBox(mEnableAdb, Settings.Global.getInt(cr,
-                Settings.Global.ADB_ENABLED, 0) != 0);
+                Settings.Global.ADB_ENABLED, mLiquidBuild ? 1 : 0) != 0);
         mAdbNotify.setChecked(Settings.Secure.getInt(cr,
                 Settings.Secure.ADB_NOTIFY, 1) != 0);
         updateCheckBox(mBugreportInPower, Settings.Secure.getInt(cr,
@@ -651,7 +655,8 @@ public class DevelopmentSettings extends PreferenceFragment
 
     private boolean enableVerifierSetting() {
         final ContentResolver cr = getActivity().getContentResolver();
-        if (Settings.Global.getInt(cr, Settings.Global.ADB_ENABLED, 0) == 0) {
+        if (Settings.Global.getInt(cr, Settings.Global.ADB_ENABLED,
+                mLiquidBuild ? 1 : 0) == 0) {
             return false;
         }
         if (Settings.Global.getInt(cr, Settings.Global.PACKAGE_VERIFIER_ENABLE, 1) == 0) {
@@ -678,7 +683,7 @@ public class DevelopmentSettings extends PreferenceFragment
         if ("user".equals(Build.TYPE)) {
             final ContentResolver resolver = getActivity().getContentResolver();
             final boolean adbEnabled = Settings.Global.getInt(
-                    resolver, Settings.Global.ADB_ENABLED, 0) != 0;
+                    resolver, Settings.Global.ADB_ENABLED, mLiquidBuild ? 1 : 0) != 0;
             if (adbEnabled) {
                 mBugreport.setEnabled(true);
                 mBugreportInPower.setEnabled(true);
