@@ -5684,8 +5684,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="status_bar_notification_count_summary">Display the number of notifications</string>
     <string name="status_bar_icon_opacity">Notification Opacity</string>
     <string name="status_bar_icon_opacity_summary">Sets opacity of statusbar icons</string>
-    <string name="mms_breath">Breathing SMS</string>
-    <string name="mms_breath_summary">Show sms icon with breathing</string>
     <string name="missed_call_breath">Breathing Missed Call</string>
     <string name="missed_call_breath_summary">Show missed call breathing</string>
     <string name="auto_hide_statusbar">Autohide Statusbar</string>
