@@ -19,13 +19,8 @@
     <string name="yes" msgid="4676390750360727396">"Jā"</string>
     <string name="no" msgid="6731231425810196216">"Nē"</string>
     <string name="create" msgid="3578857613172647409">"Izveidot"</string>
-    <string name="allow" msgid="3349662621170855910">"Atļaut"</string>
-    <string name="deny" msgid="6947806159746484865">"Aizliegt"</string>
     <string name="device_info_default" msgid="7847265875578739287">"Nezināms"</string>
-  <plurals name="show_dev_countdown">
-    <item quantity="one" msgid="5295687242294085452">"Lai jūs kļūtu par izstrādātāju, atlikusi <xliff:g id="STEP_COUNT">%1$d</xliff:g> darbība."</item>
-    <item quantity="other" msgid="6722953419953594148">"Lai jūs kļūtu par izstrādātāju, atlikušas <xliff:g id="STEP_COUNT">%1$d</xliff:g> darbības."</item>
-  </plurals>
+    <string name="show_dev_countdown" msgid="5521163114237004821">"Atlikušas <xliff:g id="STEP_COUNT">%1$d</xliff:g> darbības, lai jūs kļūtu par izstrādātāju."</string>
     <string name="show_dev_on" msgid="1110711554982716293">"Tagad jūs esat izstrādātājs!"</string>
     <string name="show_dev_already" msgid="2151632240145446227">"Nav nepieciešams, ja jau esat izstrādātājs."</string>
     <string name="header_category_wireless_networks" msgid="4944823405420438623">"BEZVADU PAKALPOJUMI UN TĪKLI"</string>
@@ -114,7 +109,6 @@
     <string name="bluetooth_is_discoverable_always" msgid="2849387702249327748">"Redzams visām blakus esošām Bluetooth ierīcēm"</string>
     <string name="bluetooth_not_visible_to_other_devices" msgid="9120274591523391910">"Nav redzams citām Bluetooth ierīcēm"</string>
     <string name="bluetooth_only_visible_to_paired_devices" msgid="2049983392373296028">"Redzams tikai pārī savienotām ierīcēm"</string>
-    <string name="bluetooth_visibility_timeout" msgid="8002247464357005429">"Redzamības noildze"</string>
     <string name="bluetooth_lock_voice_dialing" msgid="3139322992062086225">"Bloķēt balss iezvani"</string>
     <string name="bluetooth_lock_voice_dialing_summary" msgid="4741338867496787042">"Neļaut izmantot Bluetooth iezvanprogrammu, kad ekrāns ir bloķēts"</string>
     <string name="bluetooth_devices" msgid="1886018064039454227">"Bluetooth ierīces"</string>
@@ -148,15 +142,15 @@
     <string name="bluetooth_show_received_files" msgid="5164787486105868895">"Rādīt saņemtos failus"</string>
     <string name="device_picker" msgid="8398232791303186677">"Bluetooth ierīces izvēle"</string>
     <string name="bluetooth_permission_request" msgid="1523129741266262748">"Bluetooth atļaujas pieprasījums"</string>
-    <string name="bluetooth_ask_enablement" msgid="637355677176904990">"Lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu. Vai atļaut?"</string>
-    <string name="bluetooth_ask_discovery" product="tablet" msgid="786921566047356213">"Planšetdatorā instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm padarīt planšetdatoru redzamu citām Bluetooth ierīcēm."</string>
-    <string name="bluetooth_ask_discovery" product="default" msgid="5510358858113713272">"Tālrunī instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm padarīt tālruni redzamu citām Bluetooth ierīcēm."</string>
-    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8863617309580598607">"Planšetdatorā instalētā lietotnē tiek mēģināts padarīt planšetdatoru redzamu citām Bluetooth ierīcēm. Vēlāk varēsiet to mainīt Bluetooth iestatījumos."</string>
-    <string name="bluetooth_ask_lasting_discovery" product="default" msgid="6487606808683607975">"Tālrunī instalētā lietotnē tiek mēģināts padarīt tālruni redzamu citām Bluetooth ierīcēm. Vēlāk varēsiet to mainīt Bluetooth iestatījumos."</string>
-    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="3346529092809011149">"Planšetdatorā instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm ieslēgt Bluetooth savienojumu un padarīt planšetdatoru redzamu citām ierīcēm. Vai atļaut?"</string>
-    <string name="bluetooth_ask_enablement_and_discovery" product="default" msgid="4724094889807196118">"Tālrunī instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm ieslēgt Bluetooth savienojumu un padarīt tālruni redzamu citām ierīcēm. Vai atļaut?"</string>
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="989613204829097159">"Planšetdatorā instalētā lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu un padarīt planšetdatoru redzamu citām ierīcēm. Vēlāk varēsiet to mainīt Bluetooth iestatījumos."</string>
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default" msgid="6671615712909139801">"Tālrunī instalētā lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu un padarīt tālruni redzamu citām ierīcēm. Vēlāk varēsiet to mainīt Bluetooth iestatījumos."</string>
+    <string name="bluetooth_ask_enablement" msgid="5279027758886569301">"Lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu. Vai atļaut?"</string>
+    <string name="bluetooth_ask_discovery" product="tablet" msgid="4420151924834278808">"Planšetdatorā instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm padarīt planšetdatoru redzamu citām Bluetooth ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_discovery" product="default" msgid="4478906085771274647">"Tālrunī instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm padarīt tālruni redzamu citām Bluetooth ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8737516188038252313">"Planšetdatorā instalētā lietotnē tiek mēģināts padarīt planšetdatoru vienmēr redzamu citām Bluetooth ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_lasting_discovery" product="default" msgid="7751530664834149084">"Tālrunī instalētā lietotnē tiek mēģināts padarīt tālruni vienmēr redzamu citām Bluetooth ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="8504403125440086020">"Planšetdatorā instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm ieslēgt Bluetooth savienojumu un padarīt planšetdatoru redzamu citām ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="default" msgid="3040361003987241057">"Tālrunī instalētā lietotnē tiek mēģināts uz <xliff:g id="TIMEOUT">%1$d</xliff:g> sekundēm ieslēgt Bluetooth savienojumu un padarīt tālruni redzamu citām ierīcēm. Vai to atļaut?"</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="7254712987802497615">"Planšetdatorā instalētā lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu un padarīt planšetdatoru redzamu citām ierīcēm. Vai atļaut?"</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default" msgid="3947789545028519103">"Tālrunī instalētā lietotnē tiek mēģināts ieslēgt Bluetooth savienojumu un padarīt tālruni redzamu citām ierīcēm. Vai atļaut?"</string>
     <string name="bluetooth_turning_on" msgid="4850574877288036646">"Tiek ieslēgta tehnoloģija Bluetooth..."</string>
     <string name="bluetooth_turning_off" msgid="2337747302892025192">"Notiek Bluetooth savienojuma izslēgšana…"</string>
     <string name="bluetooth_auto_connect" msgid="40711424456733571">"Automātiski izveidot savienojumu"</string>
@@ -665,12 +659,12 @@
     <string name="musicfx_title" msgid="3415566786340790345">"Mūzikas efekti"</string>
     <string name="ring_volume_title" msgid="7938706566797464165">"Zvanītāja skaļums"</string>
     <string name="vibrate_in_silent_title" msgid="3897968069156767036">"Vibrē klusuma režīmā"</string>
-    <string name="notification_sound_title" msgid="5137483249425507572">"Noklusējuma paziņojuma skaņa"</string>
+    <string name="notification_sound_title" msgid="312032901303146002">"Noklusējuma paziņojums"</string>
     <string name="notification_pulse_title" msgid="1247988024534030629">"Pulsa paziņojuma indikators"</string>
     <string name="incoming_call_volume_title" msgid="8073714801365904099">"Zvana signāls"</string>
     <string name="notification_volume_title" msgid="2012640760341080408">"Paziņojums"</string>
     <string name="checkbox_notification_same_as_incoming_call" msgid="1073644356290338921">"Paziņojumiem izmantot ienākošā zvana skaļumu"</string>
-    <string name="notification_sound_dialog_title" msgid="3805140135741385667">"Noklusējuma paziņojuma skaņa"</string>
+    <string name="notification_sound_dialog_title" msgid="9052854168612951170">"Paziņojuma zvana signāla izvēle"</string>
     <string name="media_volume_title" msgid="3576565767317118106">"Multivide"</string>
     <string name="media_volume_summary" msgid="5363248930648849974">"Mūzikas un videoklipu skaļuma iestatīšana"</string>
     <string name="alarm_volume_title" msgid="2285597478377758706">"Signāls"</string>
@@ -784,7 +778,6 @@
     <string name="status_meid_number" msgid="1751442889111731088">"MEID"</string>
     <string name="status_icc_id" msgid="943368755577172747">"ICCID"</string>
     <string name="status_network_type" msgid="3279383550222116235">"Mobilo sakaru tīkla veids"</string>
-    <string name="status_latest_area_info" msgid="7222470836568238054">"Mobilo sakaru operatora informācija"</string>
     <string name="status_data_state" msgid="5503181397066522950">"Mobilo sakaru tīkla statuss"</string>
     <string name="status_service_state" msgid="2323931627519429503">"Pakalpojuma statuss"</string>
     <string name="status_signal_strength" msgid="3732655254188304547">"Signāla stiprums"</string>
@@ -1002,7 +995,7 @@
     <string name="lockpattern_change_lock_pin_label" msgid="266707138486731661">"Mainīt atbloķēšanas PIN"</string>
     <string name="lockpattern_need_to_unlock" msgid="757935356911054465">"Apstiprināt saglabāto kombināciju"</string>
     <string name="lockpattern_need_to_unlock_wrong" msgid="4694973540770105678">"Mēģiniet vēlreiz:"</string>
-    <string name="lockpattern_recording_intro_header" msgid="2063630508212535241">"Uzzīmējiet grafisko atslēgu:"</string>
+    <string name="lockpattern_recording_intro_header" msgid="308287052221942814">"Zīmēt atbloķēšanas kombināciju"</string>
     <string name="lockpattern_recording_intro_footer" msgid="1118579101409152113">"Lai saņemtu palīdzību, nospiediet Izvēlne."</string>
     <string name="lockpattern_recording_inprogress" msgid="4622772178078818425">"Atbrīvojiet pirkstu, kad esat pabeidzis."</string>
     <string name="lockpattern_recording_incorrect_too_short" msgid="3103250430366718996">"Pievienojiet vismaz <xliff:g id="NUMBER">%d</xliff:g> punktus. Mēģiniet vēlreiz:"</string>
