@@ -68,6 +68,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private static final String KEY_POINTER_SETTINGS = "pointer_settings_category";
     private static final String KEYBOARD_ROTATION_TOGGLE = "keyboard_rotation_toggle";
     private static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
+    private static final String KEY_STYLUS_GESTURES = "stylus_gestures";
 
     private static final int KEYBOARD_ROTATION_TIMEOUT_DEFAULT = 5000; // 5s
 
@@ -91,6 +92,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private PreferenceCategory mHardKeyboardCategory;
     private PreferenceCategory mGameControllerCategory;
     private Preference mLanguagePref;
+    private PreferenceScreen mStylusGestures;
     private final ArrayList<InputMethodPreference> mInputMethodPreferenceList =
             new ArrayList<InputMethodPreference>();
     private final ArrayList<PreferenceScreen> mHardKeyboardPreferenceList =
@@ -209,11 +211,12 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
             }
         }
 
+        mStylusGestures = (PreferenceScreen) findPreference(KEY_STYLUS_GESTURES);
         mStylusIconEnabled = (CheckBoxPreference) findPreference(KEY_STYLUS_ICON_ENABLED);
         // remove stylus preference for non stylus devices
         if (!getResources().getBoolean(com.android.internal.R.bool.config_stylusGestures)) {
             PreferenceCategory pointerSettingsCategory = (PreferenceCategory)
-                    findPreference(KEY_POINTER_SETTINGS_CATEGORY);
+                    findPreference(KEY_POINTER_SETTINGS);
             if (pointerSettingsCategory != null) {
                 pointerSettingsCategory.removePreference(mStylusGestures);
                 pointerSettingsCategory.removePreference(mStylusIconEnabled);
