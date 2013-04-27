@@ -1780,6 +1780,13 @@
         <item>@string/volume_key_cursor_control_on_reverse</item>
     </string-array>
 
+    <!-- Profile mode options. -->
+    <string-array name="profile_entries">
+        <item>On</item>
+        <item>Off</item>
+        <item>No Override</item>
+    </string-array>
+    
     <string-array name="profile_values" translatable="false">
         <item>OVERRIDE</item>
         <item>SUPPRESS</item>
