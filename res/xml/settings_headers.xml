@@ -38,7 +38,6 @@
     <!-- Dark Liquid -->
     <header
         android:id="@+id/trds_settings"
-        android:fragment="com.android.settings.liquid.TRSDEnabler"
         android:icon="@drawable/ic_settings_trds"
         android:title="@string/trds_settings_title" />
 

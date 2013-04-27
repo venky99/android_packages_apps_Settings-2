@@ -88,6 +88,12 @@
             android:title="@string/force_dual_pane_title"
             android:summary="@string/force_dual_pane_summary" />
 
+       <CheckBoxPreference
+            android:key="hide_extras"
+            android:title= "@string/hide_extras"
+            android:summary= "@string/hide_extras_summary"
+            android:defaultValue="false" />
+            
         <PreferenceScreen
             android:key="lcd_density_setup"
             android:fragment="com.android.settings.liquid.DensityChanger"
@@ -100,12 +106,6 @@
             android:summary="@string/user_mode_ui_summary"
             android:entries="@array/user_mode_ui_entries"
             android:entryValues="@array/user_mode_ui_values" />
-
-       <CheckBoxPreference
-            android:key="hide_extras"
-            android:title= "@string/hide_extras"
-            android:summary= "@string/hide_extras_summary"
-            android:defaultValue="false" />
 
     </PreferenceCategory>
 
