@@ -1598,7 +1598,7 @@
         <item>@*android:drawable/ic_shortcut_unlock</item>
     </string-array>
 
-    <!-- Piecontols -->
+    <!-- Piecontol -->
     <string-array name="pie_icon_color_mode_entries">
         <item>@string/pie_icon_color_mode_all_icons</item>
         <item>@string/pie_icon_color_mode_system_icons</item>
@@ -1671,6 +1671,19 @@
         <item>**search**</item>
         <item>**widgets**</item>
         <item>**null**</item>
+    </string-array>
+
+    <string-array name="pie_trigger_gravity_left_right_entries">
+        <item>@string/pie_trigger_gravity_left_right_bottom</item>
+        <item>@string/pie_trigger_gravity_left_right_center</item>
+        <item>@string/pie_trigger_gravity_left_right_top</item>
+    </string-array>
+
+    <!-- Gravity.BOTTOM = 80, Gravity.CENTER_VERTICAL = 16, Gravity_TOP = 48 -->
+    <string-array name="pie_trigger_gravity_left_right_values" translatable="false">
+        <item>80</item>
+        <item>16</item>
+        <item>48</item>
     </string-array>
 
     <!-- Powerwidget -->
