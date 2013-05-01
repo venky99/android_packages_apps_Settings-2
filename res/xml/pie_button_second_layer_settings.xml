@@ -28,7 +28,7 @@
 
         <PreferenceCategory
                 android:key="pie_buttons_cat"
-                android:title="@string/pie_button_second_layer_cat">
+                android:title="@string/pie_button_second_layer">
 
         </PreferenceCategory>
 
