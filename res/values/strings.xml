@@ -5455,6 +5455,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_enable_long">Longpress Pie Buttons</string>
     <string name="pie_button">Buttons</string>
     <string name="pie_button_cat">Buttons</string>
+    <string name="pie_buttons_options">Button Options</string>
+    <string name="pie_second_layer_title">Enable Second Layer</string>
+    <string name="pie_second_layer_summary">Enable or disable second button row</string>
+    <string name="pie_button_second_layer">Buttons Second Layer</string>
     <string name="pie_action_custom_app">Custom App</string>
     <string name="pie_action_home">Home</string>
     <string name="pie_action_back">Back</string>

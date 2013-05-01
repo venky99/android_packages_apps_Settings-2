@@ -25,29 +25,40 @@
         android:title="@string/pie_control_title"
         android:dialogTitle="@string/pie_control_dialog_title" />
 
+    <PreferenceScreen
+        android:key="pie_button_style"
+        android:fragment="com.android.settings.liquid.PieButtonStyleSettings"
+        android:title="@string/pie_button_style" />
+
+    <PreferenceScreen
+        android:key="pie_style"
+        android:fragment="com.android.settings.liquid.PieStyleSettings"
+        android:title="@string/pie_style" />
+
+    <PreferenceScreen
+        android:key="pie_trigger"
+        android:fragment="com.android.settings.liquid.PieTriggerSettings"
+        android:title="@string/pie_trigger" />
+
     <PreferenceCategory
-        android:key="pie_buttons_cat"
-        android:title="@string/general_settings_title" >
+        android:title="@string/pie_buttons_options">
 
         <PreferenceScreen
             android:key="pie_button"
             android:fragment="com.android.settings.liquid.PieButtonSettings"
             android:title="@string/pie_button" />
 
-        <PreferenceScreen
-            android:key="pie_button_style"
-            android:fragment="com.android.settings.liquid.PieButtonStyleSettings"
-            android:title="@string/pie_button_style" />
+        <CheckBoxPreference
+            android:key="pie_second_layer"
+            android:title="@string/pie_second_layer_title"
+            android:summary="@string/pie_second_layer_summary"
+            android:defaultValue="false" />
 
         <PreferenceScreen
-            android:key="pie_style"
-            android:fragment="com.android.settings.liquid.PieStyleSettings"
-            android:title="@string/pie_style" />
-
-        <PreferenceScreen
-            android:key="pie_trigger"
-            android:fragment="com.android.settings.liquid.PieTriggerSettings"
-            android:title="@string/pie_trigger" />
+            android:key="pie_button_second_layer"
+            android:fragment="com.android.settings.liquid.PieButtonSecondLayerSettings"
+            android:title="@string/pie_button_second_layer"
+            android:dependency="pie_second_layer" />
 
     </PreferenceCategory>
 
