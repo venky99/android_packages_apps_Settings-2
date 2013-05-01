@@ -5399,7 +5399,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_control_trigger_right">Right Screen Border</string>
     <string name="pie_control_trigger_top">Top Screen Border</string>
     <string name="pie_control_trigger_top_summary">Navigation On Top</string>
-    <string name="pie_button_style">Button Style</string>
+    <string name="pie_button_style">Buttons Style</string>
     <string name="pie_button_color_title">Button Color</string>
     <string name="pie_button_alpha_title">Button Transparency</string>
     <string name="pie_button_outline_color_title">Outline Color</string>
@@ -5416,9 +5416,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_icon_color_mode_system_custom_icons">Both Icon Styles</string>
     <string name="pie_trigger_dimens_options">Trigger Dimensions</string>
     <string name="pie_trigger_thickness_title">Trigger Thickness</string>
-    <string name="pie_trigger_height_title">Trigger height left and right</string>
-    <string name="pie_trigger_gravity_left_right_title">Trigger gravity left and right</string>
-    <string name="pie_trigger_gravity_left_right_dialog_title">Set gravity for left and right trigger</string>
+    <string name="pie_trigger_height_title">Trigger Height</string>
+    <string name="pie_trigger_gravity_left_right_title">Trigger Gravity</string>
+    <string name="pie_trigger_gravity_left_right_dialog_title">Set Trigger Gravity</string>
     <string name="pie_trigger_gravity_left_right_bottom">Bottom</string>
     <string name="pie_trigger_gravity_left_right_center">Center</string>
     <string name="pie_trigger_gravity_left_right_top">Top</string>
