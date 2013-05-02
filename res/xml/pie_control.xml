@@ -36,7 +36,7 @@
         android:title="@string/pie_trigger" />
 
     <PreferenceCategory
-        android:title="@string/pie_buttons_options">
+        android:title="@string/pie_button_cat">
 
         <PreferenceScreen
             android:key="pie_button"
