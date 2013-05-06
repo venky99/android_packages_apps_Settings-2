@@ -4854,6 +4854,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notification_show_wifi_ssid_title">Show Wifi Network</string>
     <string name="notification_show_wifi_ssid_summary">Display name of current wifi network</string>
     <string name="notification_behaviour_title">Notification Behavior</string>
+    <string name="xposed_dpi_title">Xposed DPI Settings</string>
+    <string name="xposed_dpi_summary">Customize DPI values of specific apps</string>
+    <string name="xposed_install_title">Xposed DPI Installer</string>
+    <string name="xposed_install_summary">*Install before using DPI settings app*</string>
     <string name="hide_extras">Hide Extras</string>
     <string name="hide_extras_summary">Hide systembar stuff (restart UI)</string>
 
