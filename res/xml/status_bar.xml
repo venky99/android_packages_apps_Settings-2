@@ -53,6 +53,12 @@
             android:title="@string/missed_call_breath"
             android:summary="@string/missed_call_breath_summary" />
 
+        <CheckBoxPreference
+            android:key="mms_breath"
+            android:title="@string/mms_breath"
+            android:summary="@string/mms_breath_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
