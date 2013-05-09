@@ -4826,6 +4826,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="hardware_keys_action_last_app">Last App</string>
     <string name="hardware_keys_action_custom_app">Custom App</string>
     <string name="hardware_keys_action_widgets">Widgets Viewpager</string>
+    <string name="hardware_keys_action_quicksettings">Quicksettings</string>
 
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
@@ -5155,6 +5156,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="navbar_action_widgets">Widgets Viewpager</string>
     <string name="navbar_action_power">Screen Off</string>
     <string name="navbar_action_notifications">Notifications</string>
+    <string name="navbar_action_quicksettings">Quicksettings</string>
     <string name="navbar_action_none">None</string>
     <string name="navbar_enable_bar">Enable Navbar</string>
     <string name="navbar_enable_bar_summary">This enables navigation bar</string>
@@ -5238,6 +5240,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="widgets">Widgets Viewpager</string>
     <string name="lastapp">Last App</string>
     <string name="power">Screen Off</string>
+    <string name="quicksettings">Quicksettings</string>
     <string name="notifications">Notifications</string>
     <string name="custom_app">Custom App</string>
     <string name="blank">None</string>
@@ -5481,6 +5484,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_action_widgets">Widgets Viewpager</string>
     <string name="pie_action_power">Screen Off</string>
     <string name="pie_action_notifications">Notifications</string>
+    <string name="pie_action_quicksettings">Quicksettings</string>
     <string name="pie_action_none">None</string>
 
     <!-- Powermenu -->
@@ -5863,3 +5867,4 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>
+
