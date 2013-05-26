@@ -4750,6 +4750,13 @@ desired screen brightness. Selecting \'Split\' allows you to to duplicate one li
 two in order to insert additional control points. \'Remove\' deletes the selected line.
     </string>
 
+    <string name="auto_brightness_sensitivity_title">Adjustment sensitivity</string>
+    <string name="auto_brightness_sensitivity_verylow">Very low</string>
+    <string name="auto_brightness_sensitivity_low">Low</string>
+    <string name="auto_brightness_sensitivity_medium">Medium</string>
+    <string name="auto_brightness_sensitivity_high">High</string>
+    <string name="auto_brightness_sensitivity_veryhigh">Very high</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color below to apply</string>
