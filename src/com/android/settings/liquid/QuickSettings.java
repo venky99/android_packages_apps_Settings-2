@@ -17,6 +17,7 @@
 package com.android.settings.liquid;
 
 import android.content.ContentResolver;
+import android.app.INotificationManager; 
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -48,6 +49,9 @@ import java.util.Set;
 
 public class QuickSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
     
+	private static final String KEY_HALO_STATE = "halo_state";
+    private static final String KEY_HALO_HIDE = "halo_hide";
+    private static final String KEY_HALO_REVERSED = "halo_reversed"; 
     private static final String TAG = "QuickSettings";
     private static final String SEPARATOR = "OV=I=XseparatorX=I=VO";
     private static final String EXP_RING_MODE = "pref_ring_mode";
@@ -70,6 +74,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
     public static final String FAST_CHARGE_FILE = "force_fast_charge";
 
+    private ListPreference mHaloState;
+    private CheckBoxPreference mHaloHide;
+    private CheckBoxPreference mHaloReversed;
+	
     MultiSelectListPreference mRingMode;
     ListPreference mNetworkMode;
     ListPreference mScreenTimeoutMode;
@@ -87,7 +95,9 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     PreferenceCategory mDynamicTiles;
     PreferenceScreen mQsTilesStyle;
     PreferenceScreen mTilePicker;
-
+	
+	private INotificationManager mNotificationManager;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +122,21 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mCollapsePanel = (CheckBoxPreference) prefSet.findPreference(COLLAPSE_PANEL);
         mCollapsePanel.setChecked(Settings.System.getInt(resolver, Settings.System.QS_COLLAPSE_PANEL, 0) == 1);
 
+        mNotificationManager = INotificationManager.Stub.asInterface(
+                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+
+        mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
+        mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
+        mHaloState.setOnPreferenceChangeListener(this);
+
+        mHaloHide = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_HIDE);
+        mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HALO_HIDE, 0) == 1);
+
+        mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
+        mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HALO_REVERSED, 1) == 1);
+ 
         // Add the sound mode
         mRingMode = (MultiSelectListPreference) prefSet.findPreference(EXP_RING_MODE);
         String storedRingMode = Settings.System.getString(resolver,
@@ -183,6 +208,15 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         }
     }
 
+    private boolean isHaloPolicyBlack() {
+        try {
+            return mNotificationManager.isHaloPolicyBlack();
+        } catch (android.os.RemoteException ex) {
+                // System dead
+        }
+        return true;
+    } 
+	
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mDynamicAlarm) {
@@ -254,7 +288,15 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         } else if (preference == mQuickPulldown) {
             int quickPulldownValue = Integer.valueOf((String) newValue);
             Settings.System.putInt(resolver, Settings.System.QS_QUICK_PULLDOWN,
-                    quickPulldownValue);
+                    Settings.System.QS_QUICK_PULLDOWN, mQuickPullDown.isChecked()
+                    ? 1 : 0);  
+        } else if (preference == mHaloHide) {  
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.HALO_HIDE, mHaloHide.isChecked()
+                    ? 1 : 0);  
+        } else if (preference == mHaloReversed) {  
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.HALO_REVERSED, mHaloReversed.isChecked() 
             updatePulldownSummary(quickPulldownValue);
             return true;
         } else if (preference == mScreenTimeoutMode) {
