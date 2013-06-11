@@ -2221,16 +2221,6 @@
         <item>25</item>
     </integer-array>
 
-    <string-array name="entries_halo_state">
-        <item>@string/halo_state_black</item>
-        <item>@string/halo_state_white</item>
-	</string-array>
-	
-	<string-array name="values_halo_state" translatable="false">
-		<item>1</item>
-		<item>2</item>
-	</string-array>
-	
     <!-- Touckey Timeout -->
     <string-array name="entries_touchkey_timeout">
         <item>@string/touchkey_timeout_1s</item>
