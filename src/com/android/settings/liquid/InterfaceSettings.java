@@ -76,6 +76,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private static final String KEY_HIDE_EXTRAS = "hide_extras";
     private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_HIDE = "halo_hide";
+    private static final String KEY_HALO_PAUSE = "halo_pause";
     private static final String KEY_HALO_REVERSED = "halo_reversed"; 
 
     private Preference mLcdDensity;
@@ -91,6 +92,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private CheckBoxPreference mHideExtras;
 	private ListPreference mHaloState;
     private CheckBoxPreference mHaloHide;
+    private CheckBoxPreference mHaloPause;
     private CheckBoxPreference mHaloReversed; 
 
     private int newDensityValue;
@@ -144,6 +146,11 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         mHaloHide = (CheckBoxPreference) findPreference(KEY_HALO_HIDE);
         mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_HIDE, 0) == 1);
+
+        int isLowRAM = (ActivityManager.isLargeRAM()) ? 0 : 1;
+        mHaloPause = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_PAUSE);
+        mHaloPause.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HALO_PAUSE, isLowRAM) == 1);
 
         mHaloReversed = (CheckBoxPreference) findPreference(KEY_HALO_REVERSED);
         mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
@@ -269,6 +276,10 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         } else if (preference == mHaloHide) {    
             Settings.System.putInt(getActivity().getContentResolver(),  
                     Settings.System.HALO_HIDE, mHaloHide.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mHaloPause) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_PAUSE, mHaloPause.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mHaloReversed) {    
             Settings.System.putInt(getActivity().getContentResolver(),  

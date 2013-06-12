@@ -60,6 +60,11 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
+            android:key="halo_pause"
+            android:title="@string/halo_pause_title"
+            android:summary="@string/halo_pause_summary" />
+
+        <CheckBoxPreference
             android:key="halo_reversed"
             android:title="@string/halo_reversed_title"
             android:summary="@string/halo_reversed_summary"
