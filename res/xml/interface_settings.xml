@@ -72,11 +72,37 @@
                 android:targetPackage="com.cyanogenmod.lockclock"
 		        android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
 	    </PreferenceScreen>
+    </PreferenceCategory>
+	
+        <PreferenceCatergory
+        android:key="halo_options"
+        android:title="@string/halo_options_title">
 
-        <PreferenceScreen
-            android:key="hardware_keys"
-            android:fragment="com.android.settings.liquid.HardwareKeys"
-            android:title="@string/hardware_keys_title" />
+        <ListPreference
+            android:key="halo_state"
+            android:dialogTitle="@string/halo_state_title"
+            android:title="@string/halo_state_title"
+            android:summary="@string/halo_state_summary"
+            android:entries="@array/entries_halo_state"
+            android:entryValues="@array/values_halo_state" />
+
+        <CheckBoxPreference
+            android:key="halo_hide"
+            android:title="@string/halo_hide_title"
+            android:summary="@string/halo_hide_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="halo_reversed"
+            android:title="@string/halo_reversed_title"
+            android:summary="@string/halo_reversed_summary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="hardware_keys" 
+         android:title="@string/hardware_keys_title" />
 
         <PreferenceScreen
             android:key="notification_style"
