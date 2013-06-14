@@ -44,6 +44,26 @@
             android:key="recents_ram_bar"
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
+
+        <ListPreference
+            android:key="halo_state"
+            android:dialogTitle="@string/halo_state_title"
+            android:title="@string/halo_state_title"
+            android:summary="@string/halo_state_summary"
+            android:entries="@array/entries_halo_state"
+            android:entryValues="@array/values_halo_state" />
+
+        <CheckBoxPreference
+            android:key="halo_hide"
+            android:title="@string/halo_hide_title"
+            android:summary="@string/halo_hide_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="halo_reversed"
+            android:title="@string/halo_reversed_title"
+            android:summary="@string/halo_reversed_summary"
+            android:defaultValue="true" />
 	
     </PreferenceCategory>
 
@@ -90,32 +110,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCatergory
-        android:key="halo_options"
-        android:title="@string/halo_options_title">
-
-        <ListPreference
-            android:key="halo_state"
-            android:dialogTitle="@string/halo_state_title"
-            android:title="@string/halo_state_title"
-            android:summary="@string/halo_state_summary"
-            android:entries="@array/entries_halo_state"
-            android:entryValues="@array/values_halo_state" />
-
-        <CheckBoxPreference
-            android:key="halo_hide"
-            android:title="@string/halo_hide_title"
-            android:summary="@string/halo_hide_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="halo_reversed"
-            android:title="@string/halo_reversed_title"
-            android:summary="@string/halo_reversed_summary"
-            android:defaultValue="true" />
-
-    </PreferenceCategory>
-    
     <PreferenceCategory
         android:key="interface_tablet"
         android:title="@string/tablet_settings_title">
@@ -163,5 +157,4 @@
         </PreferenceScreen>
 
     </PreferenceCategory>
-
 </PreferenceScreen>

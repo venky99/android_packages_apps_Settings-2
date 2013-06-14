@@ -59,7 +59,8 @@ import com.android.settings.util.Helpers;
 import com.android.settings.Utils;
 import android.widget.EditText;
 
-public class InterfaceSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class InterfaceSettings extends SettingsPreferenceFragment
+    implements OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
     private static final String ADVANCED_SETTINGS = "interface_advanced";
@@ -96,9 +97,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
     DensityChanger densityFragment;
     private String mCustomLabelText = null;
 	
-	private ListPreference mHaloState;
-    private CheckBoxPreference mHaloHide;
-    private CheckBoxPreference mHaloReversed; 
+    private INotificationManager mNotificationManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,15 +137,15 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
 
-        mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
+        mHaloState = (ListPreference) findPreference(KEY_HALO_STATE);
         mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
         mHaloState.setOnPreferenceChangeListener(this);
 
-        mHaloHide = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_HIDE);
+        mHaloHide = (CheckBoxPreference) findPreference(KEY_HALO_HIDE);
         mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_HIDE, 0) == 1);
 
-        mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
+        mHaloReversed = (CheckBoxPreference) findPreference(KEY_HALO_REVERSED);
         mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_REVERSED, 1) == 1);
  
@@ -265,8 +265,23 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;  
+        } else if (preference == mHaloHide) {    
+            Settings.System.putInt(getActivity().getContentResolver(),  
+                    Settings.System.HALO_HIDE, mHaloHide.isChecked() ? 1 : 0);
             return true;
-
+        } else if (preference == mHaloReversed) {    
+            Settings.System.putInt(getActivity().getContentResolver(),  
+                    Settings.System.HALO_REVERSED, mHaloReversed.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mHaloState) {
+            boolean state = Integer.valueOf((String) newValue) == 1;
+            try {
+                mNotificationManager.setHaloPolicyBlack(state);
+            } catch (android.os.RemoteException ex) {
+                // System dead
+            }
+            return true;
         }
         return false;
     }
@@ -279,17 +294,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
         }
         return true;
     }
-        } else if (preference == mQuickPullDown) {    
-            Settings.System.putInt(mContext.getContentResolver(),  
-					Settings.System.QS_QUICK_PULLDOWN, mQuickPullDown.isChecked()  
-					? 1 : 0);    
-        } else if (preference == mHaloHide) {    
-            Settings.System.putInt(mContext.getContentResolver(),  
-                    Settings.System.HALO_HIDE, mHaloHide.isChecked()  
-                    ? 1 : 0);    
-        } else if (preference == mHaloReversed) {    
-            Settings.System.putInt(mContext.getContentResolver(),  
-                    Settings.System.HALO_REVERSED, mHaloReversed.isChecked()  
 
     public OnPreferenceClickListener mCustomLabelClicked = new OnPreferenceClickListener() {
         @Override
@@ -322,19 +326,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements OnP
             });
             alert.show();
             return true;
-+        } else if (preference == mHaloState) {  
-            boolean state = Integer.valueOf((String) newValue) == 1;  
-            try {  
-                mNotificationManager.setHaloPolicyBlack(state);  
-            } catch (android.os.RemoteException ex) {  
-                // System dead  
-            }            
-            return true;  
-         }  
-         return false;  
-     }  
-
-        }		
+        }
     };
 }
 
