@@ -21,13 +21,13 @@
         android:key="interface_advanced"
         android:title="@string/advanced_settings_title">
 
-	<PreferenceScreen
-	    android:key="chronus"
+	    <PreferenceScreen
+	        android:key="chronus"
             android:title="@string/chronus_title"
 	    	android:summary="@string/chronus_summary" >
-	   	<intent android:action="android.intent.action.MAIN"
+	   	    <intent android:action="android.intent.action.MAIN"
             	android:targetPackage="com.cyanogenmod.lockclock"
-	    	android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
+	    	    android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
 	    
     	<PreferenceScreen
             android:key="hardware_keys"
@@ -43,7 +43,6 @@
             android:key="recents_ram_bar"
             android:fragment="com.android.settings.liquid.RamBar"
             android:title="@string/ram_bar" />
-	</PreferenceScreen>
 	
     </PreferenceCategory>
 
@@ -163,5 +162,4 @@
         </PreferenceScreen>
 
     </PreferenceCategory>
-    
 </PreferenceScreen>
