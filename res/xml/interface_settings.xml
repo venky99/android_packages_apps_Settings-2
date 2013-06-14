@@ -74,7 +74,7 @@
 	    </PreferenceScreen>
     </PreferenceCategory>
 	
-        <PreferenceCatergory
+    <PreferenceCatergory
         android:key="halo_options"
         android:title="@string/halo_options_title">
 
