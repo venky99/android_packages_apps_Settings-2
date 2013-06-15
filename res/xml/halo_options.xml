@@ -51,10 +51,12 @@
             android:summary="@string/halo_reversed_summary"
             android:defaultValue="true" />
 
-        <CheckBoxPreference
+        <ListPreference
             android:key="halo_style"
             android:title="@string/halo_style_title"
-            android:summary="@string/halo_style_summary" />
+            android:summary="@string/halo_style_summary"
+            android:entries="@array/entries_halo_style"
+            android:entryValues="@array/values_halo_style" />
 
     </PreferenceCategory>
 

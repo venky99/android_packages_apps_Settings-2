@@ -45,12 +45,12 @@ public class HaloOptions extends SettingsPreferenceFragment
     private static final String KEY_HALO_REVERSED = "halo_reversed";
     private static final String KEY_HALO_STYLE = "halo_style";
 
-	private ListPreference mHaloState;
-    private CheckBoxPreference mHaloEnabled;
+    private ListPreference mHaloState;
+    private ListPreference mHaloStyle;
     private CheckBoxPreference mHaloHide;
     private CheckBoxPreference mHaloPause;
+    private CheckBoxPreference mHaloEnabled;
     private CheckBoxPreference mHaloReversed;
-    private CheckBoxPreference mHaloStyle;
 
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -87,9 +87,8 @@ public class HaloOptions extends SettingsPreferenceFragment
         mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_REVERSED, 1) == 1);
 
-        mHaloStyle = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_STYLE);
-        mHaloStyle.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_STYLE, 0) == 1);
+        mHaloStyle = (ListPreference) findPreference(PREF_HALO_STYLE);
+        mHaloStyle.setOnPreferenceChangeListener(this);
     }
 
     private boolean isHaloPolicyBlack() {
@@ -115,10 +114,6 @@ public class HaloOptions extends SettingsPreferenceFragment
         } else if (preference == mHaloReversed) {    
             Settings.System.putInt(mContext.getContentResolver(),  
                     Settings.System.HALO_REVERSED, mHaloReversed.isChecked() ? 1 : 0);
-        } else if (preference == mHaloStyle) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.HALO_STYLE, mHaloStyle.isChecked() ? 1 : 0);
-            Helpers.restartSystemUI();	
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -131,6 +126,12 @@ public class HaloOptions extends SettingsPreferenceFragment
             } catch (android.os.RemoteException ex) {
                 // System dead
             }
+            return true;
+        } else if (preference == mHaloStyle) {
+            int val = Integer.valueOf((String) Value);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_STYLE, val);
+            Helpers.restartSystemUI();
             return true;
         }
         return false;
