@@ -5028,6 +5028,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_state_white">Whitelist</string>
     <string name="halo_pause_title">Pause Active App</string>
     <string name="halo_pause_summary">Open task while underlying app pauses</string>
+    <string name="halo_style_title">Minimal Style</string>
+    <string name="halo_style_summary">Apply different style when using HALO</string>
 
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
