@@ -5032,13 +5032,14 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_style_summary">Use different colored speech bubbles</string>
 
     <!-- HALO Bubbles -->
-    <string name="halo_black">Black (Default)</string>
-    <string name="halo_blue">Blue (Normal)</string>
-    <string name="halo_green">Green (Normal)</string>
-    <string name="halo_white">White (Normal)</string>
-    <string name="halo_blue_min">Blue (Minimal)</string>
-    <string name="halo_green_min">Green (Minimal)</string>
-    <string name="halo_white_min">White (Minimal)</string>
+    <string name="halo_blue">Blue (Default)</string>
+    <string name="halo_green">Green</string>
+    <string name="halo_white">White</string>
+    <string name="halo_purple">Purple</string>
+    <string name="halo_red">Red</string>
+    <string name="halo_pink">Pink</string>
+    <string name="halo_yellow">Yellow</string>
+    <string name="halo_black">Black</string>
 
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
