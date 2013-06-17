@@ -5641,6 +5641,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="power_menu_screenshot_title">Screenshot</string>
     <string name="power_menu_expanded_desktop">Expanded Desktop</string>
     <string name="power_menu_profiles_title">Profile Switcher</string>
+    <string name="power_menu_profiles_disabled">Disabled</string>
+    <string name="power_menu_profiles_lock">Disabled On Lockscreen</string>
+    <string name="power_menu_profiles_all">Always Show</string>
     <string name="power_menu_airplane_title">Airplane Mode</string>
     <string name="power_menu_sound_title">Sound Panel</string>
     <string name="expanded_desktop_summary">Show or change expanded desktop mode</string>
