@@ -4597,9 +4597,11 @@
     <string name="toggleWimax">WiMAX</string>
     <string name="toggleNfc">NFC</string>
 
-    <string name="profile_trigger_title_wifi">Wi-Fi triggers for <xliff:g id="profile">%s</xliff:g></string>
     <string name="profile_trigger_configure">Configure trigger</string>
-    <string name="profile_trigger_wifi">Wi-Fi triggers</string>
+    <string name="profile_triggers">Triggers</string>
+    <string name="profile_trigger_filter_all">All triggers</string>
+    <string name="profile_trigger_filter_wifi">Wi-Fi triggers</string>
+    <string name="profile_trigger_filter_bluetooth">Bluetooth triggers</string>
     <string name="profile_write_nfc_tag">Write to NFC tag</string>
     <string name="profile_write_touch_tag">Touch tag to write</string>
     <string name="profile_write_success">Tag successfully written</string>
@@ -5900,6 +5902,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="user_mode_ui_summary">Change navbar and statusbar style</string>
     <string name="phone_mode_ui">Phone (navbar to side in landscape)</string>
     <string name="tablet_mode_ui">Tablet (combined navbar and systembar)</string>
+    <string name="phablet_mode_ui">Phablet (navbar at bottom in landscape)</string>
     <string name="force_dual_pane_title">Force Dual Panel</string>
     <string name="force_dual_pane_summary">Restart settings to apply this change</string>
     <string name="xposed_dpi_title">Xposed DPI Settings</string>
