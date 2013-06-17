@@ -1526,6 +1526,8 @@
 
         <!-- LiquidSmooth Activities -->
         <activity android:name=".liquid.InterfaceSettings" />
+        <activity android:name=".liquid.HaloOptions" />
+        <activity android:name=".liquid.TabletSettings" />
         <activity android:name=".liquid.PowerWidget" />
         <activity android:name=".liquid.QuietHours" />
         <activity android:name=".liquid.PowerMenu" />
@@ -1579,6 +1581,24 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.liquid.PowerMenu" />
+        </activity>
+
+        <!-- Pseudo-activity used to provide an intent-filter entry point to Interface settings -->
+        <activity android:name="Settings$InterfaceSettingsActivity"
+                android:label="@string/interface_settings_title"
+                android:clearTaskOnLaunch="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.android.settings.liquid.InterfaceSettings" />
+                <action android:name="android.settings.liquid.InterfaceSettings" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.liquid.InterfaceSettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/interface_settings" />
         </activity>
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to display rotation config -->
@@ -1758,7 +1778,6 @@
         </receiver>
 
         <!-- Notification Shortcuts -->
-
         <activity android:name="Settings$NotificationShortcutsSettingsActivity"
                 android:label="@string/notification_shortcuts_settings_title"
                 android:clearTaskOnLaunch="true">
