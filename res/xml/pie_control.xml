@@ -18,22 +18,27 @@
     android:title="@string/pie_control_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <ListPreference
-        android:key="pie_control"
-        android:entries="@array/pie_control_entries"
-        android:entryValues="@array/pie_control_values"
-        android:title="@string/pie_control_title"
-        android:dialogTitle="@string/pie_control_dialog_title" />
+    <PreferenceCategory
+       android:title="@string/advanced_settings_title">
 
-    <PreferenceScreen
-        android:key="pie_style"
-        android:fragment="com.android.settings.liquid.PieStyleSettings"
-        android:title="@string/pie_style" />
+       <ListPreference
+            android:key="pie_control"
+            android:entries="@array/pie_control_entries"
+            android:entryValues="@array/pie_control_values"
+            android:title="@string/pie_control_title"
+            android:dialogTitle="@string/pie_control_dialog_title" />
 
-    <PreferenceScreen
-        android:key="pie_trigger"
-        android:fragment="com.android.settings.liquid.PieTriggerSettings"
-        android:title="@string/pie_trigger" />
+        <PreferenceScreen
+            android:key="pie_style"
+            android:fragment="com.android.settings.liquid.PieStyleSettings"
+            android:title="@string/pie_style" />
+
+        <PreferenceScreen
+            android:key="pie_trigger"
+            android:fragment="com.android.settings.liquid.PieTriggerSettings"
+            android:title="@string/pie_trigger" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/pie_button_cat">
@@ -63,7 +68,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/pie_additional_options">
+        android:title="@string/general_settings_title">
 
         <CheckBoxPreference
             android:key="pie_show_background"

@@ -275,6 +275,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
                     Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
                     mShowWifiName.isChecked() ? 1 : 0);
             return true;
+        } else if (preference == mSettingsBtn) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SETTINGS_BUTTON,
+                    mSettingsBtn.isChecked() ? 1 : 0);
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -284,11 +289,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             float valNav = Float.parseFloat((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NOTIF_WALLPAPER_ALPHA, valNav / 100);
-            return true;
-        } else if (preference == mSettingsBtn) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SETTINGS_BUTTON,
-                    mSettingsBtn.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mNotificationsBeh) {
             String val = (String) newValue;

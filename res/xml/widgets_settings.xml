@@ -24,7 +24,7 @@
 
         <PreferenceCategory
                 android:key="navbar_widgets"
-                android:title="@string/navbar_widgets_title" >
+                android:title="@string/navbar_widgets_cat_title" >
             <Preference
                 android:key="navigation_bar_widgets"
                 android:title="@string/navbar_widgets_title"

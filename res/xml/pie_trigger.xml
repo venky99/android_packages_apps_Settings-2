@@ -25,7 +25,7 @@
         android:selectable="false" />
 
     <PreferenceCategory
-        android:title="@string/pie_control_trigger_positions">
+        android:title="@string/advanced_settings_title">
 
         <CheckBoxPreference
             android:key="pie_control_trigger_bottom"
@@ -53,6 +53,12 @@
     <PreferenceCategory
         android:title="@string/pie_trigger_dimens_options">
 
+        <CheckBoxPreference
+            android:key="pie_disable_ime_triggers"
+            android:title="@string/pie_disable_ime_triggers_title"
+            android:summary="@string/pie_disable_ime_triggers_summary"
+            android:defaultValue="true" />
+
         <ListPreference
             android:key="pie_trigger_gravity_left_right"
             android:entries="@array/pie_trigger_gravity_left_right_entries"
@@ -69,16 +75,5 @@
             android:title="@string/pie_trigger_thickness_title" />
 
     </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pie_additional_options">
-
-        <CheckBoxPreference
-            android:key="pie_disable_ime_triggers"
-            android:title="@string/pie_disable_ime_triggers_title"
-            android:summary="@string/pie_disable_ime_triggers_summary"
-            android:defaultValue="true" />
-
-   </PreferenceCategory>
 
 </PreferenceScreen>

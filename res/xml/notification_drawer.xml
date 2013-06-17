@@ -38,6 +38,13 @@
             android:title="@string/notification_show_wifi_ssid_title"
             android:summary="@string/notification_show_wifi_ssid_summary" />
 
+        <PreferenceScreen
+            android:id="@+id/liquid_notification_shortcuts"
+            android:fragment="com.android.settings.liquid.notificationshortcut.NotificationShortcuts"
+            android:key="liquid_shortcuts_settings"
+            android:title="@string/notification_shortcuts_settings_title"
+            android:summary="@string/notification_shortcuts_settings_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -68,17 +75,6 @@
              android:key="notification_alpha"
              android:title="@string/notification_alpha_title" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/notification_shortcuts_grouptitle">
-
-        <PreferenceScreen
-            android:id="@+id/liquid_notification_shortcuts"
-            android:fragment="com.android.settings.liquid.notificationshortcut.NotificationShortcuts"
-            android:key="liquid_shortcuts_settings"
-            android:title="@string/notification_shortcuts_settings_title"
-            android:summary="@string/notification_shortcuts_settings_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -19,7 +19,7 @@
 
     <!-- Powerwidget -->
     <PreferenceCategory
-       android:title="@string/general_settings_title">
+        android:title="@string/advanced_settings_title">
 
         <CheckBoxPreference
             android:key="expanded_widget"
@@ -46,7 +46,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-       android:title="@string/advanced_settings_title">
+        android:title="@string/general_settings_title">
+
+        <ListPreference
+            android:key="brightness_location"
+            android:entries="@array/brightness_location_entries"
+            android:entryValues="@array/brightness_location_values"
+            android:title="@string/brightness_location_title"
+            android:dependency="expanded_widget" />
 
         <CheckBoxPreference
             android:key="expanded_hide_onchange"
@@ -66,19 +73,6 @@
             android:title="@string/expanded_haptic_feedback_title"
             android:entries="@array/haptic_feedback_entries"
             android:entryValues="@array/haptic_feedback_values"
-            android:dependency="expanded_widget" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="additional_options"
-        android:title="@string/additional_settings_title">
-
-        <ListPreference
-            android:key="brightness_location"
-            android:entries="@array/brightness_location_entries"
-            android:entryValues="@array/brightness_location_values"
-            android:title="@string/brightness_location_title"
             android:dependency="expanded_widget" />
 
     </PreferenceCategory>

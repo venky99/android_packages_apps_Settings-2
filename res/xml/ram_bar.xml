@@ -35,12 +35,6 @@
             android:entries="@array/entries_ram_bar_mode"
             android:entryValues="@array/values_ram_bar_mode" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="ram_bar_style"
-        android:title="@string/advanced_settings_title">
-
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="ram_bar_color_app_mem"
             android:title="@string/ram_bar_color_app_mem_color"

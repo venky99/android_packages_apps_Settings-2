@@ -19,8 +19,8 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
-        android:key="lock_screen"
-        android:title="@string/general_settings_title">
+       android:key="options_group"
+       android:title="@string/advanced_settings_title">
 
         <CheckBoxPreference
             android:key="lockscreen_auto_rotate"
@@ -36,28 +36,25 @@
             android:entryValues="@array/lockscreen_battery_status_values"
             android:defaultValue="0" />
 
-    </PreferenceCategory>
+       <PreferenceScreen
+           android:key="lockscreen_buttons"
+           android:fragment="com.android.settings.liquid.LockscreenButtons"
+           android:summary="@string/lockscreen_buttons_summary"
+           android:title="@string/lockscreen_buttons_title" />
 
-    <PreferenceCategory
-        android:key="lockscreen_style_options"
-        android:title="@string/lockscreen_style_title">
+        <PreferenceScreen
+            android:key="lock_screen_widgets"
+            android:fragment="com.android.settings.liquid.LockscreenWidgets"
+            android:title="@string/lockscreen_widgets_title"
+            android:summary="@string/lockscreen_widgets_summary" />
 
-        <ListPreference
-            android:key="lockscreen_background"
-            android:persistent="false"
-            android:dialogTitle="@string/lockscreen_custom_background_title"
-            android:title="@string/lockscreen_custom_background_title"
-            android:entries="@array/lockscreen_background_entries"
-            android:entryValues="@array/lockscreen_background_values"/>
-
-        <com.android.settings.widget.SeekBarPreference
-            android:key="lockscreen_alpha"
-            android:title="@string/lockscreen_alpha_title" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="lockscreen_text_color"
-            android:title="@string/lockscreen_text_color_title"
-            android:defaultValue="0xffffffff" />
+        <PreferenceScreen
+            android:key="screen_security"
+            android:fragment="com.android.settings.SecuritySettings"
+            android:title="@string/screen_security_category"
+            android:summary="@string/screen_security_summary">
+            <extra android:name="liquid_security" android:value="true" />
+        </PreferenceScreen>
 
     </PreferenceCategory>
 
@@ -90,28 +87,25 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-       android:key="options_group"
-       android:title="@string/additional_settings_title">
+        android:key="lockscreen_style_options"
+        android:title="@string/lockscreen_style_title">
 
-       <PreferenceScreen
-           android:key="lockscreen_buttons"
-           android:fragment="com.android.settings.liquid.LockscreenButtons"
-           android:summary="@string/lockscreen_buttons_summary"
-           android:title="@string/lockscreen_buttons_title" />
+        <ListPreference
+            android:key="lockscreen_background"
+            android:persistent="false"
+            android:dialogTitle="@string/lockscreen_custom_background_title"
+            android:title="@string/lockscreen_custom_background_title"
+            android:entries="@array/lockscreen_background_entries"
+            android:entryValues="@array/lockscreen_background_values"/>
 
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.SecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-            <extra android:name="liquid_security" android:value="true" />
-        </PreferenceScreen>
+        <com.android.settings.widget.SeekBarPreference
+            android:key="lockscreen_alpha"
+            android:title="@string/lockscreen_alpha_title" />
 
-        <PreferenceScreen
-            android:key="lock_screen_widgets"
-            android:fragment="com.android.settings.liquid.LockscreenWidgets"
-            android:title="@string/lockscreen_widgets_title"
-            android:summary="@string/lockscreen_widgets_summary" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="lockscreen_text_color"
+            android:title="@string/lockscreen_text_color_title"
+            android:defaultValue="0xffffffff" />
 
     </PreferenceCategory>
 

@@ -57,7 +57,7 @@
 
         <ListPreference
             android:key="clock_date_display"
-            android:title="@string/clock_date_display"
+            android:title="@string/clock_date_display_title"
             android:summary="@string/clock_date_display_summary"
             android:entries="@array/clock_date_display_entries"
             android:entryValues="@array/clock_date_display_values"

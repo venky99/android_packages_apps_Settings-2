@@ -17,9 +17,7 @@
 package com.android.settings.liquid;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.INotificationManager; 
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -30,7 +28,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -55,7 +52,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.util.Helpers;
 import com.android.settings.Utils;
 import android.widget.EditText;
 
@@ -69,44 +65,28 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private static final String KEY_NOTIF_STYLE = "notification_style";
     private static final String KEY_USE_ALT_RESOLVER = "use_alt_resolver";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";
-    private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
     private static final String KEY_VIBRATION_MULTIPLIER = "vibrator_multiplier";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
-    private static final String KEY_USER_MODE_UI = "user_mode_ui";
-    private static final String KEY_HIDE_EXTRAS = "hide_extras";
-    private static final String KEY_HALO_STATE = "halo_state";
-    private static final String KEY_HALO_HIDE = "halo_hide";
-    private static final String KEY_HALO_PAUSE = "halo_pause";
-    private static final String KEY_HALO_REVERSED = "halo_reversed"; 
+    private static final String KEY_HALO_OPTIONS = "halo_options";
+    private static final String KEY_TABLET_SETTINGS = "tablet_settings";
 
-    private Preference mLcdDensity;
     private CheckBoxPreference mUseAltResolver;
     private PreferenceCategory mAdvanced;
     private Preference mCustomLabel;
     private Preference mNotifStyle;
+    private Preference mHaloOptions;
+    private Preference mTabletSettings;
     private Preference mRamBar;
-    private CheckBoxPreference mDualPane;
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
-    private ListPreference mUserModeUI;
-    private CheckBoxPreference mHideExtras;
-	private ListPreference mHaloState;
-    private CheckBoxPreference mHaloHide;
-    private CheckBoxPreference mHaloPause;
-    private CheckBoxPreference mHaloReversed; 
 
-    private int newDensityValue;
-    DensityChanger densityFragment;
     private String mCustomLabelText = null;
-	
-    private INotificationManager mNotificationManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.interface_settings);
-
         PreferenceScreen prefs = getPreferenceScreen();
 
         mAdvanced = (PreferenceCategory) prefs.findPreference(ADVANCED_SETTINGS);
@@ -119,51 +99,12 @@ public class InterfaceSettings extends SettingsPreferenceFragment
 
         mCustomLabel = findPreference(KEY_CARRIER_LABEL);
         mCustomLabel.setOnPreferenceClickListener(mCustomLabelClicked);
-
         updateCustomLabelTextSummary();
-
-        mLcdDensity = findPreference("lcd_density_setup");
-        mLcdDensity.setOnPreferenceChangeListener(this);
-        String currentProperty = SystemProperties.get("ro.sf.lcd_density");
-        try {
-            newDensityValue = Integer.parseInt(currentProperty);
-        } catch (Exception e) {
-            getPreferenceScreen().removePreference(mLcdDensity);
-        }
-        mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
         mRamBar.setOnPreferenceChangeListener(this);
         updateRamBar();
-
-        mNotificationManager = INotificationManager.Stub.asInterface(
-                ServiceManager.getService(Context.NOTIFICATION_SERVICE));
-
-        mHaloState = (ListPreference) findPreference(KEY_HALO_STATE);
-        mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
-        mHaloState.setOnPreferenceChangeListener(this);
-
-        mHaloHide = (CheckBoxPreference) findPreference(KEY_HALO_HIDE);
-        mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_HIDE, 0) == 1);
-
-        int isLowRAM = (ActivityManager.isLargeRAM()) ? 0 : 1;
-        mHaloPause = (CheckBoxPreference) findPreference(KEY_HALO_PAUSE);
-        mHaloPause.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_PAUSE, isLowRAM) == 1);
-
-        mHaloReversed = (CheckBoxPreference) findPreference(KEY_HALO_REVERSED);
-        mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HALO_REVERSED, 1) == 1);
  
-        mDualPane = (CheckBoxPreference) findPreference(KEY_FORCE_DUAL_PANE);
-        mDualPane.setOnPreferenceChangeListener(this);
-        boolean preferDualPane = getResources().getBoolean(
-                com.android.internal.R.bool.preferences_prefer_dual_pane);
-        boolean dualPaneMode = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.DUAL_PANE_PREFS, (preferDualPane ? 1 : 0)) == 1;
-        mDualPane.setChecked(dualPaneMode);
-
         mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
@@ -178,17 +119,6 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         mVibrationMultiplier.setValue(currentValue);
         mVibrationMultiplier.setSummary(currentValue);
 
-        mHideExtras = (CheckBoxPreference) findPreference(KEY_HIDE_EXTRAS);
-        mHideExtras.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.HIDE_EXTRAS_SYSTEM_BAR, 0) == 1);
-
-        mUserModeUI = (ListPreference) findPreference(KEY_USER_MODE_UI);
-        int uiMode = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CURRENT_UI_MODE, 0);
-        mUserModeUI.setValue(Integer.toString(Settings.System.getInt(
-                getActivity().getContentResolver(), Settings.System.USER_UI_MODE, uiMode)));
-        mUserModeUI.setOnPreferenceChangeListener(this);
-
         // Only show the hardware keys config on a device that does not have a navbar
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
                 ServiceManager.getService(Context.WINDOW_SERVICE));
@@ -200,8 +130,10 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             // Let's assume they don't have hardware keys
             mAdvanced.removePreference(findPreference(KEY_HARDWARE_KEYS));
         }
-
+        // Load preferences
         mNotifStyle = findPreference(KEY_NOTIF_STYLE);
+        mHaloOptions = findPreference(KEY_HALO_OPTIONS);
+        mTabletSettings = findPreference(KEY_TABLET_SETTINGS);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -258,52 +190,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment
                     Settings.System.ACTIVITY_RESOLVER_USE_ALT,
                     (Boolean) newValue ? 1 : 0);
             return true;
-        } else if (preference == mDualPane) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.DUAL_PANE_PREFS,
-                    (Boolean) newValue ? 1 : 0);
-            return true;
-        } else if (preference == mUserModeUI) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
-            Helpers.restartSystemUI();
-            return true;
-        } else if (preference == mHideExtras) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;  
-        } else if (preference == mHaloHide) {    
-            Settings.System.putInt(getActivity().getContentResolver(),  
-                    Settings.System.HALO_HIDE, mHaloHide.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mHaloPause) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.HALO_PAUSE, mHaloPause.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mHaloReversed) {    
-            Settings.System.putInt(getActivity().getContentResolver(),  
-                    Settings.System.HALO_REVERSED, mHaloReversed.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mHaloState) {
-            boolean state = Integer.valueOf((String) newValue) == 1;
-            try {
-                mNotificationManager.setHaloPolicyBlack(state);
-            } catch (android.os.RemoteException ex) {
-                // System dead
-            }
-            return true;
         }
         return false;
-    }
-
-    private boolean isHaloPolicyBlack() {
-        try {
-            return mNotificationManager.isHaloPolicyBlack();
-        } catch (android.os.RemoteException ex) {
-                // System dead
-        }
-        return true;
     }
 
     public OnPreferenceClickListener mCustomLabelClicked = new OnPreferenceClickListener() {
@@ -340,4 +228,3 @@ public class InterfaceSettings extends SettingsPreferenceFragment
         }
     };
 }
-

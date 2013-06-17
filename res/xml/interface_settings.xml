@@ -23,8 +23,8 @@
 
 	    <PreferenceScreen
 	        android:key="chronus"
-            android:title="@string/chronus_title"
-	    	android:summary="@string/chronus_summary" >
+            android:title="@string/clock_widget_title"
+            android:summary="@string/clock_widget_summary">
 	   	    <intent android:action="android.intent.action.MAIN"
             	android:targetPackage="com.cyanogenmod.lockclock"
 	    	    android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
@@ -32,43 +32,33 @@
 	    
     	<PreferenceScreen
             android:key="hardware_keys"
-            android:fragment="com.android.settings.liquid.HardwareKeys"
-            android:title="@string/hardware_keys_title" />
+            android:title="@string/hardware_keys_title"
+            android:summary="@string/hardware_keys_summary"
+            android:fragment="com.android.settings.liquid.HardwareKeys" />
+
+    	<PreferenceScreen
+            android:key="halo_options"
+            android:title="@string/halo_options_title"
+            android:summary="@string/halo_options_summary"
+            android:fragment="com.android.settings.liquid.HaloOptions" />
 
         <PreferenceScreen
             android:key="notification_style"
-            android:fragment="com.android.settings.liquid.NotificationDrawer"
-            android:title="@string/notification_drawer_title" />
+            android:title="@string/notification_drawer_title"
+            android:summary="@string/notification_drawer_summary"
+            android:fragment="com.android.settings.liquid.NotificationDrawer" />
 
         <PreferenceScreen
             android:key="recents_ram_bar"
-            android:fragment="com.android.settings.liquid.RamBar"
-            android:title="@string/ram_bar" />
+            android:title="@string/recents_rambar_title"
+            android:summary="@string/recents_rambar_summary"
+            android:fragment="com.android.settings.liquid.RamBar" />
 
-        <ListPreference
-            android:key="halo_state"
-            android:dialogTitle="@string/halo_state_title"
-            android:title="@string/halo_state_title"
-            android:summary="@string/halo_state_summary"
-            android:entries="@array/entries_halo_state"
-            android:entryValues="@array/values_halo_state" />
-
-        <CheckBoxPreference
-            android:key="halo_hide"
-            android:title="@string/halo_hide_title"
-            android:summary="@string/halo_hide_summary"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="halo_pause"
-            android:title="@string/halo_pause_title"
-            android:summary="@string/halo_pause_summary" />
-
-        <CheckBoxPreference
-            android:key="halo_reversed"
-            android:title="@string/halo_reversed_title"
-            android:summary="@string/halo_reversed_summary"
-            android:defaultValue="true" />
+        <PreferenceScreen
+            android:key="tablet_settings"
+            android:title="@string/tablet_settings_title"
+            android:summary="@string/tablet_settings_summary"
+            android:fragment="com.android.settings.liquid.TabletSettings" />
 	
     </PreferenceCategory>
 
@@ -115,51 +105,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="interface_tablet"
-        android:title="@string/tablet_settings_title">
-
-        <CheckBoxPreference
-            android:key="force_dual_pane"
-            android:title="@string/force_dual_pane_title"
-            android:summary="@string/force_dual_pane_summary" />
-
-        <CheckBoxPreference
-            android:key="hide_extras"
-            android:title= "@string/hide_extras"
-            android:summary= "@string/hide_extras_summary"
-            android:defaultValue="false" />
-            
-        <PreferenceScreen
-            android:key="lcd_density_setup"
-            android:fragment="com.android.settings.liquid.DensityChanger"
-            android:title="@string/lcd_density_title"
-            android:summary="@string/lcd_density_summary" />
-
-        <ListPreference
-            android:key="user_mode_ui"
-            android:title="@string/user_mode_ui"
-            android:summary="@string/user_mode_ui_summary"
-            android:entries="@array/user_mode_ui_entries"
-            android:entryValues="@array/user_mode_ui_values" />
-
-        <PreferenceScreen
-	        android:key="xposed_installer"
-            android:title="@string/xposed_install_title"
-	        android:summary="@string/xposed_install_summary" >
-	        <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="de.robv.android.xposed.installer"
-                android:targetClass="de.robv.android.xposed.installer.XposedInstallerActivity" />
-        </PreferenceScreen>
-
-        <PreferenceScreen
-            android:key="xposed_dpi"
-            android:title="@string/xposed_dpi_title"
-	        android:summary="@string/xposed_dpi_summary" >
-	        <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="de.robv.android.xposed.mods.appsettings"
-                android:targetClass="de.robv.android.xposed.mods.appsettings.XposedModActivity" />
-        </PreferenceScreen>
-
-    </PreferenceCategory>
 </PreferenceScreen>
