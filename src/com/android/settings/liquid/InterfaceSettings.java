@@ -148,7 +148,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
                 Settings.System.HALO_HIDE, 0) == 1);
 
         int isLowRAM = (ActivityManager.isLargeRAM()) ? 0 : 1;
-        mHaloPause = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_PAUSE);
+        mHaloPause = (CheckBoxPreference) findPreference(KEY_HALO_PAUSE);
         mHaloPause.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_PAUSE, isLowRAM) == 1);
 
