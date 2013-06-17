@@ -4992,12 +4992,14 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="hardware_keys_action_camera">Camera</string>
 
     <!-- HALO Options -->
+    <string name="halo_enabled_title">Enable HALO</string>
+    <string name="halo_enabled_summary">When checked HALO feature is enabled</string>
     <string name="halo_hide_title">Hide After Activity</string>
     <string name="halo_hide_summary">Appears then scrolls out of sight</string>
     <string name="halo_reversed_title">Reverse Gestures</string>
     <string name="halo_reversed_summary">Drag using double tap swipe gestures</string>
     <string name="halo_state_title">Current Policy</string>
-    <string name="halo_state_summary">Black or white list notification pings</string>
+    <string name="halo_state_summary">Black or white list HALO notifications</string>
     <string name="halo_state_black">Blacklist</string>
     <string name="halo_state_white">Whitelist</string>
     <string name="halo_pause_title">Pause Active App</string>
