@@ -177,8 +177,10 @@ public class StylusGestures extends SettingsPreferenceFragment implements
     }
 
     private void setPrefValue(ListPreference pref, String packageName) {
-        if (packageName == null)
-            return;
+        if (packageName == null) {
+            packageName = String.valueOf(KEY_NO_ACTION);
+        }
+
         String text = mapUpdateValue(packageName);
         if (text != null) {
             pref.setValue(packageName);
