@@ -34,8 +34,8 @@ import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class HaloOptions extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener {
+public class HaloOptions extends SettingsPreferenceFragment
+    implements OnPreferenceChangeListener {
 
     private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_HIDE = "halo_hide";
@@ -46,6 +46,8 @@ public class HaloOptions extends SettingsPreferenceFragment implements
     private CheckBoxPreference mHaloHide;
     private CheckBoxPreference mHaloPause;
     private CheckBoxPreference mHaloReversed;
+
+    private Context mContext;
     private INotificationManager mNotificationManager;
 
     @Override
@@ -54,6 +56,7 @@ public class HaloOptions extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.halo_options);
         PreferenceScreen prefSet = getPreferenceScreen();
+        mContext = getActivity();
 
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
@@ -76,20 +79,32 @@ public class HaloOptions extends SettingsPreferenceFragment implements
                 Settings.System.HALO_REVERSED, 1) == 1);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
+    private boolean isHaloPolicyBlack() {
+        try {
+            return mNotificationManager.isHaloPolicyBlack();
+        } catch (android.os.RemoteException ex) {
+            // System dead
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mHaloHide) {    
-            Settings.System.putInt(getActivity().getContentResolver(),  
+            Settings.System.putInt(mContext.getContentResolver(),  
                     Settings.System.HALO_HIDE, mHaloHide.isChecked() ? 1 : 0);
-            return true;
         } else if (preference == mHaloPause) {
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_PAUSE, mHaloPause.isChecked() ? 1 : 0);
-            return true;
         } else if (preference == mHaloReversed) {    
-            Settings.System.putInt(getActivity().getContentResolver(),  
+            Settings.System.putInt(mContext.getContentResolver(),  
                     Settings.System.HALO_REVERSED, mHaloReversed.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mHaloState) {
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mHaloState) {
             boolean state = Integer.valueOf((String) newValue) == 1;
             try {
                 mNotificationManager.setHaloPolicyBlack(state);
@@ -99,14 +114,5 @@ public class HaloOptions extends SettingsPreferenceFragment implements
             return true;
         }
         return false;
-    }
-
-    private boolean isHaloPolicyBlack() {
-        try {
-            return mNotificationManager.isHaloPolicyBlack();
-        } catch (android.os.RemoteException ex) {
-                // System dead
-        }
-        return true;
     }
 }
