@@ -414,7 +414,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
             }
 
             // App security settings
-            addPreferencesFromResource(R.xml.security_settings_app_liquid;
+            addPreferencesFromResource(R.xml.security_settings_app_liquid);
             mSmsSecurityCheck = (ListPreference) root.findPreference(KEY_SMS_SECURITY_CHECK_PREF);
             if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
                 mSmsSecurityCheck = (ListPreference) root.findPreference(KEY_SMS_SECURITY_CHECK_PREF);
