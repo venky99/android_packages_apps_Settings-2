@@ -2595,7 +2595,8 @@
         <li>Disabled apps</li>\n
         <li>Disabled app notifications</li>\n
         <li>Default applications for actions</li>\n
-        <li>Background data restrictions for apps</li>\n\n
+        <li>Background data restrictions for apps</li>\n
+        <li>Privacy guard</li>\n\n
         You will not lose any app data.</string>
     <!-- [CHAR LIMIT=25] Manage applications screen, menu item.  Confirmation button of dialog to confirm resetting user's app preferences. -->
     <string name="reset_app_preferences_button">Reset apps</string>
@@ -2740,7 +2741,6 @@
     <string name="app_disable_notifications_dlg_text">
         If you turn off notifications for this app, you may miss important alerts and updates.
     </string>
-
     <!-- [CHAR LIMIT=25] Services settings screen, setting option name for the user to go to the screen to view app storage use -->
     <string name="storageuse_settings_title">Storage use</string>
     <!-- Services settings screen, setting option summary for the user to go to the screen to app storage use -->
@@ -4597,9 +4597,11 @@
     <string name="toggleWimax">WiMAX</string>
     <string name="toggleNfc">NFC</string>
 
-    <string name="profile_trigger_title_wifi">Wi-Fi triggers for <xliff:g id="profile">%s</xliff:g></string>
     <string name="profile_trigger_configure">Configure trigger</string>
-    <string name="profile_trigger_wifi">Wi-Fi triggers</string>
+    <string name="profile_triggers">Triggers</string>
+    <string name="profile_trigger_filter_all">All triggers</string>
+    <string name="profile_trigger_filter_wifi">Wi-Fi triggers</string>
+    <string name="profile_trigger_filter_bluetooth">Bluetooth triggers</string>
     <string name="profile_write_nfc_tag">Write to NFC tag</string>
     <string name="profile_write_touch_tag">Touch tag to write</string>
     <string name="profile_write_success">Tag successfully written</string>
@@ -4680,6 +4682,13 @@
 
     <!-- Apn Confirmation -->
     <string name="confirm_delete_apn">The APN will be deleted</string>
+
+    <!-- Privacy Guard -->
+    <string name="privacy_guard_switch_label">Enable Privacy Guard</string>
+    <string name="privacy_guard_dlg_title">Enable Privacy Guard?</string>
+    <string name="privacy_guard_dlg_text">When Privacy Guard is enabled, the app will not be able to access personal data such as contacts, messages, or call logs.</string>
+    <string name="privacy_guard_default_title">Privacy Guard</string>
+    <string name="privacy_guard_default_summary">Enable Privacy Guard by default for newly-installed apps</string>
 
     <!-- Automatic Brightness -->
     <string name="custom_brightness_summary">View or change custom brightness</string>
@@ -4766,11 +4775,20 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Gestures Options -->
     <string name="gestures_action_empty">None</string>
-    <string name="gestures_action_home">Go To Home</string>
-    <string name="gestures_action_back">Emulate Back Key</string>
-    <string name="gestures_action_menu">Emulate Menu Key</string>
+    <string name="gestures_action_home">Home Key</string>
+    <string name="gestures_action_back">Back Key</string>
+    <string name="gestures_action_menu">Menu Key</string>
     <string name="gestures_action_search">Invoke Search</string>
-    <string name="gestures_action_recent">Recent Applications</string>
+    <string name="gestures_action_recent">Recent Apps</string>
+
+    <!-- Keyboard Input -->
+    <string name="ime_switcher_notify">Selector notification</string>
+    <string name="title_keyboard_input">Keyboard and input methods</string>
+    <string name="ime_switcher_notify_summary">Display input method selector notification</string>
+    <string name="disable_fullscreen_keyboard_title">Disable fullscreen keyboard</string>
+    <string name="disable_fullscreen_keyboard_summary">Landscape keyboard will never take up entire screen</string>
+    <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
+    <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
 
     <!-- Lockscreen Security -->
     <string name="screen_security_category">Security</string>
@@ -4824,8 +4842,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="less_notification_sounds_summary">Limit notifications of each app to play once per choosen time period</string>
     <string name="swap_volume_buttons_title">Swap volume buttons</string>
     <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated by 90 or 180 degrees</string>
-    <string name="power_notifications_category_title">Power sounds</string>
+    <string name="power_notifications_category_title">Charging sounds</string>
     <string name="power_notifications_enable_title">Enable</string>
+    <string name="power_notifications_enable_summary">Play a sound when connecting or disconnecting the charger</string>
     <string name="power_notifications_vibrate_title">Vibrate</string>
     <string name="power_notifications_ringtone_title">Notification sound</string>
     <string name="power_notifications_ringtone_silent">Silent</string>
@@ -4834,8 +4853,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="gestures_settings_title">Stylus gestures</string>
     <string name="category_spen_title">Stylus gestures</string>
     <string name="enable_subcat_title">Stylus</string>
-    <string name="enable_spen_title_head">Enable stylus gestures</string>
-    <string name="enable_spen_summary_head">Allows stylus button swipe gestures to launch custom actions. Warning: Applications will not be able to recieve input fired by holding stylus button.</string>
+    <string name="enable_spen_title_head">Enable gestures</string>
+    <string name="enable_spen_summary_head">Use swipe gestures by holding down the stylus button</string>
     <string name="gestures_subcat_title">Gestures</string>
     <string name="gestures_left_spen_title_head">Left swipe</string>
     <string name="gestures_left_spen_summary_head">Allows to launch custom action on left swipe</string>
@@ -4992,12 +5011,14 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="hardware_keys_action_camera">Camera</string>
 
     <!-- HALO Options -->
+    <string name="halo_enabled_title">Enable HALO</string>
+    <string name="halo_enabled_summary">When checked HALO feature is enabled</string>
     <string name="halo_hide_title">Hide After Activity</string>
     <string name="halo_hide_summary">Appears then scrolls out of sight</string>
     <string name="halo_reversed_title">Reverse Gestures</string>
     <string name="halo_reversed_summary">Drag using double tap swipe gestures</string>
     <string name="halo_state_title">Current Policy</string>
-    <string name="halo_state_summary">Black or white list notification pings</string>
+    <string name="halo_state_summary">Black or white list HALO notifications</string>
     <string name="halo_state_black">Blacklist</string>
     <string name="halo_state_white">Whitelist</string>
     <string name="halo_pause_title">Pause Active App</string>
@@ -5036,15 +5057,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="low_battery_warning_policy_sound">Sound Only</string>
     <string name="low_battery_warning_policy_disabled">Disabled</string>
     <string name="vibrator_multiplier_title">Vibration Multiplier</string>
-
-    <!-- Keyboard Input -->
-    <string name="ime_switcher_notify">Selector notification</string>
-    <string name="title_keyboard_input">Keyboard and input methods</string>
-    <string name="ime_switcher_notify_summary">Display input method selector notification</string>
-    <string name="disable_fullscreen_keyboard_title">Disable fullscreen keyboard</string>
-    <string name="disable_fullscreen_keyboard_summary">Landscape keyboard will never take up entire screen</string>
-    <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
-    <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
 
     <!-- LCD Density -->
     <string name="dpi">DPI</string>
@@ -5879,6 +5891,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="status_bar_toggle_brightness">Brightness Control</string>
     <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across statusbar</string>
     <string name="status_bar_toggle_info">Automatic brightness is enabled</string>
+    <string name="statusbar_quick_peek_title">Quick Peek</string>
+    <string name="statusbar_quick_peek_summary">Peek at statusbar by swiping from top edge</string>
 
     <!-- Statusbar Style -->
     <string name="status_bar_transparency_title">Statusbar Alpha</string>
@@ -5896,6 +5910,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="user_mode_ui_summary">Change navbar and statusbar style</string>
     <string name="phone_mode_ui">Phone (navbar to side in landscape)</string>
     <string name="tablet_mode_ui">Tablet (combined navbar and systembar)</string>
+    <string name="phablet_mode_ui">Phablet (navbar at bottom in landscape)</string>
     <string name="force_dual_pane_title">Force Dual Panel</string>
     <string name="force_dual_pane_summary">Restart settings to apply this change</string>
     <string name="xposed_dpi_title">Xposed DPI Settings</string>
