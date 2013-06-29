@@ -62,7 +62,7 @@ public class QuickSettingsUtil {
     public static final String TILE_QUIETHOURS = "toggleQuietHours";
     public static final String TILE_VOLUME = "toggleVolume";
     public static final String TILE_EXPANDED_DESKTOP = "toggleExpandedDesktop";
-    public static final String TILE_CAMERA = "toggleCamera"
+    public static final String TILE_CAMERA = "toggleCamera";
     public static final String TILE_CUSTOMSHORTCUT = "toggleCustomShortcut";
     public static final String TILE_MUSIC = "toggleMusic";
 

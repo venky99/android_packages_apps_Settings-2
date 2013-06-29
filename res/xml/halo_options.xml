@@ -59,7 +59,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/advanced_settings_title">
+        android:title="@string/style_settings_title">
 
         <CheckBoxPreference
             android:key="halo_colors"
