@@ -68,6 +68,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
     private static final String KEY_BACKGROUND_PREF = "lockscreen_background";
     private static final String KEY_BACKGROUND_ALPHA_PREF = "lockscreen_alpha";
     private static final String KEY_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
+    private static final String KEY_LOCKSCREEN_MUSIC_CONTROLS = "lockscreen_music_controls";
 
     private ListPreference mBatteryStatus;
     private PreferenceScreen mLockscreenButtons;
@@ -79,6 +80,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
     private CheckBoxPreference mLockscreenEightTargets;
     private Preference mShortcuts;
     private CheckBoxPreference mLockscreenShortcutsLongpress;
+    private CheckBoxPreference mMusicControls;
 
     private boolean mIsScreenLarge;
 
@@ -152,6 +154,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
         mLockscreenEightTargets.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.LOCKSCREEN_EIGHT_TARGETS, 0) == 1);
 
+        mMusicControls = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_MUSIC_CONTROLS);
+        mMusicControls.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_MUSIC_CONTROLS, 1) == 1);
+
         mLockscreenShortcutsLongpress = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_SHORTCUTS_LONGPRESS);
         mLockscreenShortcutsLongpress.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.LOCKSCREEN_SHORTCUTS_LONGPRESS, 0) == 1);
@@ -215,6 +221,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
         if (preference == mLockscreenAutoRotate) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_AUTO_ROTATE, mLockscreenAutoRotate.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mMusicControls) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_MUSIC_CONTROLS, mMusicControls.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mLockscreenEightTargets) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),

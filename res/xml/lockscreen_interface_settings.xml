@@ -90,6 +90,10 @@
         android:key="lockscreen_style_options"
         android:title="@string/lockscreen_style_title">
 
+        <com.android.settings.widget.SeekBarPreference
+            android:key="lockscreen_alpha"
+            android:title="@string/lockscreen_alpha_title" />
+
         <ListPreference
             android:key="lockscreen_background"
             android:persistent="false"
@@ -98,14 +102,16 @@
             android:entries="@array/lockscreen_background_entries"
             android:entryValues="@array/lockscreen_background_values"/>
 
-        <com.android.settings.widget.SeekBarPreference
-            android:key="lockscreen_alpha"
-            android:title="@string/lockscreen_alpha_title" />
-
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="lockscreen_text_color"
             android:title="@string/lockscreen_text_color_title"
             android:defaultValue="0xffffffff" />
+
+        <CheckBoxPreference
+            android:key="lockscreen_music_controls"
+            android:persistent="false"
+            android:title="@string/lockscreen_music_controls_title"
+            android:summary="@string/lockscreen_music_controls_summary" />
 
     </PreferenceCategory>
 

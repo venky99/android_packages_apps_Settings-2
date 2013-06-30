@@ -5180,6 +5180,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="lockscreen_battery_status_alwayson">Always On</string>
     <string name="lockscreen_vibrate_enabled_title">Vibrate</string>
     <string name="lockscreen_vibrate_enabled_head">Vibrate when unlocking your device</string>
+    <string name="lockscreen_music_controls_title">Music Controls</string>
+    <string name="lockscreen_music_controls_summary">Show controls while music is playing</string>
 
     <!-- Lockscreen Icons -->
     <string name="lockscreen_shortcuts_icon_picker_alarm">Alarm</string>
