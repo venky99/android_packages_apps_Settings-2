@@ -208,11 +208,6 @@ public class QuickSettingsTiles extends Fragment {
             QuickSettingsUtil.TILES_DEFAULT.remove(QuickSettingsUtil.TILE_BLUETOOTH);
         }
 
-        // Don't show the Camera tile if the device has no cameras
-        if (!deviceSupportsCamera()) {
-            QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_CAMERA);
-        }
-
         // Dont show the profiles tile if profiles are disabled
         if (Settings.System.getInt(resolver, Settings.System.SYSTEM_PROFILES_ENABLED, 1) != 1) {
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_PROFILE);
@@ -417,9 +412,5 @@ public class QuickSettingsTiles extends Fragment {
     private boolean deviceSupportsLte() {
         final TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE) || tm.getLteOnGsmMode() != 0;
-    }
-
-    private boolean deviceSupportsCamera() {
-        return Camera.getNumberOfCameras() > 0;
     }
 }
