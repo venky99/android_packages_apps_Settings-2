@@ -4839,6 +4839,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="volume_ring_only_description">Ringtone</string>
     <string name="notification_convert_sound_to_vibration_title">Notification conversion</string>
     <string name="notification_convert_sound_to_vibration_summary">Convert sounds to vibrations when using vibrate mode</string>
+    <string name="notification_vibrate_during_calls_title">Vibrate during call</string>
+    <string name="notification_vibrate_during_calls_summary">Incoming notifications will softly vibrate during phone calls</string>
     <string name="volume_adjust_sounds_enable_title">Volume adjustment sound</string>
     <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with rocker buttons</string>
     <string name="sound_lock_volume_keys_title">Lock volume keys</string>
