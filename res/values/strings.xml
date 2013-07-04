@@ -5929,6 +5929,11 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="ram_bar_color_disabled">Disabled</string>
     <string name="ram_bar_button_help">Help</string>
     <string name="ram_bar_button_reset">Reset Colors</string>
+    <string name="clear_recents_position_title">Clear Recents Position</string>
+    <string name="clear_recents_position_left">Left</string>
+    <string name="clear_recents_position_right">Right</string>
+    <string name="circle_ram_title">Recents RAM Circle</string>
+    <string name="circle_ram_summary">Circular meter around clear recents button</string> 
 
     <!-- Shortcut Picker -->
     <string name="use_custom_app_title">Use custom application</string>
@@ -6043,11 +6048,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="xposed_install_summary">*Install before using DPI settings app*</string>
     <string name="hide_extras">Hide Extras</string>
     <string name="hide_extras_summary">Hide systembar stuff (restart UI)</string>
-
-    <!-- Clear Recents Position -->
-    <string name="clear_recents_position_title">Clear Recents Position</string>
-    <string name="clear_recents_position_left">Left</string>
-    <string name="clear_recents_position_right">Right</string>
 
     <!-- **** LIQUIDSMOOTH ADDITIONS FINISH **** -->
 </resources>
