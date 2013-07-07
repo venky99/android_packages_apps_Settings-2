@@ -5831,8 +5831,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="quick_pulldown_off">Off</string>
     <string name="quick_pulldown_left">Left</string>
     <string name="quick_pulldown_right">Right</string>
-    <string name="no_notifications_pulldown_summary_nonperm">Pulldown quick settings if no non-permanent notifications are present</string>
-    <string name="no_notifications_pulldown_summary_all">Pulldown quick settings if no notifications are present</string>
+    <string name="no_notifications_pulldown_summary_nonperm">if no non-permanent notifications</string>
+    <string name="no_notifications_pulldown_summary_all">if no notifications are present</string>
     <string name="no_notifications_pulldown_off">Off</string>
     <string name="no_notifications_pulldown_nonperm">Non-Permanent Only</string>
     <string name="no_notifications_pulldown_all">All Notifications</string>
@@ -5883,8 +5883,14 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="mms_breath_summary">Show sms icon with breathing</string>
     <string name="missed_call_breath">Breathing Missed Call</string>
     <string name="missed_call_breath_summary">Show missed call breathing</string>
+
+    <!-- Autohide Statusbar -->
     <string name="auto_hide_statusbar">Autohide Statusbar</string>
-    <string name="auto_hide_statusbar_summary">When there are no notifications</string>
+    <string name="auto_hide_statusbar_summary_nonperm">if no non-permanent notifications</string>
+    <string name="auto_hide_statusbar_summary_all">if no notifications are present</string>
+    <string name="auto_hide_statusbar_off">Off</string>
+    <string name="auto_hide_statusbar_nonperm">Non-Permanent Only</string>
+    <string name="auto_hide_statusbar_all">All Notifications</string>
 
     <!-- Statusbar Battery Bar -->
     <string name="battery_bar">Battery Bar Location</string>
