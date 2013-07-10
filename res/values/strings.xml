@@ -4861,6 +4861,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="sms_security_check_limit_default">30 (Default)</string>
 
     <!-- Sound Settings -->
+    <string name="notifications_category_title">Notifications</string>
     <string name="volume_overlay_title">Volume panel style</string>
     <string name="volbtn_music_controls_title">Volume rocker music controls</string>
     <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rockers seeks tracks</string>
