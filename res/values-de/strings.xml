@@ -669,6 +669,8 @@
     <string name="vibrate_in_silent_title">Im Lautlos-Modus vibrieren</string>
     <string name="notification_sound_title">Standardbenachrichtigung</string>
     <string name="notification_behaviour_title">Benachrichtungsverhalten</string>
+    <string name="notification_settings_btn_title">Zeige Einstellungknopf</string>
+
     <string name="incoming_call_volume_title">Klingelton</string>
     <string name="notification_volume_title">Benachrichtigung</string>
     <string name="checkbox_notification_same_as_incoming_call">Lautstärke für eingehende Anrufe für Benachrichtigungen verwenden</string>
@@ -1525,6 +1527,7 @@
     <string name="sound_category_notification_title">Benachrichtigungen</string>
     <string name="sound_category_call_ringtone_vibrate_title">Klingelton &amp; Vibration für Anrufe</string>
     <string name="sound_category_system_title">System</string>
+    <string name="headset_category_title">Kopfhörer</string>
     <string name="wifi_setup_title">WLAN-Einrichtung</string>
     <string name="wifi_setup_title_editing_network">Mit WLAN-Netzwerk verbinden: <xliff:g id="NETWORK_NAME">%s</xliff:g></string>
     <string name="wifi_setup_title_connecting_network">Verbinden mit WLAN <xliff:g id="NETWORK_NAME">%s</xliff:g>...</string>
@@ -2101,6 +2104,12 @@
     <string name="sound_title">Lautstärke</string>
     <string name="volbtn_music_controls_title">Lautstärketasten und Musik</string>
     <string name="volbtn_music_controls_summary">Bei abgeschaltetem Bildschirm durch langen Druck auf Lautstärketasten zum nächsten / vorherigen Titel springen</string>
+
+    <string name="headset_connect_player_title">Starte die Musik App</string>
+    <string name="headset_connect_player_summary">Starte die Standard Musik App wenn ein Kopfhörer angeschlossen wird</string>
+    <string name="safe_headset_volume_title">Lautstärkenbegrenzung</string>
+    <string name="safe_headset_volume_summary">Verhindert eine zu hohe Lautstärke wenn der Kopfhörer eingestöpselt wird</string>
+
     <string name="volume_adjust_sounds_enable_title">Änderungston</string>
     <string name="volume_adjust_sounds_enable_summary">Beim Anpassen der Lautstärke mit der Lautstärkewippe einen Ton abspielen</string>
     <string name="safe_headset_restore_title">Lautstärkebegrenzung</string>
@@ -2116,6 +2125,17 @@
     <string name="status_bar_style_title">Layout</string>
     <string name="status_bar_signal_text_title">Signalstärke</string>
     <string name="status_bar_style_icon">Symbol</string>
+    <string name="status_bar_icon_opacity">Durchsichtigkeit der Benachrichtigungen</string>
+
+    <string name="status_bar_icon_opacity_summary">Legt die Durchsichtigkeit der Statusleisten Icons fest</string>
+    <string name="mms_breath">SMS-Symbol pulsieren</string>
+    <string name="mms_breath_summary">Zeige das SMS Symbol pulsierend</string>
+    <string name="missed_call_breath">Verpaßte Anrufe pulsieren</string>
+    <string name="missed_call_breath_summary">Zeige verpaßte Anrufe pulsierend</string>
+
+    <string name="statusbar_quick_peek_title">Schnellübersicht</string>
+    <string name="statusbar_quick_peek_summary">Betrachte die Statusleiste durch Swipen von oben</string>
+
     <string name="status_bar_style_hidden">Versteckt</string>
     <string name="status_bar_signal_text_show_text">Wert (dBm)</string>
     <string name="status_bar_transparency_title">Transparenz</string>
@@ -2129,6 +2149,10 @@
     <string name="status_bar_style_reset">Zurücksetzen</string>
     <string name="status_bar_clock">Uhr und Datum</string>
     <string name="status_bar_clock_title">Layout</string>
+
+    <string name="force_dual_pane_title">Forciere duales Panel</string>
+    <string name="force_dual_pane_summary">Um die Veränderungen anzuwenden erneut starten</string>
+
     <string name="clock_title_enable">Ausrichtung</string>
     <string name="clock_enabled">Aktiviert</string>
     <string name="clock_disabled">Deaktiviert</string>
@@ -2152,6 +2176,8 @@
     <string name="status_bar_toggle_info">Automatische Helligkeit ist aktiviert</string>
     <string name="status_bar_notif_count_title">Benachrichtigungszähler</string>
     <string name="status_bar_notif_count_summary">Anzahl der ungelesenen Benachrichtigungen in der Statusleiste anzeigen</string>
+    <string name="status_bar_notification_count_title">Benachrichtigungszähler</string>
+    <string name="status_bar_notification_count_summary">Zeigt die Anzahl der Benachrichtigung</string>
     <string name="title_slim_general">Allgemein</string>
     <string name="display_short">Display</string>
     <string name="misc_short">Sonstiges</string>
@@ -2279,11 +2305,19 @@
     <string name="notification_shortcuts_icon_picker_twitter">Twitter</string>
     <string name="notification_shortcuts_icon_picker_unlock">Entsperren</string>
     <string name="display_title">Display</string>
+    <string name="display_category_general_options_title">Allgemein</string>
     <string name="display_category_rotation_options_title">Bildschirmausrichtung</string>
     <string name="display_category_light_options_title">Licht</string>
     <string name="display_category_brightness_options_title">Helligkeit</string>
     <string name="swap_volume_buttons_title">Lautstärketasten austauschen</string>
     <string name="swap_volume_buttons_summary">Die Lautstärkentasten austauschen wenn der Bildschirm um 90 oder 180 Grad ausgerichtet wird</string>
+
+    <string name="power_notifications_category_title">Lade Sound</string>
+    <string name="power_notifications_enable_title">Aktivieren</string>
+    <string name="power_notifications_enable_summary">Spiele einen Sound beim An- oder Abstöpseln des Ladegeräts</string>
+    <string name="power_notifications_vibrate_title">Vibriere</string>
+    <string name="power_notifications_ringtone_title">Benachrichtigungssound</string>
+
     <string name="custom_brightness_summary">Zeige oder ändere Deine eigenen Helligkeitseinstellungen</string>
     <string name="light_sensor_current_value">Aktueller Sensorwert: <xliff:g id="light_level">%d</xliff:g> Lux</string>
     <string name="auto_brightness_dialog_title">Helligkeitsstufen</string>
@@ -2374,8 +2408,16 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="battery_light_low_color_title">Akku schwach</string>
     <string name="battery_light_medium_color_title">Laden</string>
     <string name="battery_light_full_color_title">Aufgeladen</string>
+
+    <string name="privacy_guard_default_summary">Aktiviere den Privacy Guard standradmäßig für neu installierte Apps</string>
+
     <string name="themes_settings_title">Designs</string>
     <string name="notification_drawer_title">Benachrichtigungsanzeige</string>
+    <string name="notification_drawer_summary">Passe die Banachrichtigungszeile an</string>
+    <string name="recents_rambar_title">Aktuelle RAM-Leiste</string>
+    <string name="recents_rambar_summary">Ansicht oder anpassen recents rambar style</string>
+    <string name="tablet_settings_title">Tablet Einstellungen</string>
+    <string name="tablet_settings_summary">Simuliere oder personalisiere das Tablet Interface</string>
     <string name="notification_style_grouptitle">Layout</string>
     <string name="notification_style_title">Layout</string>
     <string name="notification_style_summary">Ändere das Layout der Benachrichtungsanzeige</string>
@@ -2388,6 +2430,8 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="notification_background_custom_image">Benutzerdefiniertes Bild</string>
     <string name="notification_background_default_wallpaper">Standardhintergrund</string>
     <string name="notification_drawer_custom_background_dialog_title">Farbe auswählen</string>
+    <string name="notification_wallpaper_alpha_title">Hintergrund Alpha</string>
+    <string name="notification_alpha_title">Benachrichtigungs Alpha</string>
     <string name="notif_wallpaper_alpha_title">Hintergrund Transparenz</string>
     <string name="notif_alpha_title">Reihen Transparnz</string>
     <string name="quick_settings_panel_title">Schnelleinstellungen</string>
@@ -2452,6 +2496,7 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="title_no_notifications_pulldown">Schnelles Herunterziehn ohne Benachrichtungen</string>
     <string name="summary_no_notifications_pulldown">Herunterziehen der Schnelleinstellungen wenn keine Benachrichtungen vorhanden sind</string>
     <string name="quicksettings_tiles_style">Layout der Schnelleinstellungen</string>
+    <string name="quicksettings_tiles_category">Layout</string>
     <string name="summary_quicksettings_tiles_style">Aussehen der Kacheln, Textfarbe, Anzahl der Kacheln pro Zeile</string>
     <string name="quicksettings_tiles_style_additional_options">Zusätzliche Einstellungen</string>
     <string name="tiles_per_row_title">Kacheln pro Zeile</string>
@@ -2498,6 +2543,7 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="battery_bar_animate_title">Auflade Animation</string>
     <string name="battery_bar_animate_summary">Die Auflade Animation kann negative Auswirkungen hervorrufen. Aktivieren auf eigene Verantwortung.</string>
     <string name="advanced_settings_title">Erweitert</string>
+    <string name="general_settings_title">Allgemein</string>
     <string name="title_keyboard_input">Tastatur und Eingabemethoden</string>
     <string name="disable_fullscreen_keyboard_title">Deaktiviere Vollbild-Tastatur</string>
     <string name="disable_fullscreen_keyboard_summary">Vollbild-Tastatur verwendet nicht mehr den gesamten Bildschirm</string>
@@ -2523,10 +2569,10 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="root_access_apps">Nur Apps</string>
     <string name="root_access_adb">Nur ADB</string>
     <string name="root_access_all">Apps &amp; ADB</string>
-    <string name="media_scanner_on_boot_title">MediaScanner behavior on boot</string>
-    <string name="media_scanner_on_boot_enabled">Scan media</string>
-    <string name="media_scanner_on_boot_ask">Ask to scan (notification)</string>
-    <string name="media_scanner_on_boot_disabled">Do not scan media</string>
+    <string name="media_scanner_on_boot_title">Medienscanner Verhalten nach dem Booten</string>
+    <string name="media_scanner_on_boot_enabled">Scanne Medien</string>
+    <string name="media_scanner_on_boot_ask">Fragen zu scannen (Benachrichtigung)</string>
+    <string name="media_scanner_on_boot_disabled">Nicht scannen Medien</string>
     <string name="lock_screen_title">Bildschirmsperre</string>
     <string name="lockscreen_additional_options_grouptitle">Weitere Einstellungen</string>
     <string name="lockscreen_slider_grouptitle">Schieber und Verknüfungen</string>
@@ -2579,6 +2625,7 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="lockscreen_auto_rotate_title">Sperrbildschirm-Ausrichtung erlauben</string>
     <string name="lockscreen_auto_rotate_summary">Erlaubt das Ausrichten im Sperrbildschirm. Autom. Ausrichtung muss hierfür aktiviert sein.</string>
     <string name="lockscreen_no_rotate_summary">Autom. Ausrichtung ist deaktiviert. Aktivieren für diese Einstellung.</string>
+    <string name="lockscreen_style_title">Layout</string>
     <string name="lockscreen_style_options_title">Layout des Sperrbildschirms</string>
     <string name="lockscreen_custom_background_title">Hintergrund</string>
     <string name="lockscreen_custom_background_dialog_title">Wähle Farbe</string>
@@ -2695,7 +2742,24 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="lockscreen_buttons_toggle_sound">Klingelmodus</string>
     <string name="lockscreen_buttons_camera">Kamera starten</string>
     <string name="lockscreen_buttons_power_off">Display aus</string>
+
+    <!-- HALO Options -->
+    <string name="halo_enabled_title">Aktiviere HALO</string>
+    <string name="halo_enabled_summary">Falls angehakt wird HALO aktiviert</string>
+    <string name="halo_hide_title">Verstecke nach Benutzung</string>
+    <string name="halo_hide_summary">Erscheint und verschwindet anschließend</string>
+    <string name="halo_reversed_title">Geste für Zurück</string>
+    <string name="halo_reversed_summary">Benutze die Doppel-Tap Geste zum Ziehen</string>
+    <string name="halo_state_title">Aktuelle Regel</string>
+    <string name="halo_state_summary">Black oder White List bei HALO Benachrichtigung</string>
+    <string name="halo_state_black">Blacklist</string>
+    <string name="halo_state_white">Whitelist</string>
+    <string name="halo_pause_title">Pausiere aktive App</string>
+    <string name="halo_pause_summary">Öffne gewählte App während die aktive App pausiert</string>
+    <string name="halo_options_summary">Zeige oder ändere die HALO Einstellungen</string>
+
     <string name="hardware_keys_title">Hardware-Tasten</string>
+    <string name="hardware_keys_summary">Zeige oder ändere die Funktionen der Hardwaretasten</string>
     <string name="hardware_keys_bindings_title">Tastenaktionen</string>
     <string name="hardware_keys_enable_custom_title">Benutzerdefinierte Aktionen aktivieren</string>
     <string name="hardware_keys_home_press_title">Home Taste</string>
@@ -2889,6 +2953,7 @@ Zusätzliche Optionen können durch einen langen Druck auf die Zeile angezeigt w
     <string name="navbar_widgets_note_title">Hinweis</string>
     <string name="navbar_widgets_note_summary">Das Einblenden der Widgetleiste muss zuerst über die Belegung von Hardware-Tasten, Navigationsleisten-Tasten oder dem Navigationsleisten-Ring aktiviert werden.</string>
     <string name="navbar_widgets_title">Widgetleiste</string>
+    <string name="navbar_widgets_style_title">Layout</string>
     <string name="navbar_widgets_style_settings_title">Layout der Widgetleiste</string>
     <string name="navbar_widgets_style_settings_summary">Hintergrundfarbe, Schriftfarbe und Transparenz einstellen</string>
     <string name="navbar_widgets_summary">Widgets zur Widget-Leiste hinzufügen</string>
