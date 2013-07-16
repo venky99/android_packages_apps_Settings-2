@@ -5135,6 +5135,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_effect_color_title">Effect Color</string>
     <string name="halo_effect_color_summary">Requires statusbar to restart</string>
 
+    <!-- HALO Size -->
+    <string name="halo_size_title">HALO Size</string>
+    <string name="halo_size_miniscule">Miniscule</string>
+    <string name="halo_size_small">Small</string>
+    <string name="halo_size_default">Default</string>
+    <string name="halo_size_large">Large</string>
+    <string name="halo_size_gigantic">Gigantic</string>
+    <string name="halo_size_monster">Monster</string>
+
     <!-- Icon Picker -->
     <string name="icon_picker_title">Icon Source</string>
     <string name="icon_picker_system_icons_title">System Icons</string>

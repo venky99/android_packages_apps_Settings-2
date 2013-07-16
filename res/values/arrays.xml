@@ -2318,7 +2318,7 @@
         <item>2</item>
     </string-array>
 
-    <!-- Auto keyboard rotation -->
+    <!-- Auto Keyboard Rotation -->
     <string-array name="keyboard_rotation_timeout_entries" translatable="false">
         <item>2s</item>
         <item>5s</item>
@@ -2376,7 +2376,7 @@
         <item>300000</item>
     </string-array>
 
-    <!-- CRT off animation mode -->
+    <!-- CRT Animation -->
     <string-array name="entries_system_power_crt_mode">
         <item>@string/system_power_crt_mode_horizontal</item>
         <item>@string/system_power_crt_mode_vertical</item>
@@ -2408,7 +2408,7 @@
         <item>5</item>
     </string-array>
 
-    <!-- Notification Behavior Preferences -->
+    <!-- Notification Behavior -->
     <string-array name="notifs_beh_entries">
         <item>Normal</item>
         <item>Never Expand</item>
@@ -2425,6 +2425,7 @@
         <item>5</item>
     </string-array>
 
+    <!-- Statusbar Icon Opacity -->
     <string-array name="status_bar_icon_opacity_entries">
         <item>35%</item>
         <item>45%</item>
@@ -2447,6 +2448,7 @@
         <item>255</item>
     </string-array>
 
+    <!-- HALO State -->
     <string-array name="entries_halo_state">
         <item>@string/halo_state_black</item>
         <item>@string/halo_state_white</item>
@@ -2457,4 +2459,24 @@
         <item>0</item>
     </string-array>
 
+    <!-- HALO Size -->
+    <string-array name="entries_halo_size">
+        <item>@string/halo_size_miniscule</item>
+        <item>@string/halo_size_small</item>
+        <item>@string/halo_size_default</item>
+        <item>@string/halo_size_large</item>
+        <item>@string/halo_size_gigantic</item>
+        <item>@string/halo_size_monster</item>
+    </string-array>
+
+    <string-array name="values_halo_size" translatable="false">
+        <item>0.6</item>
+        <item>0.8</item>
+        <item>1.0</item>
+        <item>1.2</item>
+        <item>1.4</item>
+        <item>1.6</item>
+    </string-array>
+
+    <!-- **** LIQUIDSMOOTH EDITS FINISH **** -->
 </resources>
