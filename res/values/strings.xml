@@ -5932,8 +5932,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="clear_recents_position_title">Clear Recents Position</string>
     <string name="clear_recents_position_left">Left</string>
     <string name="clear_recents_position_right">Right</string>
-    <string name="circle_ram_title">Recents RAM Circle</string>
-    <string name="circle_ram_summary">Circular meter around clear recents button</string> 
 
     <!-- Shortcut Picker -->
     <string name="use_custom_app_title">Use custom application</string>
