@@ -17,25 +17,19 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/lock_screen_title" >
 
-    <PreferenceCategory
-        android:key="lock_screen"
-        android:title="@string/lock_screen_title">
+    <PreferenceScreen
+        android:key="screen_security"
+        android:fragment="com.android.settings.SecuritySettings"
+        android:title="@string/screen_security_category"
+        android:summary="@string/screen_security_summary">
+        <extra android:name="liquid_security" android:value="true" />
+    </PreferenceScreen>
 
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.SecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-            <extra android:name="liquid_security" android:value="true" />
-         </PreferenceScreen>
-
-         <PreferenceScreen
-             android:key="lock_screen_widgets"
-             android:fragment="com.android.settings.liquid.LockscreenWidgets"
-             android:title="@string/lockscreen_widgets_title"
-             android:summary="@string/lockscreen_widgets_summary" />
-
-    </PreferenceCategory>
+    <PreferenceScreen
+        android:key="lock_screen_widgets"
+        android:fragment="com.android.settings.liquid.LockscreenWidgets"
+        android:title="@string/lockscreen_widgets_title"
+        android:summary="@string/lockscreen_widgets_summary" />
 
     <PreferenceCategory
         android:key="lockscreen_style_options"
