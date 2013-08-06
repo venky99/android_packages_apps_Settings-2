@@ -20,7 +20,7 @@
     android:title="@string/pie_style">
 
     <PreferenceCategory
-        android:title="@string/advanced_settings_title">
+        android:title="@string/pie_style_title">
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
              android:key="pie_background_color"
@@ -41,9 +41,19 @@
              android:title="@string/pie_text_color_title"
              android:defaultValue="0xffffffff" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pie_dimens_title">
+
         <com.android.settings.widget.SeekBarPreference
              android:key="pie_control_size"
              android:title="@string/pie_control_size" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pie_additional_options">
 
         <CheckBoxPreference
             android:key="pie_mirror_right"
@@ -51,6 +61,6 @@
             android:summary="@string/pie_mirror_right_summary"
             android:defaultValue="true" />
 
-    </PreferenceCategory>
+   </PreferenceCategory>
 
 </PreferenceScreen>

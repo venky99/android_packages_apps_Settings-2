@@ -17,6 +17,8 @@
 package com.android.settings.liquid;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,6 +52,9 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
     private static final String RAM_BAR_COLOR_TOTAL_MEM = "ram_bar_color_total_mem";
     private static final String RAM_BAR_CLEAR_RECENTS_POSITION = "clear_recents_position";
 
+    private static final int MENU_RESET = Menu.FIRST;
+    private static final int MENU_HELP = MENU_RESET + 1;
+
     private static final String EXPLANATION_URL = "http://www.slimroms.net/index.php/faq/slimbean/238-why-do-i-have-less-memory-free-on-my-device";
 
     static final int DEFAULT_MEM_COLOR = 0xff8d8d8d;
@@ -70,10 +75,11 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         String hexColor;
 
         addPreferencesFromResource(R.xml.ram_bar);
+
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mRamBarMode = (ListPreference) prefSet.findPreference(RAM_BAR_MODE);
-        int ramBarMode = Settings.System.getInt(getActivity().getContentResolver(),
+        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.RECENTS_RAM_BAR_MODE, 0);
         mRamBarMode.setValue(String.valueOf(ramBarMode));
         mRamBarMode.setSummary(mRamBarMode.getEntry());
@@ -116,24 +122,41 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.ram_bar, menu);
+        menu.add(0, MENU_RESET, 0, R.string.ram_bar_button_reset)
+                .setIcon(R.drawable.ic_settings_backup) // use the backup icon
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, MENU_HELP, 0, R.string.ram_bar_button_help)
+                .setIcon(R.drawable.ic_settings_about)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.help:
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+            case MENU_HELP:
                 final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(EXPLANATION_URL));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
                 return true;
-            case R.id.reset:
-                ramBarColorReset();
-                return true;
-            default:
+             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.navbar_reset);
+        alertDialog.setMessage(R.string.navbar_dimensions_style_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                ramBarColorReset();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -142,7 +165,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         if (preference == mRamBarMode) {
             int ramBarMode = Integer.valueOf((String) newValue);
             int index = mRamBarMode.findIndexOfValue((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.RECENTS_RAM_BAR_MODE, ramBarMode);
             mRamBarMode.setSummary(mRamBarMode.getEntries()[index]);
             updateRamBarOptions();
@@ -179,12 +202,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
                     Settings.System.RECENTS_RAM_BAR_MEM_COLOR, intHex);
             return true;
          }
-         return false;
-    }
-
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        boolean value;
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return false;
     }
 
     private void ramBarColorReset() {
@@ -209,7 +227,6 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
     private void updateRamBarOptions() {
         int ramBarMode = Settings.System.getInt(getActivity().getContentResolver(),
                Settings.System.RECENTS_RAM_BAR_MODE, 0);
-
         if (ramBarMode == 0) {
             mClearPosition.setEnabled(false);
             mRamBarAppMemColor.setEnabled(false);

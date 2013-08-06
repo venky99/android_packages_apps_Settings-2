@@ -52,8 +52,9 @@ import android.view.Window;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
 import com.android.settings.widget.SeekBarPreference;
+import com.android.settings.SettingsPreferenceFragment;
 import net.margaritov.preference.colorpicker.ColorPickerView;
 
 import java.util.ArrayList;
@@ -63,21 +64,24 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String TAG = "NotificationDrawer";
-
+    
+    private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String PREF_NOTIFICATION_SETTINGS_BTN = "notification_settings_btn";
-    private static final String KEY_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
-    private static final String KEY_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
+    private static final String PREF_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
+    private static final String PREF_NOTIFICATION_HIDE_CARRIER = "notification_hide_carrier";
+
     private static final String PREF_NOTIFICATION_WALLPAPER = "notification_wallpaper";
     private static final String PREF_NOTIFICATION_WALLPAPER_LANDSCAPE = "notification_wallpaper_landscape";
     private static final String PREF_NOTIFICATION_WALLPAPER_ALPHA = "notification_wallpaper_alpha";
     private static final String PREF_NOTIFICATION_ALPHA = "notification_alpha";
 
-    private CheckBoxPreference mSettingsBtn;
-    private ListPreference mNotificationsBeh;
-    private PreferenceScreen mPrefSet;
-    private CheckBoxPreference mShowWifiName;
-    private ListPreference mNotificationWallpaper;
-    private ListPreference mNotificationWallpaperLandscape;
+    CheckBoxPreference mShowWifiName;
+    CheckBoxPreference mSettingsBtn;
+    ListPreference mNotificationsBehavior;
+    CheckBoxPreference mHideCarrier;
+
+    ListPreference mNotificationWallpaper;
+    ListPreference mNotificationWallpaperLandscape;
     SeekBarPreference mWallpaperAlpha;
     SeekBarPreference mNotifAlpha;
 
@@ -95,31 +99,40 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPrefSet = getPreferenceScreen();
 
         mResolver = getContentResolver();
         mActivity = getActivity();
 
+        // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.notification_drawer);
 
-        PreferenceScreen prefSet = getPreferenceScreen();
+        PreferenceScreen prefs = getPreferenceScreen();
 
-        customnavTemp = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp.jpg");
-        customnavTempLandscape = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp_landscape.jpg");
+        int CurrentBehavior = Settings.System.getInt(getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        mNotificationsBehavior = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
+        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
+        mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
+        mNotificationsBehavior.setOnPreferenceChangeListener(this);
+
+        mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
+        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+        mShowWifiName.setOnPreferenceChangeListener(this);
+
+        mHideCarrier = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_HIDE_CARRIER);
+        boolean hideCarrier = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_HIDE_CARRIER, 0) == 1;
+        mHideCarrier.setChecked(hideCarrier);
+        mShowWifiName.setEnabled(!hideCarrier);
+        mHideCarrier.setOnPreferenceChangeListener(this);
 
         mSettingsBtn = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SETTINGS_BTN);
         mSettingsBtn.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.NOTIFICATION_SETTINGS_BUTTON, 0) == 1);
+        mSettingsBtn.setOnPreferenceChangeListener(this);
 
-        int CurrentBeh = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
-        mNotificationsBeh = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
-        mNotificationsBeh.setValue(String.valueOf(CurrentBeh));
-                mNotificationsBeh.setSummary(mNotificationsBeh.getEntry());
-        mNotificationsBeh.setOnPreferenceChangeListener(this);
-
-        mShowWifiName = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_SHOW_WIFI_SSID);
-        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+        customnavTemp = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp.jpg");
+        customnavTempLandscape = new File(getActivity().getFilesDir()+"/notification_wallpaper_temp_landscape.jpg");
 
         mNotificationWallpaper = (ListPreference) findPreference(PREF_NOTIFICATION_WALLPAPER);
         mNotificationWallpaper.setOnPreferenceChangeListener(this);
@@ -154,13 +167,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         updateCustomBackgroundSummary();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         updateCustomBackgroundSummary();
     }
-
 
     private void updateCustomBackgroundSummary() {
         int resId;
@@ -194,21 +205,21 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     }
 
     public void deleteWallpaper (boolean orientation) {
-      File wallpaperToDelete = new File(getActivity().getFilesDir()+"/notification_wallpaper.jpg");
-      File wallpaperToDeleteLandscape = new File(getActivity().getFilesDir()+"/notification_wallpaper_landscape.jpg");
+       File wallpaperToDelete = new File(getActivity().getFilesDir()+"/notification_wallpaper.jpg");
+       File wallpaperToDeleteLandscape = new File(getActivity().getFilesDir()+"/notification_wallpaper_landscape.jpg");
 
-      if (wallpaperToDelete.exists() && !orientation) {
-         wallpaperToDelete.delete();
-      }
+       if (wallpaperToDelete.exists() && !orientation) {
+          wallpaperToDelete.delete();
+       }
 
-      if (wallpaperToDeleteLandscape.exists() && orientation) {
-         wallpaperToDeleteLandscape.delete();
-      }
+       if (wallpaperToDeleteLandscape.exists() && orientation) {
+          wallpaperToDeleteLandscape.delete();
+       }
 
-      if (orientation) {
-         Settings.System.putString(getContentResolver(),
-            Settings.System.NOTIFICATION_BACKGROUND_LANDSCAPE, null);
-      }
+       if (orientation) {
+          Settings.System.putString(getContentResolver(),
+             Settings.System.NOTIFICATION_BACKGROUND_LANDSCAPE, null);
+       }
     }
 
     public void observerResourceHelper() {
@@ -221,7 +232,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
                     Settings.System.NOTIF_WALLPAPER_ALPHA, helper);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NOTIF_WALLPAPER_ALPHA, first);
-        }else {
+        } else {
             helper = first - 0.1f;
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NOTIF_WALLPAPER_ALPHA, helper);
@@ -270,33 +281,37 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    mShowWifiName.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mSettingsBtn) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SETTINGS_BUTTON,
-                    mSettingsBtn.isChecked() ? 1 : 0);
-            return true;
-        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mWallpaperAlpha) {
+        if (preference == mNotificationsBehavior) {
+            String val = (String) newValue;
+                     Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR,
+            Integer.valueOf(val));
+            int index = mNotificationsBehavior.findIndexOfValue(val);
+            mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
+            return true;
+        } else if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mHideCarrier) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_HIDE_CARRIER,
+                    (Boolean) newValue ? 1 : 0);
+            mShowWifiName.setEnabled(!((Boolean) newValue));
+            return true;
+        } else if (preference == mSettingsBtn) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SETTINGS_BUTTON,
+                    (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mWallpaperAlpha) {
             float valNav = Float.parseFloat((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.NOTIF_WALLPAPER_ALPHA, valNav / 100);
-            return true;
-        } else if (preference == mNotificationsBeh) {
-            String val = (String) newValue;
-            Settings.System.putInt(getContentResolver(), 
-                    Settings.System.NOTIFICATIONS_BEHAVIOUR,       
-            Integer.valueOf(val));
-            int index = mNotificationsBeh.findIndexOfValue(val);
-            mNotificationsBeh.setSummary(mNotificationsBeh.getEntries()[index]);
             return true;
         } else if (preference == mNotifAlpha) {
             float valNav = Float.parseFloat((String) newValue);

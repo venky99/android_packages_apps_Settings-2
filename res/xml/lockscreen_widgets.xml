@@ -15,11 +15,11 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/lockscreen_widgets_title" >
+    android:title="@string/lockscreen_widgets_category" >
 
     <PreferenceCategory
         android:key="lockscreen_widgets_group"
-        android:title="@string/general_settings_title">
+        android:title="@string/lockscreen_widgets_category">
 
         <CheckBoxPreference
             android:key="lockscreen_all_widgets"
@@ -46,6 +46,12 @@
             android:persistent="false"
             android:title="@string/lockscreen_maximize_widgets_title"
             android:summary="@string/lockscreen_maximize_widgets_summary" />
+
+        <CheckBoxPreference
+            android:key="lockscreen_music_controls"
+            android:persistent="false"
+            android:title="@string/lockscreen_music_controls_title"
+            android:summary="@string/lockscreen_music_controls_summary" />
 
         <CheckBoxPreference
             android:key="lockscreen_unlimited_widgets"

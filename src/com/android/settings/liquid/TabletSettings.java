@@ -31,19 +31,14 @@ import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.util.Helpers;
 
 public class TabletSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String KEY_FORCE_DUAL_PANE = "force_dual_pane";
-    private static final String KEY_USER_MODE_UI = "user_mode_ui";
-    private static final String KEY_HIDE_EXTRAS = "hide_extras";
     
     private Preference mLcdDensity;
     private CheckBoxPreference mDualPane;
-    private ListPreference mUserModeUI;
-    private CheckBoxPreference mHideExtras;
 
     private int newDensityValue;
     DensityChanger densityFragment;
@@ -72,17 +67,6 @@ public class TabletSettings extends SettingsPreferenceFragment implements
         boolean dualPaneMode = Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.DUAL_PANE_PREFS, (preferDualPane ? 1 : 0)) == 1;
         mDualPane.setChecked(dualPaneMode);
-
-        mHideExtras = (CheckBoxPreference) findPreference(KEY_HIDE_EXTRAS);
-        mHideExtras.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.HIDE_EXTRAS_SYSTEM_BAR, 0) == 1);
-
-        mUserModeUI = (ListPreference) findPreference(KEY_USER_MODE_UI);
-        int uiMode = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CURRENT_UI_MODE, 0);
-        mUserModeUI.setValue(Integer.toString(Settings.System.getInt(
-                getActivity().getContentResolver(), Settings.System.USER_UI_MODE, uiMode)));
-        mUserModeUI.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -92,16 +76,6 @@ public class TabletSettings extends SettingsPreferenceFragment implements
                     Settings.System.DUAL_PANE_PREFS,
                     (Boolean) newValue ? 1 : 0);
             return true;
-        } else if (preference == mUserModeUI) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.USER_UI_MODE, Integer.parseInt((String) newValue));
-            Helpers.restartSystemUI();
-            return true;
-        } else if (preference == mHideExtras) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.HIDE_EXTRAS_SYSTEM_BAR,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;  
         }
         return false;
     }

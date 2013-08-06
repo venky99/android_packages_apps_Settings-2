@@ -166,7 +166,6 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
                     ? (Utils.isTablet(context) ? 2 : 1)
                     : 0);
         }
-
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }

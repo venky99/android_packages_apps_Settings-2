@@ -20,7 +20,7 @@
 
     <PreferenceCategory
         android:key="pref_general_settings"
-        android:title="@string/general_settings_title" >
+        android:title="@string/title_general" >
 
         <CheckBoxPreference
             android:key="disable_quick_settings"
@@ -49,7 +49,7 @@
 
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
-            android:fragment="com.android.settings.liquid.QuickSettingsTilesStyle"
+            android:fragment="com.android.settings.liquid.quicksettings.QuickSettingsTilesStyle"
             android:title="@string/quicksettings_tiles_style"
             android:summary="@string/summary_quicksettings_tiles_style" />
 
@@ -63,7 +63,7 @@
             android:key="tile_picker"
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
-            android:fragment="com.android.settings.liquid.QuickSettingsTiles" />
+            android:fragment="com.android.settings.liquid.quicksettings.QuickSettingsTiles" />
 
         <ListPreference
             android:key="pref_network_mode"

@@ -44,6 +44,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.settings.R;
+import com.android.settings.liquid.AutoBrightnessCustomizeDialog;
 
 public class DisplayBrightness extends SeekBarDialogPreference implements
         SeekBar.OnSeekBarChangeListener, CheckBox.OnCheckedChangeListener {
@@ -67,9 +68,7 @@ public class DisplayBrightness extends SeekBarDialogPreference implements
     private boolean mAutomaticMode;
 
     private int mCurBrightness = -1;
-
     private boolean mRestoredOldState;
-
     private AutoBrightnessCustomizeDialog mCustomizeDialog;
 
     private static final int SEEK_BAR_RANGE = 10000;
@@ -473,4 +472,3 @@ public class DisplayBrightness extends SeekBarDialogPreference implements
         };
     }
 }
-

@@ -19,7 +19,7 @@
 
     <PreferenceCategory
         android:key="additional_options"
-        android:title="@string/additional_settings_title">
+        android:title="@string/additional_options_title">
 
         <CheckBoxPreference
             android:key="home_unlock"

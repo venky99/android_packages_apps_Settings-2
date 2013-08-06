@@ -15,7 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
         android:key="general_section"
@@ -25,7 +25,7 @@
             android:key="pulse_enabled"
             android:title="@string/notification_pulse_title" />
 
-        <com.android.settings.notificationlight.ApplicationLightPreference
+        <com.android.settings.liquid.notificationlight.ApplicationLightPreference
             android:key="default"
             android:title="@string/notification_light_default_value"
             android:persistent="false" />
@@ -34,18 +34,18 @@
             android:key="custom_enabled"
             android:title="@string/notification_light_use_custom" />
 
-        </PreferenceCategory>
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="phone_list"
         android:title="@string/notification_light_phonelist_title" >
 
-        <com.android.settings.notificationlight.ApplicationLightPreference
+        <com.android.settings.liquid.notificationlight.ApplicationLightPreference
             android:key="missed_call"
             android:title="@string/notification_light_missed_call_title"
             android:persistent="false" />
 
-        <com.android.settings.notificationlight.ApplicationLightPreference
+        <com.android.settings.liquid.notificationlight.ApplicationLightPreference
             android:key="voicemail"
             android:title="@string/notification_light_voicemail_title"
             android:persistent="false" />

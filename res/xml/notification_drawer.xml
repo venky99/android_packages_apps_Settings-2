@@ -22,11 +22,6 @@
         android:key="notif_drawer_gen"
         android:title="@string/general_settings_title">
 
-        <CheckBoxPreference
-            android:key="notification_settings_btn"
-            android:title="@string/notification_settings_btn_title"
-            android:defaultValue="false" />
-
         <ListPreference
             android:key="notifications_behaviour"
             android:title="@string/notification_behaviour_title"
@@ -34,16 +29,27 @@
             android:entryValues="@array/notifs_beh_values" />
 
         <CheckBoxPreference
+            android:key="notification_hide_carrier"
+            android:title="@string/notification_hide_carrier_title"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="notification_show_wifi_ssid"
             android:title="@string/notification_show_wifi_ssid_title"
-            android:summary="@string/notification_show_wifi_ssid_summary" />
+            android:summary="@string/notification_show_wifi_ssid_summary"
+            android:defaultValue="false" />
 
         <PreferenceScreen
-            android:id="@+id/liquid_notification_shortcuts"
-            android:fragment="com.android.settings.liquid.notificationshortcut.NotificationShortcuts"
-            android:key="liquid_shortcuts_settings"
-            android:title="@string/notification_shortcuts_settings_title"
-            android:summary="@string/notification_shortcuts_settings_summary" />
+            android:key="notification_shortcuts"
+            android:fragment="com.android.settings.liquid.dslv.ButtonsListViewSettings"
+            android:summary="@string/notification_shortcuts_settings_summary"
+            android:title="@string/notification_shortcuts_settings_title">
+            <extra android:name="buttonMode" android:value="5" />
+            <extra android:name="maxAllowedButtons" android:value="16" />
+            <extra android:name="disableLongpress" android:value="true" />
+            <extra android:name="useAppPickerOnly" android:value="true" />
+            <extra android:name="fragment" android:value="com.android.settings.liquid.fragments.NotificationsShortcutFragment" />
+        </PreferenceScreen>
 
     </PreferenceCategory>
 
@@ -51,13 +57,18 @@
         android:key="notif_drawer_cat"
         android:title="@string/style_settings_title">
 
-        <com.android.settings.widget.SeekBarPreference
-             android:key="notification_wallpaper_alpha"
-             android:title="@string/notification_wallpaper_alpha_title" />
+        <CheckBoxPreference
+            android:key="notification_settings_btn"
+            android:title="@string/notification_settings_btn_title"
+            android:defaultValue="false" />
 
         <com.android.settings.widget.SeekBarPreference
-             android:key="notification_alpha"
-             android:title="@string/notification_alpha_title" />
+            android:key="notification_wallpaper_alpha"
+            android:title="@string/notification_wallpaper_alpha_title" />
+
+        <com.android.settings.widget.SeekBarPreference
+            android:key="notification_alpha"
+            android:title="@string/notification_alpha_title" />
 
         <ListPreference
             android:key="notification_wallpaper"

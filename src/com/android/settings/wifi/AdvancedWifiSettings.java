@@ -28,6 +28,7 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.Global;
+import android.security.Credentials;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -43,25 +44,34 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
     private static final String KEY_MAC_ADDRESS = "mac_address";
     private static final String KEY_CURRENT_IP_ADDRESS = "current_ip_address";
     private static final String KEY_FREQUENCY_BAND = "frequency_band";
-    private static final String KEY_COUNTRY_CODE = "wifi_countrycode";
     private static final String KEY_NOTIFY_OPEN_NETWORKS = "notify_open_networks";
     private static final String KEY_SLEEP_POLICY = "sleep_policy";
     private static final String KEY_POOR_NETWORK_DETECTION = "wifi_poor_network_detection";
+    private static final String KEY_SCAN_ALWAYS_AVAILABLE = "wifi_scan_always_available";
+    private static final String KEY_INSTALL_CREDENTIALS = "install_credentials";
     private static final String KEY_SUSPEND_OPTIMIZATIONS = "suspend_optimizations";
+    private static final String KEY_COUNTRY_CODE = "wifi_countrycode";
     private static final String KEY_WIFI_PRIORITY = "wifi_priority";
 
     private WifiManager mWifiManager;
+
+    private ListPreference mCcodePref;
+    private Preference mWifiPriority;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.wifi_advanced_settings);
-    }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+
+        mCcodePref = (ListPreference) findPreference(KEY_COUNTRY_CODE);
+        mCcodePref.setOnPreferenceChangeListener(this);
+
+        mWifiPriority = findPreference(KEY_WIFI_PRIORITY);
+
+        updateWifiCodeSummary();
+        updateWifiPriority();
     }
 
     @Override
@@ -69,6 +79,15 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
         super.onResume();
         initPreferences();
         refreshWifiInfo();
+        updateWifiCodeSummary();
+        updateWifiPriority();
+    }
+
+    @Override
+    public void onPause() {
+        super.onResume();
+        updateWifiCodeSummary();
+        updateWifiPriority();
     }
 
     private void initPreferences() {
@@ -91,6 +110,18 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
             }
         }
 
+        CheckBoxPreference scanAlwaysAvailable =
+            (CheckBoxPreference) findPreference(KEY_SCAN_ALWAYS_AVAILABLE);
+        scanAlwaysAvailable.setChecked(Global.getInt(getContentResolver(),
+                    Global.WIFI_SCAN_ALWAYS_AVAILABLE, 0) == 1);
+
+        Intent intent=new Intent(Credentials.INSTALL_AS_USER_ACTION);
+        intent.setClassName("com.android.certinstaller",
+                "com.android.certinstaller.CertInstallerMain");
+        intent.putExtra(Credentials.EXTRA_INSTALL_AS_UID, android.os.Process.WIFI_UID);
+        Preference pref = findPreference(KEY_INSTALL_CREDENTIALS);
+        pref.setIntent(intent);
+
         CheckBoxPreference suspendOptimizations =
             (CheckBoxPreference) findPreference(KEY_SUSPEND_OPTIMIZATIONS);
         suspendOptimizations.setChecked(Global.getInt(getContentResolver(),
@@ -103,6 +134,7 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
             int value = mWifiManager.getFrequencyBand();
             if (value != -1) {
                 frequencyPref.setValue(String.valueOf(value));
+                updateFrequencyBandSummary(frequencyPref, value);
             } else {
                 Log.e(TAG, "Failed to fetch frequency band");
             }
@@ -110,17 +142,6 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
             if (frequencyPref != null) {
                 // null if it has already been removed before resume
                 getPreferenceScreen().removePreference(frequencyPref);
-            }
-        }
-
-        ListPreference ccodePref = (ListPreference) findPreference(KEY_COUNTRY_CODE);
-        if (ccodePref != null) {
-            ccodePref.setOnPreferenceChangeListener(this);
-            String value = mWifiManager.getCountryCode();
-            if (value != null) {
-                ccodePref.setValue(value);
-            } else {
-                Log.e(TAG, "Failed to fetch country code");
             }
         }
 
@@ -137,9 +158,6 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
             sleepPolicyPref.setValue(stringValue);
             updateSleepPolicySummary(sleepPolicyPref, stringValue);
         }
-
-        Preference wifiPriority = findPreference(KEY_WIFI_PRIORITY);
-        wifiPriority.setEnabled(mWifiManager.isWifiEnabled());
     }
 
     private void updateSleepPolicySummary(Preference sleepPolicyPref, String value) {
@@ -162,6 +180,11 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
         Log.e(TAG, "Invalid sleep policy value: " + value);
     }
 
+    private void updateFrequencyBandSummary(Preference frequencyBandPref, int index) {
+        String[] summaries = getResources().getStringArray(R.array.wifi_frequency_band_entries);
+        frequencyBandPref.setSummary(summaries[index]);
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
         String key = preference.getKey();
@@ -178,6 +201,10 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
             Global.putInt(getContentResolver(),
                     Global.WIFI_SUSPEND_OPTIMIZATIONS_ENABLED,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+        } else if (KEY_SCAN_ALWAYS_AVAILABLE.equals(key)) {
+            Global.putInt(getContentResolver(),
+                    Global.WIFI_SCAN_ALWAYS_AVAILABLE,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
         } else {
             return super.onPreferenceTreeClick(screen, preference);
         }
@@ -188,21 +215,29 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String key = preference.getKey();
 
-        if (KEY_FREQUENCY_BAND.equals(key)) {
+        if (KEY_COUNTRY_CODE.equals(key)) {
             try {
-                mWifiManager.setFrequencyBand(Integer.parseInt((String) newValue), true);
-            } catch (NumberFormatException e) {
-                Toast.makeText(getActivity(), R.string.wifi_setting_frequency_band_error,
+                Settings.Global.putString(mContext.getContentResolver(),
+                       Settings.Global.WIFI_COUNTRY_CODE_USER,
+                       (String) newValue);
+                mWifiManager.setCountryCode((String) newValue, true);
+                int index = mCcodePref.findIndexOfValue((String) newValue);
+                mCcodePref.setSummary(mCcodePref.getEntries()[index]);
+                return true;
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(getActivity(), R.string.wifi_setting_countrycode_error,
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
 
-        if (KEY_COUNTRY_CODE.equals(key)) {
+        if (KEY_FREQUENCY_BAND.equals(key)) {
             try {
-                mWifiManager.setCountryCode((String) newValue, true);
-            } catch (IllegalArgumentException e) {
-                Toast.makeText(getActivity(), R.string.wifi_setting_countrycode_error,
+                int value = Integer.parseInt((String) newValue);
+                mWifiManager.setFrequencyBand(value, true);
+                updateFrequencyBandSummary(preference, value);
+            } catch (NumberFormatException e) {
+                Toast.makeText(getActivity(), R.string.wifi_setting_frequency_band_error,
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -236,6 +271,36 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
         String ipAddress = Utils.getWifiIpAddresses(getActivity());
         wifiIpAddressPref.setSummary(ipAddress == null ?
                 getActivity().getString(R.string.status_unavailable) : ipAddress);
+    }
+
+    private void updateWifiCodeSummary() {
+        if (mCcodePref != null) {
+            String value = (mWifiManager.getCountryCode()).toUpperCase();
+            if (value != null) {
+                mCcodePref.setValue(value);
+                mCcodePref.setSummary(mCcodePref.getEntry());
+            } else {
+                Log.e(TAG, "Failed to fetch country code");
+            }
+            if (mWifiManager.isWifiEnabled()) {
+                mCcodePref.setEnabled(true);
+            } else {
+                mCcodePref.setEnabled(false);
+                mCcodePref.setSummary(R.string.wifi_setting_countrycode_disabled);
+            }
+        }
+
+    }
+
+    private void updateWifiPriority() {
+        if (mWifiManager.isWifiEnabled()) {
+            mWifiPriority.setEnabled(true);
+            mWifiPriority.setSummary(R.string.wifi_setting_priority_summary);
+        } else {
+            mWifiPriority.setEnabled(false);
+            mWifiPriority.setSummary(R.string.wifi_priority_disabled);
+        }
+
     }
 
 }

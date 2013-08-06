@@ -165,5 +165,4 @@ public class PowerMenu extends SettingsPreferenceFragment implements
 
         return true;
     }
-
 }

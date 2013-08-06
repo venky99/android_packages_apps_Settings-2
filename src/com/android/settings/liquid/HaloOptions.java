@@ -32,8 +32,8 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
 import com.android.settings.R;
+import com.android.settings.util.CMDProcessor;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.util.Helpers;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class HaloOptions extends SettingsPreferenceFragment

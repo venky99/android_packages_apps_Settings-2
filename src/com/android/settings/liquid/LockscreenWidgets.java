@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2013 The LiquidSmooth Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +39,7 @@ public class LockscreenWidgets extends SettingsPreferenceFragment {
     private static final String KEY_LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
     private static final String KEY_LOCKSCREEN_UNLIMITED_WIDGETS = "lockscreen_unlimited_widgets";
     private static final String KEY_LOCKSCREEN_USE_CAROUSEL = "lockscreen_use_widget_container_carousel";
+    private static final String KEY_LOCKSCREEN_MUSIC_CONTROLS = "lockscreen_music_controls";
 
     private CheckBoxPreference mAllWidgets;
     private CheckBoxPreference mCameraWidget;
@@ -47,6 +49,7 @@ public class LockscreenWidgets extends SettingsPreferenceFragment {
     private CheckBoxPreference mUnlimitedWidgets;
     private CheckBoxPreference mUsabilityHints;
     private CheckBoxPreference mUseCarousel;
+    private CheckBoxPreference mMusicControls;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,10 @@ public class LockscreenWidgets extends SettingsPreferenceFragment {
         mUseCarousel = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_USE_CAROUSEL);
         mUseCarousel.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, 0) == 1);
+
+        mMusicControls = (CheckBoxPreference) findPreference(KEY_LOCKSCREEN_MUSIC_CONTROLS);
+        mMusicControls.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_MUSIC_CONTROLS, 1) == 1);
     }
 
     @Override
@@ -121,6 +128,10 @@ public class LockscreenWidgets extends SettingsPreferenceFragment {
         } else if (preference == mUseCarousel) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL, mUseCarousel.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mMusicControls) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_MUSIC_CONTROLS, mMusicControls.isChecked() ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

@@ -13,14 +13,85 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen
-    android:title="@string/lock_screen_title"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/lock_screen_title" >
 
     <PreferenceCategory
-       android:key="options_group"
-       android:title="@string/advanced_settings_title">
+        android:key="lock_screen"
+        android:title="@string/lock_screen_title">
+
+        <PreferenceScreen
+            android:key="screen_security"
+            android:fragment="com.android.settings.SecuritySettings"
+            android:title="@string/screen_security_category"
+            android:summary="@string/screen_security_summary">
+            <extra android:name="liquid_security" android:value="true" />
+         </PreferenceScreen>
+
+         <PreferenceScreen
+             android:key="lock_screen_widgets"
+             android:fragment="com.android.settings.liquid.LockscreenWidgets"
+             android:title="@string/lockscreen_widgets_title"
+             android:summary="@string/lockscreen_widgets_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="lockscreen_style_options"
+        android:title="@string/lockscreen_style_options_title">
+
+        <ListPreference
+            android:key="lockscreen_background"
+            android:persistent="false"
+            android:dialogTitle="@string/lockscreen_custom_background_title"
+            android:title="@string/lockscreen_custom_background_title"
+            android:entries="@array/lockscreen_background_entries"
+            android:entryValues="@array/lockscreen_background_values"/>
+
+        <com.android.settings.widget.SeekBarPreference
+            android:key="lockscreen_alpha"
+            android:title="@string/lockscreen_alpha_title" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="lockscreen_text_color"
+            android:title="@string/lockscreen_text_color_title"
+            android:defaultValue="0xffffffff" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="slider_group"
+        android:title="@string/lockscreen_slider_grouptitle">
+
+        <Preference
+            android:fragment="com.android.settings.liquid.LockscreenTargets"
+            android:key="lockscreen_targets"
+            android:summary="@string/lockscreen_target_summary"
+            android:title="@string/lockscreen_target_title" />
+
+        <CheckBoxPreference
+            android:key="lockscreen_eight_targets"
+            android:title="@string/lockscreen_eight_targets_title"
+            android:summary="@string/lockscreen_eight_targets_summary" />
+
+        <PreferenceScreen
+            android:key="lockscreen_shortcuts"
+            android:fragment="com.android.settings.liquid.dslv.ButtonsListViewSettings"
+            android:summary="@string/lockscreen_shortcuts_summary"
+            android:title="@string/lockscreen_shortcuts_title">
+            <extra android:name="buttonMode" android:value="4" />
+            <extra android:name="maxAllowedButtons" android:value="5" />
+            <extra android:name="disableLongpress" android:value="true" />
+            <extra android:name="useAppPickerOnly" android:value="true" />
+            <extra android:name="fragment" android:value="com.android.settings.liquid.fragments.LockscreenShortcutFragment" />
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="options_group"
+        android:title="@string/lockscreen_additional_options_grouptitle">
 
         <CheckBoxPreference
             android:key="lockscreen_auto_rotate"
@@ -36,82 +107,11 @@
             android:entryValues="@array/lockscreen_battery_status_values"
             android:defaultValue="0" />
 
-       <PreferenceScreen
-           android:key="lockscreen_buttons"
-           android:fragment="com.android.settings.liquid.LockscreenButtons"
-           android:summary="@string/lockscreen_buttons_summary"
-           android:title="@string/lockscreen_buttons_title" />
-
         <PreferenceScreen
-            android:key="lock_screen_widgets"
-            android:fragment="com.android.settings.liquid.LockscreenWidgets"
-            android:title="@string/lockscreen_widgets_title"
-            android:summary="@string/lockscreen_widgets_summary" />
-
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.SecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-            <extra android:name="liquid_security" android:value="true" />
-        </PreferenceScreen>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="slider_group"
-        android:title="@string/lockscreen_slider_title">
-
-        <Preference
-            android:key="lockscreen_targets"
-            android:fragment="com.android.settings.liquid.LockscreenTargets"
-            android:summary="@string/lockscreen_target_summary"
-            android:title="@string/lockscreen_target_title" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_eight_targets"
-            android:title="@string/lockscreen_eight_targets_title"
-            android:summary="@string/lockscreen_eight_targets_summary" />
-
-        <Preference
-            android:key="lockscreen_shortcuts"
-            android:fragment="com.android.settings.liquid.LockscreenShortcuts"
-            android:summary="@string/lockscreen_shortcuts_summary"
-            android:title="@string/lockscreen_shortcuts_title" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_shortcuts_longpress"
-            android:title="@string/lockscreen_shorcuts_longpress_title"
-            android:summary="@string/lockscreen_shorcuts_longpress_summary" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="lockscreen_style_options"
-        android:title="@string/lockscreen_style_title">
-
-        <com.android.settings.widget.SeekBarPreference
-            android:key="lockscreen_alpha"
-            android:title="@string/lockscreen_alpha_title" />
-
-        <ListPreference
-            android:key="lockscreen_background"
-            android:persistent="false"
-            android:dialogTitle="@string/lockscreen_custom_background_title"
-            android:title="@string/lockscreen_custom_background_title"
-            android:entries="@array/lockscreen_background_entries"
-            android:entryValues="@array/lockscreen_background_values"/>
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="lockscreen_text_color"
-            android:title="@string/lockscreen_text_color_title"
-            android:defaultValue="0xffffffff" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_music_controls"
-            android:persistent="false"
-            android:title="@string/lockscreen_music_controls_title"
-            android:summary="@string/lockscreen_music_controls_summary" />
+            android:fragment="com.android.settings.liquid.LockscreenButtons"
+            android:key="lockscreen_buttons"
+            android:title="@string/lockscreen_buttons_title"
+            android:summary="@string/lockscreen_buttons_summary" />
 
     </PreferenceCategory>
 

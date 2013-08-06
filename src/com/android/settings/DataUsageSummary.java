@@ -40,6 +40,7 @@ import static android.net.TrafficStats.GB_IN_BYTES;
 import static android.net.TrafficStats.MB_IN_BYTES;
 import static android.net.TrafficStats.UID_REMOVED;
 import static android.net.TrafficStats.UID_TETHERING;
+import static android.telephony.TelephonyManager.SIM_STATE_READY;
 import static android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
 import static android.text.format.DateUtils.FORMAT_SHOW_DATE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -76,7 +77,6 @@ import android.net.NetworkStats;
 import android.net.NetworkStatsHistory;
 import android.net.NetworkTemplate;
 import android.net.TrafficStats;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -328,13 +328,14 @@ public class DataUsageSummary extends Fragment {
         mHeader = (ViewGroup) inflater.inflate(R.layout.data_usage_header, mListView, false);
         mHeader.setClickable(true);
 
+        mListView.addHeaderView(new View(context), null, true);
         mListView.addHeaderView(mHeader, null, true);
         mListView.setItemsCanFocus(true);
 
         if (mInsetSide > 0) {
             // inset selector and divider drawables
             insetListViewDrawables(mListView, mInsetSide);
-            mHeader.setPadding(mInsetSide, 0, mInsetSide, 0);
+            mHeader.setPaddingRelative(mInsetSide, 0, mInsetSide, 0);
         }
 
         {
@@ -453,9 +454,9 @@ public class DataUsageSummary extends Fragment {
         mMenuDataRoaming.setChecked(getDataRoaming());
 
         mMenuRestrictBackground = menu.findItem(R.id.data_usage_menu_restrict_background);
-        mMenuRestrictBackground.setVisible(hasReadyMobileRadio(context) && !appDetailMode);
+        mMenuRestrictBackground.setVisible(
+                hasReadyMobileRadio(context) && isOwner && !appDetailMode);
         mMenuRestrictBackground.setChecked(mPolicyManager.getRestrictBackground());
-        mMenuRestrictBackground.setVisible(isOwner);
 
         mMenuAutoSync = menu.findItem(R.id.data_usage_menu_auto_sync);
         mMenuAutoSync.setChecked(ContentResolver.getMasterSyncAutomatically());
@@ -1182,8 +1183,8 @@ public class DataUsageSummary extends Fragment {
         final String rangePhrase = formatDateRange(context, start, end);
 
         final int summaryRes;
-        if (TAB_MOBILE.equals(mCurrentTab) || TAB_3G.equals(mCurrentTab)
-                || TAB_4G.equals(mCurrentTab)) {
+        if (TAB_MOBILE.equals(mCurrentTab) || TAB_3G.equals(mCurrentApp)
+                || TAB_4G.equals(mCurrentApp)) {
             summaryRes = R.string.data_usage_total_during_range_mobile;
         } else {
             summaryRes = R.string.data_usage_total_during_range;
@@ -1563,7 +1564,7 @@ public class DataUsageSummary extends Fragment {
                         R.layout.data_usage_item, parent, false);
 
                 if (mInsetSide > 0) {
-                    convertView.setPadding(mInsetSide, 0, mInsetSide, 0);
+                    convertView.setPaddingRelative(mInsetSide, 0, mInsetSide, 0);
                 }
             }
 
@@ -1744,6 +1745,9 @@ public class DataUsageSummary extends Fragment {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            // clear focus to finish pending text edits
+                            cycleDayPicker.clearFocus();
+
                             final int cycleDay = cycleDayPicker.getValue();
                             final String cycleTimezone = new Time().timezone;
                             editor.setPolicyCycleDay(template, cycleDay, cycleTimezone);
@@ -2191,7 +2195,7 @@ public class DataUsageSummary extends Fragment {
     }
 
     /**
-     * Test if device has a mobile data radio in ready state.
+     * Test if device has a mobile data radio with subscription in ready state.
      */
     public static boolean hasReadyMobileRadio(Context context) {
         if (TEST_RADIOS) {
@@ -2199,11 +2203,9 @@ public class DataUsageSummary extends Fragment {
         }
 
         final ConnectivityManager conn = ConnectivityManager.from(context);
-        final TelephonyManager tele = TelephonyManager.from(context);
 
-        // require both supported network and phone number
-        return conn.isNetworkSupported(TYPE_MOBILE) &&
-                !TextUtils.isEmpty(tele.getLine1Number());
+        // require both supported network and subscription
+        return conn.isNetworkSupported(TYPE_MOBILE) && hasSubscription(context);
     }
 
     /**
@@ -2267,6 +2269,14 @@ public class DataUsageSummary extends Fragment {
     }
 
     /**
+     * Test if device has either a SIM card or a phone number (for SIM-less CDMA).
+     */
+    private static boolean hasSubscription(Context context) {
+        final TelephonyManager tele = TelephonyManager.from(context);
+        return tele.getSimState() == SIM_STATE_READY || !TextUtils.isEmpty(tele.getLine1Number());
+    }
+
+    /**
      * Inflate a {@link Preference} style layout, adding the given {@link View}
      * widget into {@link android.R.id#widget_frame}.
      */
@@ -2320,8 +2330,7 @@ public class DataUsageSummary extends Fragment {
         // build combined list of all limited networks
         final ArrayList<CharSequence> limited = Lists.newArrayList();
 
-        final TelephonyManager tele = TelephonyManager.from(context);
-        if (!TextUtils.isEmpty(tele.getLine1Number())) {
+        if (hasSubscription(context)) {
             final String subscriberId = getActiveSubscriberId(context);
             if (mPolicyEditor.hasLimitedPolicy(buildTemplateMobileAll(subscriberId))) {
                 limited.add(getText(R.string.data_usage_list_mobile));

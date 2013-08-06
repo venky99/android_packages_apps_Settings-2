@@ -16,31 +16,37 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    android:title="@string/ram_bar">
+
+    <Preference
+        style="?android:preferenceInformationStyle"
+        android:title="@string/ram_bar_note_title"
+        android:summary="@string/ram_bar_note_summary"
+        android:selectable="false" />
+
+    <PreferenceCategory
+        android:key="ram_bar_mode_cat"
+        android:title="@string/ram_bar_mode_title">
+
+    <ListPreference
+        android:key="ram_bar_mode"
+        android:dialogTitle="@string/ram_bar_mode_dialog_title"
+        android:title="@string/ram_bar_mode_title"
+        android:entries="@array/entries_ram_bar_mode"
+        android:entryValues="@array/values_ram_bar_mode" />
+
+    <ListPreference
+        android:key="clear_recents_position"
+        android:title="@string/clear_recents_position_title"
+        android:entries="@array/clear_recents_position_entries"
+        android:entryValues="@array/clear_recents_position_values"
+        android:defaultValue="0" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="ram_bar_style"
-        android:title="@string/general_settings_title">
-
-        <Preference
-            style="?android:preferenceInformationStyle"
-            android:title="@string/ram_bar_note_title"
-            android:summary="@string/ram_bar_note_summary"
-            android:selectable="false" />
-
-        <ListPreference
-            android:key="ram_bar_mode"
-            android:dialogTitle="@string/ram_bar_mode_dialog_title"
-            android:title="@string/ram_bar_mode_title"
-            android:entries="@array/entries_ram_bar_mode"
-            android:entryValues="@array/values_ram_bar_mode" />
-
-        <ListPreference
-            android:key="clear_recents_position"
-            android:title="@string/clear_recents_position_title"
-            android:entries="@array/clear_recents_position_entries"
-            android:entryValues="@array/clear_recents_position_values"
-            android:defaultValue="0" />
+        android:title="@string/ram_bar_style_cat">
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="ram_bar_color_app_mem"
