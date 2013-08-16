@@ -839,11 +839,12 @@
     <string name="shortcut_action_warning">Warning</string>
     <string name="shortcut_action_warning_message">It is not possible to delete last entry</string>
     <string name="shortcut_action_disable_message">Disabled\nAdd an entry to enable this feature</string>
+    <string name="shortcut_image_not_valid">The chosen app did not return a valid icon or does not support image cropping</string>
     <string name="shortcut_action_help_shortcut">Shortcut</string>
     <string name="shortcut_action_help_button">Button</string>
     <string name="shortcut_action_help_icon">, while selecting the icon will bring up customization options</string>
     <string name="shortcut_action_help_main">To add a %1$s, select the add icon. Once a %1$s is added, selecting the row will change the target%2$s\n\nTo remove a %1$s, swipe the row horizontally left or right. Re-order a %1$s in the list by vertically dragging the anchor on the left.\n\nTo clear or reset to defaults, select the reset icon.</string>
-    <string name="shortcut_action_help_delete_last_entry">Removing every %1$s in the list will disable the feature entirely.</string>
+    <string name="shortcut_action_help_delete_last_entry">Removing every %1$s in the list will disable the feature entirely</string>
     <string name="shortcut_action_help">Help</string>
 
     <!-- Shortcut Icons -->
