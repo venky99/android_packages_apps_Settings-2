@@ -26,12 +26,10 @@
         android:persistent="false"
         android:streamType="ring" />
 
+    <!-- DSP Manager -->
     <Preference
         android:key="musicfx"
-        android:title="@string/musicfx_title">
-        <intent android:targetPackage="com.android.musicfx"
-            android:targetClass="com.android.musicfx.ControlPanelPicker" />
-    </Preference>
+        android:title="@string/musicfx_title" />
 
     <PreferenceScreen
         android:key="advanced_sound_settings"
@@ -42,7 +40,6 @@
         android:key="category_calls_and_notification"
         android:title="@string/sound_category_call_ringtone_vibrate_title"/>
 
-        <!-- Do not nest these, or removals in code will break -->
         <com.android.settings.DefaultRingtonePreference
             android:key="ringtone"
             android:title="@string/ringtone_title"
@@ -57,8 +54,6 @@
 
     <PreferenceCategory
         android:title="@string/sound_category_system_title"/>
-
-        <!-- Do not nest these, or removals in code will break -->
 
         <com.android.settings.DefaultRingtonePreference
             android:key="notification_sound"
@@ -93,19 +88,18 @@
             android:entries="@array/emergency_tone_entries"
             android:entryValues="@array/emergency_tone_values" />
 
-    <!-- Dock -->
     <PreferenceCategory
         android:key="dock_category"
         android:title="@string/dock_settings"/>
 
-        <!-- Do not nest these, or removals in code will break -->
         <PreferenceScreen
             android:key="dock_audio"
             android:title="@string/dock_audio_settings_title">
             <CheckBoxPreference
                 android:title="@string/bluetooth_dock_settings_a2dp"
                 android:key="dock_audio_media_enabled"
-                android:enabled="true" />
+                android:enabled="true"
+                />
         </PreferenceScreen>
 
         <CheckBoxPreference

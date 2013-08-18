@@ -21,35 +21,29 @@
     <CheckBoxPreference
         android:key="accelerometer"
         android:title="@string/accelerometer_title" />
-
     <CheckBoxPreference
         android:key="swap_volume_buttons"
         android:title="@string/swap_volume_buttons_title"
         android:summary="@string/swap_volume_buttons_summary"
         android:dependency="accelerometer" />
-
     <PreferenceCategory
         android:key="display_rotation_category"
         android:title="@string/display_rotation_category_title" />
-
     <CheckBoxPreference
         android:key="display_rotation_0"
         android:title="@string/display_rotation_0_title"
         android:layout="?android:attr/preferenceLayoutChild"
         android:dependency="accelerometer" />
-
     <CheckBoxPreference
         android:key="display_rotation_90"
         android:title="@string/display_rotation_90_title"
         android:layout="?android:attr/preferenceLayoutChild"
         android:dependency="accelerometer" />
-
     <CheckBoxPreference
         android:key="display_rotation_180"
         android:title="@string/display_rotation_180_title"
         android:layout="?android:attr/preferenceLayoutChild"
         android:dependency="accelerometer" />
-
     <CheckBoxPreference
         android:key="display_rotation_270"
         android:title="@string/display_rotation_270_title"

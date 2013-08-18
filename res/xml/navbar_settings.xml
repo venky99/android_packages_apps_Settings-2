@@ -14,17 +14,16 @@
      limitations under the License.
 -->
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <CheckBoxPreference
-        android:key="enable_nav_bar"
-        android:title="@string/navbar_enable_bar"
-        android:summary="@string/navbar_enable_bar_summary" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:key="navbar_cat"
-        android:title="@string/navbar_cat" >
+        android:key="advanced_cat"
+        android:title="@string/advanced_settings_title">
+
+        <CheckBoxPreference
+            android:key="enable_nav_bar"
+            android:title="@string/navbar_enable_bar"
+            android:summary="@string/navbar_enable_bar_summary" />
 
         <PreferenceScreen
             android:key="navbar_button_settings"
@@ -54,8 +53,13 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="advanced_cat"
-        android:title="@string/advanced_settings">
+        android:key="navigation_general"
+        android:title="@string/general_settings_title" >
+
+        <CheckBoxPreference
+            android:key="navbar_can_move"
+            android:title="@string/navbar_can_move"
+            android:summary="@string/navbar_can_move_summary" />
 
         <ListPreference
             android:entries="@array/pref_navigation_menu_entries"
@@ -70,11 +74,6 @@
             android:key="navbar_menu_display"
             android:title="@string/title_pref_navigation_menu_display"
             android:summary="@string/summary_pref_navigation_menu_display" />
-
-        <CheckBoxPreference
-            android:key="navbar_can_move"
-            android:title="@string/navbar_can_move"
-            android:summary="@string/navbar_can_move_summary" />
 
     </PreferenceCategory>
 

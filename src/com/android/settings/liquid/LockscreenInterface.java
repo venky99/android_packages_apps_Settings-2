@@ -126,7 +126,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
             bgAlpha = Settings.System.getFloat(getActivity()
                 .getContentResolver(),
                 Settings.System.LOCKSCREEN_ALPHA);
-         } catch (Exception e) {
+        } catch (Exception e) {
             bgAlpha = 0;
             bgAlpha = Settings.System.getFloat(getActivity()
                 .getContentResolver(),

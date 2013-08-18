@@ -19,9 +19,8 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/navbar_widgets_style_settings_title">
 
-    <!-- Status bar tweaks -->
     <PreferenceCategory
-        android:title="@string/navbar_widgets_style_settings_title">
+        android:title="@string/navbar_widgets_style_title">
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="navbar_widgets_bg_color"

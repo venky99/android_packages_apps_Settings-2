@@ -75,7 +75,6 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
         String hexColor;
 
         addPreferencesFromResource(R.xml.ram_bar);
-
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mRamBarMode = (ListPreference) prefSet.findPreference(RAM_BAR_MODE);
@@ -227,6 +226,7 @@ public class RamBar extends SettingsPreferenceFragment implements OnPreferenceCh
     private void updateRamBarOptions() {
         int ramBarMode = Settings.System.getInt(getActivity().getContentResolver(),
                Settings.System.RECENTS_RAM_BAR_MODE, 0);
+
         if (ramBarMode == 0) {
             mClearPosition.setEnabled(false);
             mRamBarAppMemColor.setEnabled(false);

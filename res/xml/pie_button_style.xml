@@ -20,7 +20,7 @@
     android:title="@string/pie_button_style">
 
     <PreferenceCategory
-        android:title="@string/pie_button_style">
+        android:title="@string/pie_style_title">
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
              android:key="pie_button_color"

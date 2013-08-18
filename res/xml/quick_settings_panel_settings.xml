@@ -20,7 +20,7 @@
 
     <PreferenceCategory
         android:key="pref_general_settings"
-        android:title="@string/title_general" >
+        android:title="@string/general_settings_title" >
 
         <CheckBoxPreference
             android:key="disable_quick_settings"

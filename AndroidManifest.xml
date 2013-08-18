@@ -1609,7 +1609,7 @@
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to Interface settings -->
         <activity android:name="Settings$InterfaceSettingsActivity"
-                android:label="@string/interface_settings_title"
+                android:label="@string/user_interface_title"
                 android:clearTaskOnLaunch="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -1627,7 +1627,7 @@
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to display rotation config -->
         <activity android:name="Settings$RamBarActivity"
-                android:label="@string/ram_bar">
+                android:label="@string/recents_rambar_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
