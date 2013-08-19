@@ -151,7 +151,7 @@ public class HaloOptions extends SettingsPreferenceFragment
         } else if (preference == mHaloColors) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_COLORS, mHaloColors.isChecked() ? 1 : 0);
-            Helpers.restartSystemUI();
+            CMDProcessor.restartSystemUI();
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -187,7 +187,7 @@ public class HaloOptions extends SettingsPreferenceFragment
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HALO_EFFECT_COLOR, intHex);
-            Helpers.restartSystemUI();
+            CMDProcessor.restartSystemUI();
             return true;
         } else if (preference == mHaloBubbleColor) {
             String hex = ColorPickerPreference.convertToARGB(

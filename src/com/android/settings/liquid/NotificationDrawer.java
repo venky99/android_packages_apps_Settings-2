@@ -109,7 +109,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         PreferenceScreen prefs = getPreferenceScreen();
 
         int CurrentBehavior = Settings.System.getInt(getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
-        mNotificationsBehavior = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
+        mNotificationsBehavior = (ListPreference) findPreference(PREF_NOTIFICATION_BEHAVIOUR);
         mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
         mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
         mNotificationsBehavior.setOnPreferenceChangeListener(this);

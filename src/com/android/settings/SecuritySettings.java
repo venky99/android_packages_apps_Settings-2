@@ -258,8 +258,8 @@ public class SecuritySettings extends SettingsPreferenceFragment
             if (mLockAfter != null) {
                 setupLockAfterPreference();
                 updateLockAfterPreferenceSummary();
-            } else if (!mLockPatternUtils.isLockScreenDisabled() && isSlimSecurity) {
-                addPreferencesFromResource(R.xml.security_settings_slide_delay_slim);
+            } else if (!mLockPatternUtils.isLockScreenDisabled() && isLiquidSecurity) {
+                addPreferencesFromResource(R.xml.security_settings_slide_delay_liquid);
 
                 mSlideLockDelayToggle = (CheckBoxPreference) root
                         .findPreference(SLIDE_LOCK_DELAY_TOGGLE);
@@ -458,7 +458,7 @@ public class SecuritySettings extends SettingsPreferenceFragment
                 }
 
                 // App security settings
-                addPreferencesFromResource(R.xml.security_settings_app_slim);
+                addPreferencesFromResource(R.xml.security_settings_app_liquid);
                 mBlacklist = (PreferenceScreen) root.findPreference(KEY_BLACKLIST);
                 mSmsSecurityCheck = (ListPreference) root.findPreference(KEY_SMS_SECURITY_CHECK_PREF);
                 if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {

@@ -41,7 +41,7 @@ public class AboutLiquid extends SettingsPreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.about_rom);
+        addPreferencesFromResource(R.xml.about_liquid);
         mSiteUrl = findPreference("liquid_website");
         mSourceUrl = findPreference("liquid_source");
         mFacebookUrl = findPreference("liquid_facebook");
