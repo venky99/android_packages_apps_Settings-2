@@ -392,11 +392,6 @@
     <string name="nav_bar_transparency_title">Navbar Alpha</string>
     <string name="nav_bar_color_title">Navbar Color</string>
     <string name="nav_bar_background_style">Navbar Style</string>
-    <string name="nav_bar_alpha_mode_dialog_text_title">Navbar and statusbar transparency</string>
-    <string name="nav_bar_alpha_mode_text_title">Alpha Mode</string>
-    <string name="nav_bar_alpha_mode_home">Launcher</string>
-    <string name="nav_bar_alpha_mode_default">Launcher and Lockscreen</string>
-    <string name="nav_bar_alpha_mode_always">Always</string>
 
     <!-- Navigation Widgets -->
     <string name="navbar_widgets_note_title">Note</string>
@@ -792,11 +787,10 @@
     <string name="status_bar_transparency_title">Statusbar Alpha</string>
     <string name="status_bar_color_title">Statusbar Color</string>
     <string name="status_bar_background_style">Statusbar Style</string>
-    <string name="status_bar_alpha_mode_dialog_text_title">Navbar and statusbar transparency</string>
-    <string name="status_bar_alpha_mode_text_title">Alpha Mode</string>
-    <string name="status_bar_alpha_mode_home">Launcher</string>
-    <string name="status_bar_alpha_mode_default">Launcher and Lockscreen</string>
-    <string name="status_bar_alpha_mode_always">Always</string>
+    <string name="status_nav_bar_alpha_mode_dialog_text_title">Navbar and statusbar transparency</string>
+    <string name="status_nav_bar_alpha_mode_text_title">Transparent</string>
+    <string name="status_nav_bar_alpha_mode_home">Launcher</string>
+    <string name="status_nav_bar_alpha_mode_default">Launcher and Lockscreen</string>
     <string name="status_bar_style_reset">Reset</string>
 
     <!-- Tablet Settings -->
