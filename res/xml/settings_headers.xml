@@ -128,7 +128,7 @@
     <header
         android:id="@+id/quicksettings"
         android:title="@string/quick_settings_title"
-        android:fragment="com.android.settings.liquid.QuickSettings"
+        android:fragment="com.android.settings.liquid.quicksettings.QuickSettings"
         android:icon="@drawable/ic_liquid_quicksettings" />
 
     <!-- Statusbar -->
