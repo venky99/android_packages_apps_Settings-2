@@ -791,6 +791,8 @@
     <string name="status_nav_bar_alpha_mode_text_title">Transparent</string>
     <string name="status_nav_bar_alpha_mode_home">Launcher</string>
     <string name="status_nav_bar_alpha_mode_default">Launcher and Lockscreen</string>
+    <string name="status_nav_bar_colormode_title">Color Mode</string>
+    <string name="status_nav_bar_colormode_summary">Colorize navbar and statusbar</string>
     <string name="status_bar_style_reset">Reset</string>
 
     <!-- Tablet Settings -->
