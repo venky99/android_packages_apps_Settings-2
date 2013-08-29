@@ -820,6 +820,7 @@
     <string name="shortcut_action_ring_vib">Ring/Vibrate</string>
     <string name="shortcut_action_ring_silent">Ring/Silent</string>
     <string name="shortcut_action_ring_vib_silent">Ring/Vibrate/Silent</string>
+    <string name="shortcut_action_expanded_desktop">Expanded Desktop</string>
 
     <!-- Shortcut General -->
     <string name="shortcut_action_longpress">Longpress:</string>
