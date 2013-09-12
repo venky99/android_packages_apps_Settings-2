@@ -40,14 +40,16 @@
             android:entryValues="@array/quick_pulldown_values"
             android:persistent="false" />
 
-        <CheckBoxPreference
+        <ListPreference
             android:key="no_notifications_pulldown"
             android:title="@string/title_no_notifications_pulldown"
-            android:summary="@string/summary_no_notifications_pulldown" />
+            android:entries="@array/no_notifications_pulldown_entries"
+            android:entryValues="@array/no_notifications_pulldown_values"
+            android:persistent="false" />
 
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
-            android:fragment="com.android.settings.liquid.QuickSettingsTilesStyle"
+            android:fragment="com.android.settings.liquid.quicksettings.QuickSettingsTilesStyle"
             android:title="@string/quicksettings_tiles_style"
             android:summary="@string/summary_quicksettings_tiles_style" />
 
@@ -61,7 +63,7 @@
             android:key="tile_picker"
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
-            android:fragment="com.android.settings.liquid.QuickSettingsTiles" />
+            android:fragment="com.android.settings.liquid.quicksettings.QuickSettingsTiles" />
 
         <ListPreference
             android:key="pref_network_mode"

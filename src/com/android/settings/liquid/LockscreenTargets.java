@@ -66,15 +66,17 @@ import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
 import com.android.settings.R;
 import com.android.settings.Utils;
-import com.android.settings.liquid.IconPicker.OnIconPickListener;
+import com.android.settings.util.IconPicker;
+import com.android.settings.util.IconPicker.OnIconPickListener;
+import com.android.settings.util.ShortcutPickHelperTargets;
 
-public class LockscreenTargets extends Fragment implements ShortcutPickHelper.OnPickListener,
+public class LockscreenTargets extends Fragment implements ShortcutPickHelperTargets.OnPickListener,
     GlowPadView.OnTriggerListener, OnIconPickListener {
 
     private GlowPadView mWaveView;
     private ImageButton mDialogIcon;
     private Button mDialogLabel;
-    private ShortcutPickHelper mPicker;
+    private ShortcutPickHelperTargets mPicker;
     private IconPicker mIconPicker;
     private ArrayList<TargetInfo> mTargetStore = new ArrayList<TargetInfo>();
     private int mTargetOffset;
@@ -122,7 +124,7 @@ public class LockscreenTargets extends Fragment implements ShortcutPickHelper.On
         mTargetOffset = mIsLandscape && !mIsScreenLarge ? 2 : 0;
         mTargetInset = mResources.getDimensionPixelSize(com.android.internal.R.dimen.lockscreen_target_inset);
         mIconPicker = new IconPicker(mActivity, this);
-        mPicker = new ShortcutPickHelper(mActivity, this);
+        mPicker = new ShortcutPickHelperTargets(mActivity, this);
         mImageTmp = new File(mActivity.getCacheDir() + "/target.tmp");
         EMPTY_LABEL = mActivity.getResources().getString(R.string.lockscreen_target_empty);
         return inflater.inflate(R.layout.lockscreen_targets, container, false);
@@ -302,13 +304,11 @@ public class LockscreenTargets extends Fragment implements ShortcutPickHelper.On
         menu.add(0, MENU_RESET, 0, R.string.profile_reset_title)
             .setIcon(R.drawable.ic_settings_backup) // use the backup icon
             .setAlphabeticShortcut('r')
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
-                MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         menu.add(0, MENU_SAVE, 0, R.string.wifi_save)
             .setIcon(R.drawable.ic_menu_save)
             .setAlphabeticShortcut('s')
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
-                MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
     }
 
     @Override
@@ -350,16 +350,19 @@ public class LockscreenTargets extends Fragment implements ShortcutPickHelper.On
     private void saveAll() {
         StringBuilder targetLayout = new StringBuilder();
         ArrayList<String> existingImages = new ArrayList<String>();
+        int numberOfFilledTargets = 0;
         final int maxTargets = mIsScreenLarge ? GlowPadView.MAX_TABLET_TARGETS : GlowPadView.MAX_PHONE_TARGETS;
         for (int i = mTargetOffset + 1; i <= mTargetOffset + maxTargets; i++) {
             String uri = mTargetStore.get(i).uri;
             String type = mTargetStore.get(i).iconType;
             String source = mTargetStore.get(i).iconSource;
             existingImages.add(source);
-            if (!uri.equals(GlowPadView.EMPTY_TARGET) && type != null) {
+            if (!uri.equals(GlowPadView.EMPTY_TARGET)) {
                 try {
                     Intent in = Intent.parseUri(uri, 0);
-                    in.putExtra(type, source);
+                    if (type != null) {
+                        in.putExtra(type, source);
+                    }
                     String pkgName = mTargetStore.get(i).pkgName;
                     if (pkgName != null) {
                         in.putExtra(GlowPadView.ICON_PACKAGE, mTargetStore.get(i).pkgName);
@@ -367,14 +370,19 @@ public class LockscreenTargets extends Fragment implements ShortcutPickHelper.On
                         in.removeExtra(GlowPadView.ICON_PACKAGE);
                     }
                     uri = in.toUri(0);
+                    numberOfFilledTargets++;
                 } catch (URISyntaxException e) {
                 }
             }
             targetLayout.append(uri);
             targetLayout.append("|");
         }
-        targetLayout.deleteCharAt(targetLayout.length() - 1);
-        Settings.System.putString(mActivity.getContentResolver(), Settings.System.LOCKSCREEN_TARGETS, targetLayout.toString());
+        if (numberOfFilledTargets == 0) {
+            Settings.System.putString(mActivity.getContentResolver(), Settings.System.LOCKSCREEN_TARGETS, null);
+        } else {
+            targetLayout.deleteCharAt(targetLayout.length() - 1);
+            Settings.System.putString(mActivity.getContentResolver(), Settings.System.LOCKSCREEN_TARGETS, targetLayout.toString());
+        }
         for (File pic : mActivity.getFilesDir().listFiles()) {
             if (pic.getName().startsWith("lockscreen_") && !existingImages.contains(pic.toString())) {
                 pic.delete();

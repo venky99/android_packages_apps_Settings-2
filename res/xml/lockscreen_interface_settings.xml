@@ -73,22 +73,27 @@
             android:title="@string/lockscreen_eight_targets_title"
             android:summary="@string/lockscreen_eight_targets_summary" />
 
-        <Preference
+        <PreferenceScreen
             android:key="lockscreen_shortcuts"
-            android:fragment="com.android.settings.liquid.LockscreenShortcuts"
+            android:fragment="com.android.settings.liquid.dslv.ButtonsListViewSettings"
             android:summary="@string/lockscreen_shortcuts_summary"
-            android:title="@string/lockscreen_shortcuts_title" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_shortcuts_longpress"
-            android:title="@string/lockscreen_shorcuts_longpress_title"
-            android:summary="@string/lockscreen_shorcuts_longpress_summary" />
+            android:title="@string/lockscreen_shortcuts_title">
+            <extra android:name="buttonMode" android:value="4" />
+            <extra android:name="maxAllowedButtons" android:value="5" />
+            <extra android:name="disableLongpress" android:value="true" />
+            <extra android:name="useAppPickerOnly" android:value="true" />
+            <extra android:name="fragment" android:value="com.android.settings.liquid.fragments.LockscreenShortcutFragment" />
+        </PreferenceScreen>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="lockscreen_style_options"
         android:title="@string/lockscreen_style_title">
+
+        <com.android.settings.widget.SeekBarPreference
+            android:key="lockscreen_alpha"
+            android:title="@string/lockscreen_alpha_title" />
 
         <ListPreference
             android:key="lockscreen_background"
@@ -97,10 +102,6 @@
             android:title="@string/lockscreen_custom_background_title"
             android:entries="@array/lockscreen_background_entries"
             android:entryValues="@array/lockscreen_background_values"/>
-
-        <com.android.settings.widget.SeekBarPreference
-            android:key="lockscreen_alpha"
-            android:title="@string/lockscreen_alpha_title" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="lockscreen_text_color"

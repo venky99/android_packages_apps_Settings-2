@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The LiquidSmooth Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/about_liquid_title"
+        xmlns:liquid="http://schemas.android.com/apk/res/com.android.settings">
+
+    <PreferenceCategory android:key="devs"
+        android:title="@string/devs">
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="Liquid0624"
+            liquid:nameDev="liquid0624"
+            liquid:twitterHandle="liquid0624"
+            liquid:donateLink="@string/donate_liquid" />
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="ItsMikeRamsay"
+            liquid:nameDev="itsmikeramsay"
+            liquid:twitterHandle="itsmikeramsay" />
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="Deadman96385"
+            liquid:nameDev="Deadman96385"
+            liquid:twitterHandle="Deadman96385" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="links"
+        android:title="@string/links">
+
+        <Preference
+            android:key="liquid_facebook"
+            android:title="@string/liquid_facebook_title"
+            android:summary="@string/liquid_facebook_summary" />
+
+        <Preference
+            android:key="liquid_source"
+            android:title="@string/liquid_source_title"
+            android:summary="@string/liquid_source_summary" />
+
+        <Preference
+            android:key="liquid_website"
+            android:title="@string/liquid_website_title"
+            android:summary="@string/liquid_website_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="contributors"
+        android:title="@string/contributors">
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="Slimroms"
+            liquid:nameDev="slimroms"
+            liquid:twitterHandle="slimroms"
+            liquid:donateLink="@string/donate_slim" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -17,12 +17,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
-     <!-- About LiquidSmooth -->
-     <PreferenceScreen
-        android:key="about_rom"
-        android:fragment="com.android.settings.liquid.About"
-        android:title="@string/about_liquid_title"
-        android:summary="@string/about_liquid_summary" />
+        <!-- About Liquid -->
+        <PreferenceScreen
+            android:key="about_liquid"
+            android:fragment="com.android.settings.liquid.AboutLiquid"
+            android:title="@string/about_liquid_title"
+            android:summary="@string/about_liquid_summary" />
 
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
@@ -81,8 +81,11 @@
         </PreferenceScreen>
         -->
 
-        <com.android.settings.RegulatoryInfoPreference android:key="regulatory_info"
-                android:title="@string/regulatory_information" />
+        <PreferenceScreen
+                android:key="regulatory_info"
+                android:title="@string/regulatory_information">
+            <intent android:action="android.settings.SHOW_REGULATORY_INFO" />
+        </PreferenceScreen>
 
         <!-- Device hardware model -->
         <Preference android:key="device_model" 

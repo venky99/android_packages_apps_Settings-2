@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2013 SlimRoms
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ package com.android.settings;
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import android.app.ActivityManagerNative;
-import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -35,6 +35,7 @@ import android.hardware.display.WifiDisplayStatus;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -42,13 +43,13 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
-import android.util.AttributeSet;
 import android.util.Log;
+import android.view.IWindowManager;
 
-import com.android.internal.view.RotationPolicy;
 import com.android.settings.DreamSettings;
+import com.android.settings.R;
 import com.android.settings.liquid.DisplayRotation;
+import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
 import java.util.ArrayList;
@@ -57,16 +58,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, OnPreferenceClickListener {
     private static final String TAG = "DisplaySettings";
 
-    // If there is no setting in the provider, use this
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
+
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
-    private static final String KEY_HOME_WAKE = "pref_home_wake";
+    private static final String KEY_BUTTON_WAKE = "pref_wakeon_button";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
     private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String KEY_LIGHT_OPTIONS = "category_light_options";
@@ -76,45 +77,44 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_POWER_CRT_MODE = "system_power_crt_mode";
     private static final String KEY_POWER_CRT_SCREEN_OFF = "system_power_crt_screen_off";
 
+    private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
+
     private static final String ROTATION_ANGLE_0 = "0";
     private static final String ROTATION_ANGLE_90 = "90";
     private static final String ROTATION_ANGLE_180 = "180";
     private static final String ROTATION_ANGLE_270 = "270";
 
-    private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
-
     private DisplayManager mDisplayManager;
 
-    private CheckBoxPreference mHomeWake;
+    private ListPreference mButtonWake;
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;
     private PreferenceCategory mWakeUpOptions;
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mDisplayRotationPreference;
-    private WarnedListPreference mFontSizePref;
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
     private ListPreference mTouchKeyLights;
     private ListPreference mCrtMode;
     private CheckBoxPreference mCrtOff;
-    private CheckBoxPreference mSwapVolumeButtons;
-    private boolean mIsCrtOffChecked = false;
-
-    private final Configuration mCurConfig = new Configuration();
-
     private ListPreference mScreenTimeoutPreference;
     private Preference mScreenSaverPreference;
+    private FontDialogPreference mFontSizePref;
 
     private WifiDisplayStatus mWifiDisplayStatus;
     private Preference mWifiDisplayPreference;
 
-    private ContentObserver mAccelerometerRotationObserver =
+    private boolean mIsCrtOffChecked = false;
+
+    private ContentObserver mAccelerometerRotationObserver = 
             new ContentObserver(new Handler()) {
         @Override
         public void onChange(boolean selfChange) {
             updateDisplayRotationPreferenceDescription();
         }
     };
+
+    private final Configuration mCurConfig = new Configuration();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,12 +127,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
 
-        mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
-        if (mScreenSaverPreference != null
-                && getResources().getBoolean(
-                        com.android.internal.R.bool.config_dreamsSupported) == false) {
-            getPreferenceScreen().removePreference(mScreenSaverPreference);
-        }
+        mWakeUpOptions = (PreferenceCategory) prefSet.findPreference(KEY_WAKEUP_CATEGORY);
 
         mScreenTimeoutPreference = (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         final long currentTimeout = Settings.System.getLong(resolver, SCREEN_OFF_TIMEOUT,
@@ -142,29 +137,28 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         disableUnusableTimeouts(mScreenTimeoutPreference);
         updateTimeoutPreferenceDescription(currentTimeout);
 
-        mFontSizePref = (WarnedListPreference) findPreference(KEY_FONT_SIZE);
+        mFontSizePref = (FontDialogPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
-        mDisplayManager = (DisplayManager)getActivity().getSystemService(
-                Context.DISPLAY_SERVICE);
-        mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
-        mWifiDisplayPreference = (Preference)findPreference(KEY_WIFI_DISPLAY);
-        if (mWifiDisplayStatus.getFeatureState()
-                == WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE) {
-            getPreferenceScreen().removePreference(mWifiDisplayPreference);
-            mWifiDisplayPreference = null;
+        mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
+        if (mScreenSaverPreference != null
+                && getResources().getBoolean(
+                        com.android.internal.R.bool.config_dreamsSupported) == false) {
+            getPreferenceScreen().removePreference(mScreenSaverPreference);
         }
 
-        mWakeUpOptions = (PreferenceCategory) prefSet.findPreference(KEY_WAKEUP_CATEGORY);
-
-        mHomeWake = (CheckBoxPreference) findPreference(KEY_HOME_WAKE);
-        if (mHomeWake != null) {
+        mButtonWake = (ListPreference) findPreference(KEY_BUTTON_WAKE);
+        if (mButtonWake != null) {
             if (!getResources().getBoolean(R.bool.config_show_homeWake)) {
-                mWakeUpOptions.removePreference(mHomeWake);
+                //no home button, don't allow user to disable power button either
+                mWakeUpOptions.removePreference(mButtonWake);
             } else {
-                mHomeWake.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.HOME_WAKE_SCREEN, 1) == 1);
+                int buttonWakeValue = Settings.System.getInt(resolver,
+                        Settings.System.BUTTON_WAKE_SCREEN, 2);
+                mButtonWake.setValue(String.valueOf(buttonWakeValue));
+                mButtonWake.setSummary(getResources().getString(R.string.pref_wakeon_button_summary, mButtonWake.getEntry()));
+                mButtonWake.setOnPreferenceChangeListener(this);
             }
         }
 
@@ -247,6 +241,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mCrtMode.setValue(String.valueOf(crtMode));
         mCrtMode.setSummary(mCrtMode.getEntry());
         mCrtMode.setOnPreferenceChangeListener(this);
+
+        mDisplayManager = (DisplayManager)getActivity().getSystemService(
+                Context.DISPLAY_SERVICE);
+        mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
+        mWifiDisplayPreference = (Preference)findPreference(KEY_WIFI_DISPLAY);
+        if (mWifiDisplayStatus.getFeatureState()
+                == WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE) {
+            getPreferenceScreen().removePreference(mWifiDisplayPreference);
+            mWifiDisplayPreference = null;
+        }
     }
 
     private void updateLightPulseDescription() {
@@ -255,7 +259,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mNotificationPulse.setSummary(getString(R.string.notification_light_enabled));
         } else {
             mNotificationPulse.setSummary(getString(R.string.notification_light_disabled));
-         }
+        }
     }
 
     private void updateBatteryPulseDescription() {
@@ -304,6 +308,98 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             summary.append(" " + getString(R.string.display_rotation_unit));
         }
         preference.setSummary(summary);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), true,
+                mAccelerometerRotationObserver);
+
+        if (mWifiDisplayPreference != null) {
+            getActivity().registerReceiver(mReceiver, new IntentFilter(
+                    DisplayManager.ACTION_WIFI_DISPLAY_STATUS_CHANGED));
+            mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
+        }
+
+        updateDisplayRotationPreferenceDescription();
+        updateLightPulseDescription();
+        updateBatteryPulseDescription();
+        readFontSizePreference(mFontSizePref);
+        updateScreenSaverSummary();
+        updateWifiDisplaySummary();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        getContentResolver().unregisterContentObserver(mAccelerometerRotationObserver);
+
+        if (mWifiDisplayPreference != null) {
+            getActivity().unregisterReceiver(mReceiver);
+        }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+       if (preference == mVolumeWake) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.VOLUME_WAKE_SCREEN,
+                    mVolumeWake.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
+                    mWakeUpWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mCrtOff) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+                    mCrtOff.isChecked() ? 1 : 0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mTouchKeyLights) {
+            int touchKeyLights = Integer.valueOf((String) objValue);
+            int index = mTouchKeyLights.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.TOUCHKEY_LIGHT_DUR, touchKeyLights);
+            mTouchKeyLights.setSummary(mTouchKeyLights.getEntries()[index]);
+            return true;
+        } else if (preference == mCrtMode) {
+            int crtMode = Integer.valueOf((String) objValue);
+            int index = mCrtMode.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEM_POWER_CRT_MODE, crtMode);
+            mCrtMode.setSummary(mCrtMode.getEntries()[index]);
+            return true;
+        } else if (preference == mButtonWake) {
+            int buttonWakeValue = Integer.valueOf((String) objValue);
+            int index = mButtonWake.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BUTTON_WAKE_SCREEN, buttonWakeValue);
+            mButtonWake.setSummary(getResources().getString(R.string.pref_wakeon_button_summary, mButtonWake.getEntries()[index]));
+            return true;
+        } else if (preference == mScreenTimeoutPreference) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, value);
+                updateTimeoutPreferenceDescription(value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist screen timeout setting", e);
+            }
+            return true;
+        } else if (preference == mFontSizePref) {
+            writeFontSizePreference(objValue);
+            return true;
+        }
+        return false;
     }
 
     private void updateTimeoutPreferenceDescription(long currentTimeout) {
@@ -368,69 +464,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
-    int floatToIndex(float val) {
-        String[] indices = getResources().getStringArray(R.array.entryvalues_font_size);
-        float lastVal = Float.parseFloat(indices[0]);
-        for (int i = 1; i < indices.length; i++) {
-            float thisVal = Float.parseFloat(indices[i]);
-            if (val < (lastVal + (thisVal-lastVal)*.5f)) {
-                return i - 1;
-            }
-            lastVal = thisVal;
-        }
-        return indices.length - 1;
-    }
-    
-    public void readFontSizePreference(ListPreference pref) {
-        try {
-            mCurConfig.updateFrom(ActivityManagerNative.getDefault().getConfiguration());
-        } catch (RemoteException e) {
-            Log.w(TAG, "Unable to retrieve font size");
-        }
-
-        // mark the appropriate item in the preferences list
-        int index = floatToIndex(mCurConfig.fontScale);
-        pref.setValueIndex(index);
-
-        // report the current size in the summary text
-        final Resources res = getResources();
-        String[] fontSizeNames = res.getStringArray(R.array.entries_font_size);
-        pref.setSummary(String.format(res.getString(R.string.summary_font_size),
-                fontSizeNames[index]));
-    }
-    
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        updateLightPulseDescription();
-        updateBatteryPulseDescription();
-        updateDisplayRotationPreferenceDescription();
-
-        getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), true,
-                mAccelerometerRotationObserver);
-
-        if (mWifiDisplayPreference != null) {
-            getActivity().registerReceiver(mReceiver, new IntentFilter(
-                    DisplayManager.ACTION_WIFI_DISPLAY_STATUS_CHANGED));
-            mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
-        }
-
-        updateState();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        getContentResolver().unregisterContentObserver(mAccelerometerRotationObserver);
-
-        if (mWifiDisplayPreference != null) {
-            getActivity().unregisterReceiver(mReceiver);
-        }
-    }
-
     @Override
     public Dialog onCreateDialog(int dialogId) {
         if (dialogId == DLG_GLOBAL_CHANGE_WARNING) {
@@ -445,10 +478,42 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         return null;
     }
 
-    private void updateState() {
-        readFontSizePreference(mFontSizePref);
-        updateScreenSaverSummary();
-        updateWifiDisplaySummary();
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference == mFontSizePref) {
+            if (Utils.hasMultipleUsers(getActivity())) {
+                showDialog(DLG_GLOBAL_CHANGE_WARNING);
+                return true;
+            } else {
+                mFontSizePref.click();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Reads the current font size and sets the value in the summary text
+     */
+    public void readFontSizePreference(Preference pref) {
+        try {
+            mCurConfig.updateFrom(ActivityManagerNative.getDefault().getConfiguration());
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to retrieve font size");
+        }
+
+        // report the current size in the summary text
+        final Resources res = getResources();
+        String fontDesc = FontDialogPreference.getFontSizeDescription(res, mCurConfig.fontScale);
+        pref.setSummary(getString(R.string.summary_font_size, fontDesc));
+    }
+
+    public void writeFontSizePreference(Object objValue) {
+        try {
+            mCurConfig.fontScale = Float.parseFloat(objValue.toString());
+            ActivityManagerNative.getDefault().updatePersistentConfiguration(mCurConfig);
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to save font size");
+        }
     }
 
     private void updateScreenSaverSummary() {
@@ -475,71 +540,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
-    public void writeFontSizePreference(Object objValue) {
-        try {
-            mCurConfig.fontScale = Float.parseFloat(objValue.toString());
-            ActivityManagerNative.getDefault().updatePersistentConfiguration(mCurConfig);
-        } catch (RemoteException e) {
-            Log.w(TAG, "Unable to save font size");
-        }
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mHomeWake) {
-            Settings.System.putInt(getContentResolver(), Settings.System.HOME_WAKE_SCREEN,
-                    mHomeWake.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mVolumeWake) {
-            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
-                    mVolumeWake.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mWakeUpWhenPluggedOrUnplugged) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
-                    mWakeUpWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
-            return true;
-        } else if (preference == mCrtOff) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
-                    mCrtOff.isChecked() ? 1 : 0);
-            return true;
-        }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        if (KEY_SCREEN_TIMEOUT.equals(key)) {
-            int value = Integer.parseInt((String) objValue);
-            try {
-                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, value);
-                updateTimeoutPreferenceDescription(value);
-            } catch (NumberFormatException e) {
-                Log.e(TAG, "could not persist screen timeout setting", e);
-            }
-        } else if (preference == mTouchKeyLights) {
-            int touchKeyLights = Integer.valueOf((String) objValue);
-            int index = mTouchKeyLights.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.TOUCHKEY_LIGHT_DUR, touchKeyLights);
-            mTouchKeyLights.setSummary(mTouchKeyLights.getEntries()[index]);
-        } else if (preference == mCrtMode) {
-            int crtMode = Integer.valueOf((String) objValue);
-            int index = mCrtMode.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.SYSTEM_POWER_CRT_MODE, crtMode);
-            mCrtMode.setSummary(mCrtMode.getEntries()[index]);
-            return true;
-        }
-        if (KEY_FONT_SIZE.equals(key)) {
-            writeFontSizePreference(objValue);
-        }
-
-        return true;
-    }
-
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -550,17 +550,4 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
     };
-
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-        if (preference == mFontSizePref) {
-            if (Utils.hasMultipleUsers(getActivity())) {
-                showDialog(DLG_GLOBAL_CHANGE_WARNING);
-                return true;
-            } else {
-                mFontSizePref.click();
-            }
-        }
-        return false;
-    }
 }

@@ -17,6 +17,8 @@
 package com.android.settings.liquid;
 
 import android.content.ContentResolver;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
@@ -40,6 +42,8 @@ import com.android.settings.widget.SeekBarPreference;
 
 public class PieTriggerSettings extends SettingsPreferenceFragment
                         implements Preference.OnPreferenceChangeListener {
+
+    private static final int MENU_RESET = Menu.FIRST;
 
     private static final int DEFAULT_POSITION = 1 << 0; // this equals Position.LEFT.FLAG
 
@@ -111,29 +115,43 @@ public class PieTriggerSettings extends SettingsPreferenceFragment
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.pie_trigger_settings, menu);
+        menu.add(0, MENU_RESET, 0, R.string.pie_reset)
+                .setIcon(R.drawable.ic_settings_backup) // use the backup icon
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.reset:
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+             default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.pie_reset);
+        alertDialog.setMessage(R.string.pie_trigger_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
                 Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.PIE_TRIGGER_THICKNESS,
                     mSystemUiResources.getDimension(
                     mSystemUiResources.getIdentifier("pie_trigger_thickness",
                     "dimen", "com.android.systemui")));
                 Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.PIE_TRIGGER_HEIGHT, 0.8f);
+                    Settings.System.PIE_TRIGGER_HEIGHT, 0.7f);
 
                 Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.PIE_TRIGGER_GRAVITY_LEFT_RIGHT, 16);
-                    updatePieTriggers();
-                return true;
-             default:
-                return super.onContextItemSelected(item);
-        }
+                updatePieTriggers();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
     }
 
     @Override
@@ -256,7 +274,7 @@ public class PieTriggerSettings extends SettingsPreferenceFragment
             triggerHeight = Settings.System.getFloat(getActivity()
                     .getContentResolver(), Settings.System.PIE_TRIGGER_HEIGHT);
         } catch (Exception e) {
-            triggerHeight = 0.8f;
+            triggerHeight = 0.7f;
             Settings.System.putFloat(getActivity().getContentResolver(),
                 Settings.System.PIE_TRIGGER_HEIGHT, triggerHeight);
         }

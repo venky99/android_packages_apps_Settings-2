@@ -41,34 +41,32 @@
             android:title="@string/navigation_bar_width_title"
             android:summary="@string/navigation_bar_width_summary" />
 
-        <com.android.settings.widget.SeekBarPreference
-            android:key="width_port"
-            android:title="@string/width_port_title" />
-
-        <com.android.settings.widget.SeekBarPreference
-            android:key="width_land"
-            android:title="@string/width_land_title" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="navbar_style"
         android:title="@string/advanced_settings_title">
 
-        <PreferenceScreen
-            android:key="nav_bar_background_style"
-            android:fragment="com.android.settings.liquid.NavBarStyle"
-            android:title="@string/nav_bar_background_style" />
+        <com.android.settings.widget.SeekBarPreference
+            android:key="nav_bar_alpha"
+            android:title="@string/nav_bar_transparency_title" />
 
-        <PreferenceScreen
-            android:key="nav_bar_button_style"
-            android:fragment="com.android.settings.liquid.NavBarButtonStyle"
-            android:title="@string/nav_bar_button_style" />
+        <CheckBoxPreference
+            android:key="nav_bar_color_mode"
+            android:title="@string/status_nav_bar_colormode_title"
+            android:summary="@string/status_nav_bar_colormode_summary" />
+
+        <ListPreference
+            android:key="nav_bar_alpha_mode"
+            android:dialogTitle="@string/status_nav_bar_alpha_mode_dialog_text_title"
+            android:title="@string/status_nav_bar_alpha_mode_text_title"
+            android:entries="@array/entries_status_nav_bar_alpha_mode"
+            android:entryValues="@array/values_status_nav_bar_alpha_mode" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="nav_button_glow_color"
-            android:title="@string/navigation_bar_glow_tint_title"
-            android:defaultValue="0xffffffff" />
+            android:key="nav_bar_color"
+            android:title="@string/nav_bar_color_title"
+            android:defaultValue="0xff000000" />
 
     </PreferenceCategory>
 

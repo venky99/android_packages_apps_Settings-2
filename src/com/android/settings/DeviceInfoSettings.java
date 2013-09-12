@@ -34,6 +34,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,6 +71,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_DEVICE_MEMORY = "device_memory";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
+
     long[] mHits = new long[3];
     int mDevHitCountdown;
     Toast mDevHitToast;
@@ -194,29 +196,17 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 }
             }
         } else if (preference.getKey().equals(KEY_BUILD_NUMBER)) {
-            // Only allow the owner of the device to turn on dev and performance options
-            if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
-                if (mDevHitCountdown > 0) {
-                    mDevHitCountdown--;
-                    if (mDevHitCountdown == 0) {
-                        getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
-                                Context.MODE_PRIVATE).edit().putBoolean(
-                                        DevelopmentSettings.PREF_SHOW, true).apply();
-                        if (mDevHitToast != null) {
-                            mDevHitToast.cancel();
-                        }
-                        mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_on,
-                                Toast.LENGTH_LONG);
-                        mDevHitToast.show();
-                    } else if (mDevHitCountdown > 0
-                            && mDevHitCountdown < (TAPS_TO_BE_A_DEVELOPER-2)) {
-                        if (mDevHitToast != null) {
-                            mDevHitToast.cancel();
-                        }
-                        mDevHitToast = Toast.makeText(getActivity(), getResources().getString(
-                                R.string.show_dev_countdown, mDevHitCountdown),
-                                Toast.LENGTH_SHORT);
-                        mDevHitToast.show();
+            // Don't enable developer options for secondary users.
+            if (UserHandle.myUserId() != UserHandle.USER_OWNER) return true;
+
+            if (mDevHitCountdown > 0) {
+                mDevHitCountdown--;
+                if (mDevHitCountdown == 0) {
+                    getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
+                            Context.MODE_PRIVATE).edit().putBoolean(
+                                    DevelopmentSettings.PREF_SHOW, true).apply();
+                    if (mDevHitToast != null) {
+                        mDevHitToast.cancel();
                     }
                 } else if (mDevHitCountdown < 0) {
                     if (mDevHitToast != null) {
@@ -377,8 +367,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         try {
             /* The expected /proc/cpuinfo output is as follows:
-             * Processor: ARMv7 Processor rev 2 (v7l)
-             * BogoMIPS: 272.62
+             * Processor    : ARMv7 Processor rev 2 (v7l)
+             * BogoMIPS    : 272.62
              */
             String firstLine = readLine(FILENAME_PROC_CPUINFO);
             if (firstLine != null) {

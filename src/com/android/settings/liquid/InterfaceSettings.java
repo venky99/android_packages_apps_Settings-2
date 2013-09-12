@@ -51,9 +51,9 @@ import android.view.Window;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import android.widget.EditText;
+import com.android.settings.SettingsPreferenceFragment;
 
 public class InterfaceSettings extends SettingsPreferenceFragment
     implements OnPreferenceChangeListener {
@@ -223,6 +223,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment
                     // Canceled.
                 }
             });
+
             alert.show();
             return true;
         }

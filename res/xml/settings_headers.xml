@@ -128,7 +128,7 @@
     <header
         android:id="@+id/quicksettings"
         android:title="@string/quick_settings_title"
-        android:fragment="com.android.settings.liquid.QuickSettings"
+        android:fragment="com.android.settings.liquid.quicksettings.QuickSettings"
         android:icon="@drawable/ic_liquid_quicksettings" />
 
     <!-- Statusbar -->
@@ -293,7 +293,7 @@
     <!-- Superuser -->
     <header
         android:id="@+id/superuser"
-        android:fragment="com.android.settings.liquid.superuser.PolicyNativeFragment"
+        android:fragment="com.koushikdutta.superuser.PolicyNativeFragment"
         android:icon="@drawable/ic_liquid_superuser"
         android:title="@string/superuser" />
 
