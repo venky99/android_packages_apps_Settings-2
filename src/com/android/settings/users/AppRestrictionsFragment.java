@@ -613,19 +613,6 @@ public class AppRestrictionsFragment extends SettingsPreferenceFragment implemen
                     } catch (RemoteException e) {
                     }
                 }
-                if (pi != null && pi.requiredForAllUsers) {
-                    p.setChecked(true);
-                    p.setImmutable(true);
-                    // If the app is required and has no restrictions, skip showing it
-                    if (!hasSettings && !isSettingsApp) continue;
-                    // Get and populate the defaults, since the user is not going to be
-                    // able to toggle this app ON (it's ON by default and immutable).
-                    if (hasSettings) {
-                        requestRestrictionsForApp(packageName, p);
-                    }
-                } else if (!mNewUser && appInfoListHasPackage(mUserApps, packageName)) {
-                    p.setChecked(true);
-                }
                 if (pi.requiredAccountType != null && pi.restrictedAccountType == null) {
                     p.setChecked(false);
                     p.setImmutable(true);

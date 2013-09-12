@@ -96,7 +96,6 @@
             android:taskAffinity=""
             android:theme="@android:style/Theme.Holo"
             android:hardwareAccelerated="true"
-            android:requiredForAllUsers="true"
             android:supportsRtl="true">
 
         <!-- Only system/su can open this activity -->
